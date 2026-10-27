@@ -3,6 +3,15 @@
     "meta-ads": {
       "type": "http",
       "url": "https://mcp.facebook.com/ads"
+    },
+    "google-analytics": {
+      "type": "stdio",
+      "command": "pipx",
+      "args": ["run", "analytics-mcp"],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${HOME}/.config/korza-marketing/google-sa.json",
+        "GOOGLE_CLOUD_PROJECT": "korza-marketing"
+      }
     }
   }
 }

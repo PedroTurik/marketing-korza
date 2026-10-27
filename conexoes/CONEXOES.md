@@ -2,15 +2,15 @@
 
 Como o hub lê (e, com OK, escreve) nos canais. Regra: **leitura por padrão; qualquer escrita (subir
 campanha, publicar, responder) só depois de mostrar o plano e receber OK para aquele plano.**
-Segredos em `.env` (fora do git), nunca em arquivo versionado.
+Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em arquivo versionado.
 
 ## Status
 
 | Conexão | Método | Status |
 | --- | --- | --- |
-| Rastreamento (GA4 + Pixel) no site e no admin | Código, ver `estrategia/plano-de-medicao.md` | 🟨 GA4 no ar no site (commit `2d7747e` em `dev/Site-Korza`, publicado 2026-10-26, código direto, sem GTM); falta Pixel, admin e banner de consentimento |
-| GA4 | MCP oficial do Google (`google-analytics-mcp`) | 🟨 propriedade criada (`G-HR907RLPTS`); leitura a conectar |
-| Search Console | Script próprio (API + conta de serviço) | 🟨 propriedade de Domínio `korza.com.br` verificada (2026-10-27); leitura a conectar |
+| Rastreamento (GA4 + Pixel) no site e no admin | Código, ver `estrategia/plano-de-medicao.md` | 🟨 GA4 e Pixel no ar no site (código direto, sem GTM); falta admin (ver "PR do admin") e banner de consentimento |
+| GA4 | MCP oficial do Google (`analytics-mcp`, servidor `google-analytics` em `.mcp.json`), conta de serviço | ✅ leitura testada em 2026-10-27 (propriedade `properties/560905270`, `G-HR907RLPTS`); sem `--allow-write` |
+| Search Console | Script `conexoes/search_console.py` (`uv run`), conta de serviço | ✅ leitura testada em 2026-10-27 (`sc-domain:korza.com.br`) |
 | Meta Ads | MCP oficial da Meta (`https://mcp.facebook.com/ads`, em `.mcp.json`) | 🟨 conectado (2026-10-27); a conta das campanhas, "Korza Brasil" (`1982997825669595`), ainda não tem o MCP liberado (liberação gradual da Meta) |
 | Pixel da Meta | Reaproveitar o pixel da LP antiga `1174311258139587` | 🟨 no ar no site desde 2026-10-27 (`PageView` conferido), sem banner por decisão do Pedro; falta admin |
 | Instagram @korza.br | Script próprio (Instagram Graph API) | ⬜ a conectar (conta profissional + Página existem) |
@@ -75,6 +75,28 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
 - **Ainda com o Pedro:** projeto "korza-marketing" no Google Cloud (credencial para GA4, conta de serviço para o
   Search Console e, quando houver conta de anúncios, a Google Ads API). Conta do Google Ads: só quando for anunciar
   no Google (ao criar, usar o modo especialista e "criar conta sem campanha").
+
+## Google Cloud e conta de serviço
+
+- Projeto `korza-marketing` (número `419588201628`), sem faturamento por enquanto. APIs ativas: Google Analytics
+  Admin, Google Analytics Data, Google Search Console.
+- Conta de serviço `leitor-marketing@korza-marketing.iam.gserviceaccount.com`, sem papéis no projeto. Chave JSON em
+  `~/.config/korza-marketing/google-sa.json` (permissão 600, fora do git). Se vazar: Cloud console → Contas de
+  serviço → Chaves → excluir e gerar outra.
+- O Pedro deu a ela permissões acima de leitura no GA4 e no Search Console (para editar se preciso). As ferramentas
+  do hub continuam só lendo: o MCP do GA4 roda sem `--allow-write` e o script pede o escopo `webmasters.readonly`.
+  Qualquer escrita segue a regra da casa (plano + OK).
+- Para ligar o MCP do GA4: abrir o Claude Code dentro de `marketing/` e aprovar o servidor `google-analytics`
+  na primeira vez (precisa de `pipx`).
+
+## Primeiras observações dos dados (2026-10-27, para a frente de SEO)
+
+- Search Console, 28 dias: a busca "korza" teve 17 cliques em 99 impressões, posição média 3,8 (a própria marca
+  fora do 1º lugar; site novo de 2026-10-20). "korza ai" aparece com 19 impressões, posição 6,5.
+- `korza.com.br` (sem www) e `www.korza.com.br` respondem 200 com o mesmo conteúdo, sem redirecionamento nem
+  `canonical`: conteúdo duplicado para o Google e o GA4 registra os dois hosts. Sugestão: 301 do domínio raiz
+  para o `www` no Amplify e `<link rel="canonical">`.
+- O Google ainda mostra `quiz.korza.com.br` (19 impressões) e `www.korza.com.br/formulário` (página antiga, hoje 404).
 
 ## PR do admin (pendente)
 
