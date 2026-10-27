@@ -13,7 +13,7 @@ Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em ar
 | Search Console | Script `conexoes/search_console.py` (`uv run`), conta de serviço | ✅ leitura testada em 2026-10-27 (`sc-domain:korza.com.br`) |
 | Meta Ads | MCP oficial da Meta (`https://mcp.facebook.com/ads`, em `.mcp.json`) | 🟨 conectado (2026-10-27); a conta das campanhas, "Korza Brasil" (`1982997825669595`), ainda não tem o MCP liberado (liberação gradual da Meta) |
 | Pixel da Meta | Reaproveitar o pixel da LP antiga `1174311258139587` | 🟨 no ar no site desde 2026-10-27 (`PageView` conferido), sem banner por decisão do Pedro; falta admin |
-| Instagram @korza.br | Script próprio (Instagram Graph API) | ⬜ a conectar (conta profissional + Página existem) |
+| Instagram @korza.br | MCP da Meta (posts) + script próprio (Instagram Graph API, métricas) | 🟨 o MCP já lista os posts com curtidas e comentários (IG `17841473916924433`, Página `637153062822915`, via conta "Korza" `3921782194748691`); alcance, views, salvamentos, seguidores e público exigem o app + usuário do sistema |
 | Google Ads | MCP oficial do Google (`googleads/google-ads-mcp`), só leitura | ⬜ conta não existe; criar só quando houver plano de campanha no Google |
 
 Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no push da `main`).
