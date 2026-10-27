@@ -56,7 +56,7 @@ Consequências para o marketing:
 | --- | --- |
 | Criar conta (CTA) | https://admin.korza.app/create-account |
 | Login | https://admin.korza.app/login |
-| Site | https://korza.com.br |
+| Site | https://korza.app (domínio principal desde 2026-10-27; korza.com.br redireciona). Use sempre korza.app em anúncios e materiais |
 | Instagram | https://www.instagram.com/korza.br/ |
 
 ## Método AOP (tática, não pilar)

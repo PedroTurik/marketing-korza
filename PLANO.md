@@ -1,7 +1,7 @@
 # Hub de marketing da Korza — plano
 
 Criado em 2026-10-26. Hub único onde o Pedro, junto com o Claude, cuida de todo o marketing da Korza
-(korza.com.br): ads pagos, copy, SEO, conteúdo orgânico, edição de vídeo e motion.
+(korza.app; antes korza.com.br): ads pagos, copy, SEO, conteúdo orgânico, edição de vídeo e motion.
 
 ## Princípio
 

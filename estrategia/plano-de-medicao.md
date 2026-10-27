@@ -10,6 +10,8 @@ Nenhum rastreamento instalado: **korza.com.br e admin.korza.app não têm GA4, G
 ## Funil e eventos
 
 O funil atravessa dois domínios: o site (`korza.com.br`) e o produto (`admin.korza.app`).
+**Atualização 2026-10-27:** o site passa para `korza.app`, o mesmo domínio do admin. Com isso os cookies do GA4 e do
+Pixel valem no site e no cadastro sem configuração entre domínios; o repasse do `fbclid` vira redundante.
 
 | Etapa | Onde | Evento GA4 | Evento Meta (Pixel) | Parâmetros |
 | --- | --- | --- | --- | --- |

@@ -20,16 +20,21 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
 
 ## Para retomar (fim da sessão de 2026-10-27)
 
-**Em andamento: Instagram.** O Pedro está criando o app; o passo a passo está em "Instagram: app e token" abaixo.
-Quando ele disser "pronto" (com o ID do app): conferir o token (permissões, validade, se enxerga o @korza.br) e
-montar `conexoes/instagram.py` (alcance, views, salvamentos, compartilhamentos, seguidores, público).
+**Em andamento: migrar o site para `korza.app`** (passos em "Domínio: tudo em korza.app"), **arrumar o portfólio Meta e criar o app.** Mapa em "Mapa do portfólio Korza na Meta". Com o token
+pronto: conferir permissões, validade, se enxerga o @korza.br e a Korza Brasil, e montar o script de métricas.
 
-**Fila da Fase 2, em ordem:**
+**Fila da Fase 2, em ordem** (atualizada em 2026-10-27, depois do "Mapa do portfólio Korza na Meta"):
 
-1. Instagram: app + usuário do sistema (Pedro) → script de métricas (Claude).
-2. Ligar o MCP `meta-devtools` (adicionado ao `.mcp.json`): Pedro roda `/mcp` e faz login na Meta.
-3. PR do admin na branch `dev` (ver "PR do admin"), quando o Pedro pedir.
-4. Conversions API pelo backend (Fase 2b), depois do básico rodando.
+1. Faxina de acesso no portfólio (Pedro, interface): conferir pessoas e parceiros, tirar o acesso do dono antigo,
+   Pedro como admin com 2FA; confirmar que a Korza Brasil pertence ao portfólio e tem forma de pagamento.
+2. Ligar o `Korza - Site` à conta Korza Brasil (Gerenciador de Eventos → configurações → ativos conectados).
+3. App `Korza Marketing`: o MCP `meta-devtools` (conectado) cria, vincula ao portfólio Korza e adiciona o caso de uso
+   do Instagram, com OK do Pedro. Falta o e-mail de contato.
+4. Usuário do sistema `leitor-marketing` (Pedro): além do Instagram e da Página, atribuir a conta **Korza Brasil** e
+   incluir `ads_read` no token. Assim o hub lê a Korza Brasil pela API sem esperar o MCP.
+5. Script de métricas (Claude): Instagram + campanhas da Korza Brasil.
+6. PR do admin na branch `dev` (ver "PR do admin"), quando o Pedro pedir.
+7. Conversions API pelo backend (Fase 2b), depois do básico rodando.
 
 **Esperando terceiros / depois:** conta "Korza Brasil" ser liberada no MCP da Meta (testar de vez em quando);
 banner de consentimento (a Korza tem política de privacidade, pegar o link); verificação do `korza.app` na Meta
@@ -40,6 +45,51 @@ tirar o link do app `korza-brownies`; remoto no GitHub para o hub (hoje sem back
 repasse do `fbclid`; domínios verificados (Meta e Search Console); GA4 (MCP) e Search Console (script)
 conectados com conta de serviço; `korza.com.br` → `www` com 301 e `canonical`; o MCP da Meta lê os posts do
 Instagram (curtidas e comentários); primeiro commit do hub.
+
+## Mapa do portfólio Korza na Meta (levantado em 2026-10-27)
+
+Portfólio **Korza** `1444893746669109`. O login do Pedro também enxerga Oryza Labs (3) e Rumy: fora do escopo.
+
+| Ativo | ID | Situação | Decisão |
+| --- | --- | --- | --- |
+| Conta **Korza Brasil** (BRL) | `1982997825669595` | Principal (Pedro). O MCP ainda não lê (liberação gradual) | **Única conta para campanhas novas** |
+| Conta **Korza** (USD) | `3921782194748691` | 25 campanhas, todas pausadas, ~US$ 1.466 de jun/2025 a mar/2026 (leads, WhatsApp, engajamento, testes nos EUA). Tem as listas de clientes | Arquivo: não apagar, não anunciar. Listas úteis são compartilhadas com a Korza Brasil |
+| Página Korza | `637153062822915` | Única Página do portfólio | Usar |
+| Instagram @korza.br | `17841473916924433` | Ligado à Página | Usar |
+| Conjunto de dados `Korza - Site` | `1174311258139587` | Recebendo `PageView` do site novo | **O pixel oficial** (site e admin) |
+| `Korza - Quiz` | `1054973176864468` | Ainda recebe eventos (navegador e servidor) pelo botão do app `korza-brownies` | Desligar quando o Pedro quiser |
+| `[inutilizado] Korza` / `[antigo] Korza App` | `1564215361452780` / `1228288975461990` | Parados (dez/2025 / nunca) | Deixar quieto |
+| Apps `Korza Chatwoot` e `Chatwoot Outbound WA` | `1145271577493835` / `2227610147973000` | WhatsApp/atendimento (vendas, fora do hub) | Não mexer |
+
+Política de privacidade: `https://korza.app/privacy-policy/` (hoje ainda em `https://www.korza.com.br/privacy-policy/`) (commit `fe79c76` no site, 2026-10-27; a antiga em
+`korza.app` saiu do ar). É o link para o banner e para os apps da Meta. O texto (18/12/2025) diz que não há cookies de
+marketing, o que já não vale com o Pixel e o GA4: revisar junto com o banner.
+
+O MCP não mostra quem tem acesso ao portfólio, quem é dono da Korza Brasil, nem os pagamentos. Isso é conferido na
+interface (ver "Para retomar").
+
+## Domínio: tudo em korza.app (decidido em 2026-10-27)
+
+Decisão do Pedro: `korza.app` vira o domínio principal do site (sem `www`); `www.korza.app`, `korza.com.br` e
+`www.korza.com.br` redirecionam com 301 preservando o caminho. Motivo: site e admin no mesmo domínio (cookies do
+Pixel e do GA4 valem no cadastro), um domínio para site, plataforma e e-mail; o histórico do `.com.br` no Google era
+pequeno. Nunca deixar o `korza.com.br` expirar (Registro.br) nem sair do Search Console.
+
+Antes da migração, no DNS do `korza.app` (Route 53): raiz sem registro A, `www` inexistente. Continua vivo e **não
+pode ser mexido**: `admin.korza.app` (CloudFront), e-mail no Lark (MX `mx1-3.larksuite.com`, SPF, TXT
+`verification-code-site-App_lark`) e um TXT `google-site-verification` (de outra conta; a conta de serviço não tem
+acesso a `sc-domain:korza.app`). TXT novos entram como valores a mais no mesmo registro.
+
+Passos (status):
+1. Push da política de privacidade (`fe79c76`) — Pedro.
+2. Amplify `site-korza`: domínio `korza.app` (raiz + `www`), raiz como principal — Pedro.
+3. Push da `canonical` em `korza.app` (`7e8ccf4`), só com o passo 2 servindo — Pedro.
+4. Regras 301 no Amplify, substituindo a do `korza.com.br` → `www` — Pedro.
+5. Search Console: propriedade `korza.app` + Alteração de endereço; conta de serviço como usuário; trocar o padrão
+   do `search_console.py` — Pedro, depois Claude.
+6. GA4: URL do fluxo para `https://korza.app`. Meta: verificar `korza.app` no portfólio por TXT — Pedro.
+7. Trocar links antigos: app Korza Chatwoot (URL de privacidade), listagem do app na Shopify, bio do Instagram — Pedro.
+8. Conferir redirecionamentos, `canonical`, admin, e-mail e eventos do Pixel/GA4 — Claude.
 
 ## Estado em 2026-10-27 (passagem de sessão)
 
@@ -131,8 +181,9 @@ O MCP da Meta já lista os posts (curtidas, comentários). Para métricas, o Ped
    adicionar o produto **Instagram** (API com login do Facebook), sem URL de redirecionamento.
 2. **Usuário do sistema** em business.facebook.com/settings → Usuários → Usuários do sistema → `leitor-marketing`,
    função Funcionário → atribuir ativos: app `Korza Marketing`, Página `Korza` e Instagram `korza.br` (visualização /
-   insights) → gerar token com validade "Nunca" e só `instagram_basic`, `instagram_manage_insights`,
-   `pages_show_list`, `pages_read_engagement`, `business_management`.
+   insights) e conta de anúncios **Korza Brasil** (só visualizar desempenho) → gerar token com validade "Nunca" e só
+   `instagram_basic`, `instagram_manage_insights`, `pages_show_list`, `pages_read_engagement`, `business_management`,
+   `ads_read`.
 3. **Token** guardado pelo Pedro num terminal fora do Claude (não colar no chat), em
    `~/.config/korza-marketing/meta.env` como `META_IG_TOKEN=…`, permissão 600.
 

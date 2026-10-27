@@ -1,6 +1,6 @@
 # Korza — hub de marketing
 
-Hub onde o Pedro e o Claude cuidam de todo o marketing da Korza (korza.com.br): ads pagos, copy, SEO,
+Hub onde o Pedro e o Claude cuidam de todo o marketing da Korza (korza.app; até 2026-10-27, korza.com.br): ads pagos, copy, SEO,
 conteúdo orgânico do Instagram, edição de vídeo e motion. Idioma de trabalho: **português do Brasil**.
 
 **Em construção.** Plano, decisões e status das fases em [PLANO.md](PLANO.md). Leia antes de começar.
