@@ -85,7 +85,9 @@ Passos (status):
 2. ✅ Amplify `site-korza`: domínio `korza.app` (raiz + `www`).
 3. ✅ Push da `canonical` em `korza.app` (`7e8ccf4`).
 4. ✅ Regras 301 no Amplify (`www.korza.app`, `korza.com.br`, `www.korza.com.br` → `https://korza.app/<*>`). Levaram
-   ~5 min para valer depois de salvas.
+   ~5 min para valer depois de salvas. A raiz `https://korza.com.br/` ficou presa no cache da CDN (cópia Brotli de
+   quando a regra ainda não valia; `s-maxage` de 1 ano): **depois de mudar regras, reimplantar a `main` para limpar
+   a CDN**. Testar com `Accept-Encoding: gzip, deflate, br`, senão o curl pega outra variação e engana.
 5. Search Console: propriedade `korza.app` + Alteração de endereço; conta de serviço como usuário; trocar o padrão
    do `search_console.py` — Pedro, depois Claude.
 6. GA4: URL do fluxo para `https://korza.app`. Meta: verificar `korza.app` no portfólio por TXT — Pedro.
