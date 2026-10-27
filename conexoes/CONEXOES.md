@@ -61,7 +61,7 @@ Portfólio **Korza** `1444893746669109`. O login do Pedro também enxerga Oryza 
 | `[inutilizado] Korza` / `[antigo] Korza App` | `1564215361452780` / `1228288975461990` | Parados (dez/2025 / nunca) | Deixar quieto |
 | Apps `Korza Chatwoot` e `Chatwoot Outbound WA` | `1145271577493835` / `2227610147973000` | WhatsApp/atendimento (vendas, fora do hub) | Não mexer |
 
-Política de privacidade: `https://korza.app/privacy-policy/` (hoje ainda em `https://www.korza.com.br/privacy-policy/`) (commit `fe79c76` no site, 2026-10-27; a antiga em
+Política de privacidade: `https://korza.app/privacy-policy/` (commit `fe79c76` no site, 2026-10-27; a antiga em
 `korza.app` saiu do ar). É o link para o banner e para os apps da Meta. O texto (18/12/2025) diz que não há cookies de
 marketing, o que já não vale com o Pixel e o GA4: revisar junto com o banner.
 
@@ -81,15 +81,17 @@ pode ser mexido**: `admin.korza.app` (CloudFront), e-mail no Lark (MX `mx1-3.lar
 acesso a `sc-domain:korza.app`). TXT novos entram como valores a mais no mesmo registro.
 
 Passos (status):
-1. Push da política de privacidade (`fe79c76`) — Pedro.
-2. Amplify `site-korza`: domínio `korza.app` (raiz + `www`), raiz como principal — Pedro.
-3. Push da `canonical` em `korza.app` (`7e8ccf4`), só com o passo 2 servindo — Pedro.
-4. Regras 301 no Amplify, substituindo a do `korza.com.br` → `www` — Pedro.
+1. ✅ Push da política de privacidade (`fe79c76`).
+2. ✅ Amplify `site-korza`: domínio `korza.app` (raiz + `www`).
+3. ✅ Push da `canonical` em `korza.app` (`7e8ccf4`).
+4. ✅ Regras 301 no Amplify (`www.korza.app`, `korza.com.br`, `www.korza.com.br` → `https://korza.app/<*>`). Levaram
+   ~5 min para valer depois de salvas.
 5. Search Console: propriedade `korza.app` + Alteração de endereço; conta de serviço como usuário; trocar o padrão
    do `search_console.py` — Pedro, depois Claude.
 6. GA4: URL do fluxo para `https://korza.app`. Meta: verificar `korza.app` no portfólio por TXT — Pedro.
 7. Trocar links antigos: app Korza Chatwoot (URL de privacidade), listagem do app na Shopify, bio do Instagram — Pedro.
-8. Conferir redirecionamentos, `canonical`, admin, e-mail e eventos do Pixel/GA4 — Claude.
+8. ✅ Conferido em 2026-10-27: 301 em um salto preservando caminho, UTMs e `fbclid`; `canonical` em `korza.app`;
+   admin e MX intactos; Pixel `1174…` (`PageView`) e GA4 (`page_view`) disparam com `dl=https://korza.app/…`.
 
 ## Estado em 2026-10-27 (passagem de sessão)
 
