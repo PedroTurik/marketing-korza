@@ -14,7 +14,7 @@ Segredos em `.env` (fora do git), nunca em arquivo versionado.
 | Meta Ads | MCP oficial da Meta (`https://mcp.facebook.com/ads`, em `.mcp.json`) | 🟨 conectado (2026-10-27); a conta das campanhas, "Korza Brasil" (`1982997825669595`), ainda não tem o MCP liberado (liberação gradual da Meta) |
 | Pixel da Meta | Reaproveitar o pixel da LP antiga `1174311258139587` | 🟨 no ar no site desde 2026-10-27 (`PageView` conferido), sem banner por decisão do Pedro; falta admin |
 | Instagram @korza.br | Script próprio (Instagram Graph API) | ⬜ a conectar (conta profissional + Página existem) |
-| Google Ads | MCP oficial do Google (`googleads/google-ads-mcp`), só leitura | ⬜ conta não existe; developer token leva dias |
+| Google Ads | MCP oficial do Google (`googleads/google-ads-mcp`), só leitura | ⬜ conta não existe; criar só quando houver plano de campanha no Google |
 
 Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no push da `main`).
 
@@ -66,8 +66,15 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
   Só vale quando o admin tiver a tag também.
 - **Hub `marketing/`:** primeiro commit `d813e8c` (2026-10-27), na branch `master`. Sem remoto ainda
   (sem backup fora da máquina); sugerido criar um repo privado no GitHub.
-- **Ainda com o Pedro:** conta MCC do Google Ads + developer token; projeto "korza-marketing" no Google Cloud
-  (credencial para GA4 e conta de serviço para o Search Console).
+- **Google Ads API mudou (verificado na doc do Google em 2026-10-27, página de 2026-10-19):** o developer token foi
+  extinto em 2026-09-09 e a MCC não é mais necessária para começar. O acesso à API pertence ao **projeto do Google
+  Cloud** (o mesmo "korza-marketing"): ativar a Google Ads API dá acesso de teste; para contas reais, pedir
+  **Explorer** na página Google Ads API → Visão geral do Cloud console (revisão automática, até 2.880 operações/dia,
+  o bastante para leitura). Projeto em teste gratuito ou sem faturamento pode ser recusado. Não pedir pela
+  Central de API do Google Ads (não é mais processado). Conferir se o `google-ads-mcp` já aceita rodar sem token.
+- **Ainda com o Pedro:** projeto "korza-marketing" no Google Cloud (credencial para GA4, conta de serviço para o
+  Search Console e, quando houver conta de anúncios, a Google Ads API). Conta do Google Ads: só quando for anunciar
+  no Google (ao criar, usar o modo especialista e "criar conta sem campanha").
 
 ## PR do admin (pendente)
 
@@ -96,8 +103,7 @@ Eventos e nomes em `estrategia/plano-de-medicao.md`.
      Em Administrador → Fluxos → Configurar tag → Configurar domínios: incluir `korza.com.br` e `admin.korza.app`.
    - Search Console: search.google.com/search-console → propriedade de **Domínio** `korza.com.br` → registro
      TXT no DNS.
-   - Google Ads: criar uma **conta de administrador (MCC)** e, dentro dela, a conta da Korza. Na MCC:
-     Ferramentas → Central de API → pedir o developer token (aprovação demora; pedir cedo).
+   - Google Ads: ~~MCC + developer token~~ (extinto em 2026-09-09; ver "Google Ads API mudou" acima).
 2. **Meta: Pixel** (Pedro, ~10 min) — Gerenciador de Eventos → Conectar fontes de dados → Web → criar o
    dataset/pixel "Korza". Anotar o **ID do pixel**.
 3. **Instalar o rastreamento** (Pedro + Claude) — Pedro clona o site; Claude implementa no site e no
@@ -109,7 +115,7 @@ Eventos e nomes em `estrategia/plano-de-medicao.md`.
    - Search Console: conta de serviço do mesmo projeto, adicionada como usuário no Search Console; script em `conexoes/`.
    - Instagram: app "Korza Marketing" no Meta for Developers, usuário do sistema do BM com
      `instagram_basic`, `instagram_manage_insights`, `pages_read_engagement`, `pages_show_list`; script em `conexoes/`.
-   - Google Ads: quando o developer token sair.
+   - Google Ads: Google Ads API no projeto "korza-marketing" + acesso Explorer, quando a conta de anúncios existir.
 5. **Conversions API** (Fase 2b) — eventos de cadastro e assinatura enviados pelo backend.
 
 ## Configuração de MCP
