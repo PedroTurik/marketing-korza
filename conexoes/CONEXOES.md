@@ -18,10 +18,15 @@ Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em ar
 
 Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no push da `main`).
 
-## Para retomar (fim da sessão de 2026-10-27)
+## Para retomar (fim da 2ª sessão de 2026-10-27)
 
-**Em andamento: migrar o site para `korza.app`** (passos em "Domínio: tudo em korza.app"), **arrumar o portfólio Meta e criar o app.** Mapa em "Mapa do portfólio Korza na Meta". Com o token
-pronto: conferir permissões, validade, se enxerga o @korza.br e a Korza Brasil, e montar o script de métricas.
+**Agora: fechar a migração para `korza.app`** (no ar e conferida; passos 5–7 em "Domínio: tudo em korza.app").
+Pendente com o Pedro: validar a Alteração de endereço no Search Console (a 1ª tentativa falhou por cache da CDN
+em Chicago logo após o redeploy; depois disso todas as regiões testadas dão 301), enviar `https://korza.app/sitemap.xml`
+na propriedade `korza.app`, trocar a URL do fluxo do GA4, verificar `korza.app` na Meta por TXT e trocar links antigos.
+Se a validação falhar de novo: pedir a "Resposta HTTP" da Inspeção de URL e ver o `X-Amz-Cf-Pop`/`X-Cache`.
+Depois: Claude confere TXT, verificação na Meta e acesso da conta de serviço ao `sc-domain:korza.app`, e troca o
+padrão do `search_console.py`.
 
 **Fila da Fase 2, em ordem** (atualizada em 2026-10-27, depois do "Mapa do portfólio Korza na Meta"):
 
@@ -37,14 +42,16 @@ pronto: conferir permissões, validade, se enxerga o @korza.br e a Korza Brasil,
 7. Conversions API pelo backend (Fase 2b), depois do básico rodando.
 
 **Esperando terceiros / depois:** conta "Korza Brasil" ser liberada no MCP da Meta (testar de vez em quando);
-banner de consentimento (a Korza tem política de privacidade, pegar o link); verificação do `korza.app` na Meta
-(sem TXT no DNS, confirmar com o Pedro); conta do Google Ads só quando for anunciar no Google; desligar o quiz e
+banner de consentimento (política em `https://korza.app/privacy-policy/`; revisar o texto da seção 7, que nega cookies
+de marketing, e os contatos `@korza.app`; falta a seção 11); conta do Google Ads só quando for anunciar no Google; desligar o quiz e
 tirar o link do app `korza-brownies`; remoto no GitHub para o hub (hoje sem backup fora da máquina).
 
 **Feito nesta sessão:** conjuntos de dados da Meta identificados e renomeados; Pixel `1174…` no ar no site com
 repasse do `fbclid`; domínios verificados (Meta e Search Console); GA4 (MCP) e Search Console (script)
 conectados com conta de serviço; `korza.com.br` → `www` com 301 e `canonical`; o MCP da Meta lê os posts do
 Instagram (curtidas e comentários); primeiro commit do hub.
+**2ª sessão:** mapa do portfólio Meta; política de privacidade no site novo; site migrado para `korza.app` com 301 dos
+outros três endereços (UTMs e `fbclid` preservados, Pixel e GA4 conferidos); `robots.txt` e `sitemap.xml`.
 
 ## Mapa do portfólio Korza na Meta (levantado em 2026-10-27)
 
