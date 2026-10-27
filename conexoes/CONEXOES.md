@@ -97,7 +97,7 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
   `canonical`: conteúdo duplicado para o Google e o GA4 registra os dois hosts. **Resolvido em 2026-10-27:**
   `<link rel="canonical" href="https://www.korza.com.br/">` (commit `304b27f`) e redirecionamento no Amplify de
   `korza.com.br/<*>` para `www.korza.com.br/<*>` (preserva `fbclid`/UTMs). Conferido: o redirecionamento saiu
-  como **302** (temporário); o certo é 301 (pendente de ajuste no Amplify).
+  como 302 e foi ajustado pelo Pedro para **301** (permanente), conferido em 2026-10-27.
 - O Google ainda mostra `quiz.korza.com.br` (19 impressões) e `www.korza.com.br/formulário` (página antiga, hoje 404).
 
 ## PR do admin (pendente)
