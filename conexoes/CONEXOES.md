@@ -94,8 +94,10 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
 - Search Console, 28 dias: a busca "korza" teve 17 cliques em 99 impressões, posição média 3,8 (a própria marca
   fora do 1º lugar; site novo de 2026-10-20). "korza ai" aparece com 19 impressões, posição 6,5.
 - `korza.com.br` (sem www) e `www.korza.com.br` respondem 200 com o mesmo conteúdo, sem redirecionamento nem
-  `canonical`: conteúdo duplicado para o Google e o GA4 registra os dois hosts. Sugestão: 301 do domínio raiz
-  para o `www` no Amplify e `<link rel="canonical">`.
+  `canonical`: conteúdo duplicado para o Google e o GA4 registra os dois hosts. **Resolvido em 2026-10-27:**
+  `<link rel="canonical" href="https://www.korza.com.br/">` (commit `304b27f`) e redirecionamento no Amplify de
+  `korza.com.br/<*>` para `www.korza.com.br/<*>` (preserva `fbclid`/UTMs). Conferido: o redirecionamento saiu
+  como **302** (temporário); o certo é 301 (pendente de ajuste no Amplify).
 - O Google ainda mostra `quiz.korza.com.br` (19 impressões) e `www.korza.com.br/formulário` (página antiga, hoje 404).
 
 ## PR do admin (pendente)
