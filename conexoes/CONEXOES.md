@@ -13,7 +13,7 @@ Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em ar
 | Search Console | Script `conexoes/search_console.py` (`uv run`), conta de serviço | ✅ leitura testada em 2026-10-27 (`sc-domain:korza.app`, padrão do script; `sc-domain:korza.com.br` com `--site`) |
 | Meta Ads | MCP oficial da Meta (`https://mcp.facebook.com/ads`, em `.mcp.json`) | 🟨 conectado (2026-10-27); a conta das campanhas, "Korza Brasil" (`1982997825669595`), ainda não tem o MCP liberado (liberação gradual da Meta) |
 | Pixel da Meta | Reaproveitar o pixel da LP antiga `1174311258139587` | 🟨 no ar no site desde 2026-10-27 (`PageView` conferido), sem banner por decisão do Pedro; falta admin |
-| Instagram @korza.br | MCP da Meta (posts) + script próprio (Instagram Graph API, métricas) | 🟨 o MCP já lista os posts com curtidas e comentários (IG `17841473916924433`, Página `637153062822915`, via conta "Korza" `3921782194748691`); alcance, views, salvamentos, seguidores e público exigem o app + usuário do sistema |
+| Instagram @korza.br | MCP da Meta (posts) + script próprio (Instagram Graph API, métricas) | 🟨 o MCP já lista os posts com curtidas e comentários (IG `17841473916924433`, Página `637153062822915`, via conta "Korza" `3921782194748691`); token do usuário do sistema funcionando (2026-10-27): insights do Instagram e a conta Korza Brasil pela API; falta o script |
 | Google Ads | MCP oficial do Google (`googleads/google-ads-mcp`), só leitura | ⬜ conta não existe; criar só quando houver plano de campanha no Google |
 
 Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no push da `main`).
@@ -34,12 +34,15 @@ domínio de lojas clientes na URL. Avaliar `noindex` nesses dois hosts (é códi
 2. ✅ `Korza - Site` ligado à conta Korza Brasil (Pedro; o MCP não confirma porque ainda não lê a Korza Brasil).
 3. ✅ App `Korza Marketing` `1816904082855324` criado pelo MCP `meta-devtools` (contato `pedroturik@gmail.com`),
    vinculado ao portfólio Korza, caso de uso `INSTAGRAM_BUSINESS`. Em modo de desenvolvimento.
-4. **Agora:** usuário do sistema `leitor-marketing` (Pedro, passo 2 de "Instagram: app e token"). Ainda não existe.
+4. ✅ Usuário do sistema `leitor-marketing` com token em `~/.config/korza-marketing/meta.env` (testado em 2026-10-27:
+   Instagram e Korza Brasil leem; token anterior revogado). **Token com escrita** (`ads_management`,
+   `instagram_content_publish`, `instagram_manage_comments`, `instagram_manage_messages`, `pages_manage_ads`), por
+   escolha do Pedro: os scripts só leem por padrão; qualquer escrita segue a regra da casa (plano + OK).
 5. Script de métricas (Claude): Instagram + campanhas da Korza Brasil.
 6. PR do admin na branch `dev` (ver "PR do admin"), quando o Pedro pedir.
 7. Conversions API pelo backend (Fase 2b), depois do básico rodando.
 
-**Esperando terceiros / depois:** conta "Korza Brasil" ser liberada no MCP da Meta (testar de vez em quando);
+**Esperando terceiros / depois:** conta "Korza Brasil" ser liberada no MCP da Meta (testada em 2026-10-27, 3ª sessão: ainda bloqueada);
 banner de consentimento (política em `https://korza.app/privacy-policy/`; revisar o texto da seção 7, que nega cookies
 de marketing, e os contatos `@korza.app`; falta a seção 11); conta do Google Ads só quando for anunciar no Google; desligar o quiz e
 tirar o link do app `korza-brownies`; remoto no GitHub para o hub (hoje sem backup fora da máquina).
@@ -58,8 +61,9 @@ Portfólio **Korza** `1444893746669109`. O login do Pedro também enxerga Oryza 
 
 | Ativo | ID | Situação | Decisão |
 | --- | --- | --- | --- |
-| Conta **Korza Brasil** (BRL) | `1982997825669595` | Principal (Pedro). O MCP ainda não lê (liberação gradual) | **Única conta para campanhas novas** |
+| Conta **Korza Brasil** (BRL) | `1982997825669595` | Principal (Pedro). O MCP ainda não lê (liberação gradual); a API lê pelo token do `leitor-marketing`. ~R$ 3.342,74 gastos na vida da conta; 2 campanhas de leads pausadas (`CBO - Leads`, `ABO - Leads - Testes`) | **Única conta para campanhas novas** |
 | Conta **Korza** (USD) | `3921782194748691` | 25 campanhas, todas pausadas, ~US$ 1.466 de jun/2025 a mar/2026 (leads, WhatsApp, engajamento, testes nos EUA). Tem as listas de clientes | Arquivo: não apagar, não anunciar. Listas úteis são compartilhadas com a Korza Brasil |
+| Contas **Korza BR** e **Korza - Appza** (BRL) | `1302908798650805` / `907558995677158` | Vistas em 2026-10-27 (3ª sessão): vazias, sem forma de pagamento, **liberadas no MCP** | A definir com o Pedro |
 | Página Korza | `637153062822915` | Única Página do portfólio | Usar |
 | Instagram @korza.br | `17841473916924433` | Ligado à Página | Usar |
 | Conjunto de dados `Korza - Site` | `1174311258139587` | Recebendo `PageView` do site novo | **O pixel oficial** (site e admin) |
