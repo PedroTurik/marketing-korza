@@ -18,11 +18,34 @@ Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em ar
 
 Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no push da `main`).
 
+## Para retomar (fim da sessão de 2026-10-27)
+
+**Em andamento: Instagram.** O Pedro está criando o app; o passo a passo está em "Instagram: app e token" abaixo.
+Quando ele disser "pronto" (com o ID do app): conferir o token (permissões, validade, se enxerga o @korza.br) e
+montar `conexoes/instagram.py` (alcance, views, salvamentos, compartilhamentos, seguidores, público).
+
+**Fila da Fase 2, em ordem:**
+
+1. Instagram: app + usuário do sistema (Pedro) → script de métricas (Claude).
+2. Ligar o MCP `meta-devtools` (adicionado ao `.mcp.json`): Pedro roda `/mcp` e faz login na Meta.
+3. PR do admin na branch `dev` (ver "PR do admin"), quando o Pedro pedir.
+4. Conversions API pelo backend (Fase 2b), depois do básico rodando.
+
+**Esperando terceiros / depois:** conta "Korza Brasil" ser liberada no MCP da Meta (testar de vez em quando);
+banner de consentimento (a Korza tem política de privacidade, pegar o link); verificação do `korza.app` na Meta
+(sem TXT no DNS, confirmar com o Pedro); conta do Google Ads só quando for anunciar no Google; desligar o quiz e
+tirar o link do app `korza-brownies`; remoto no GitHub para o hub (hoje sem backup fora da máquina).
+
+**Feito nesta sessão:** conjuntos de dados da Meta identificados e renomeados; Pixel `1174…` no ar no site com
+repasse do `fbclid`; domínios verificados (Meta e Search Console); GA4 (MCP) e Search Console (script)
+conectados com conta de serviço; `korza.com.br` → `www` com 301 e `canonical`; o MCP da Meta lê os posts do
+Instagram (curtidas e comentários); primeiro commit do hub.
+
 ## Estado em 2026-10-27 (passagem de sessão)
 
 - **GA4:** no ar no site, sem GTM (decisão: código direto). Pedro configurou os domínios
   (`korza.com.br` + `admin.korza.app`) e a retenção de 14 meses. Falta: eventos no admin.
-- **Pixel:** o Gerenciador de Eventos já tem 5 conjuntos de dados. Não criar novo e não apagar nenhum.
+- **Pixel:** o Gerenciador de Eventos já tem 5 conjuntos de dados. Não criar novo e não apagar nenhum. Renomeados pelo Pedro em 2026-10-27.
   Investigado pelo MCP da Meta em 2026-10-27 (todos se chamam "Korza" na API, por isso a confusão):
   - `1174311258139587` = **LP antiga** em `https://www.korza.com.br/`. Criado em 2025-11-24. Só `PageView`
     (~258 em 28 dias). Último evento em 2026-10-20 15:46 (BRT), 3 min antes do deploy do site novo no Amplify
@@ -72,9 +95,8 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
   **Explorer** na página Google Ads API → Visão geral do Cloud console (revisão automática, até 2.880 operações/dia,
   o bastante para leitura). Projeto em teste gratuito ou sem faturamento pode ser recusado. Não pedir pela
   Central de API do Google Ads (não é mais processado). Conferir se o `google-ads-mcp` já aceita rodar sem token.
-- **Ainda com o Pedro:** projeto "korza-marketing" no Google Cloud (credencial para GA4, conta de serviço para o
-  Search Console e, quando houver conta de anúncios, a Google Ads API). Conta do Google Ads: só quando for anunciar
-  no Google (ao criar, usar o modo especialista e "criar conta sem campanha").
+- **Conta do Google Ads:** só quando for anunciar no Google (ao criar, usar o modo especialista e "criar conta sem
+  campanha"). O projeto "korza-marketing" no Google Cloud já existe (ver abaixo).
 
 ## Google Cloud e conta de serviço
 
@@ -99,6 +121,22 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
   `korza.com.br/<*>` para `www.korza.com.br/<*>` (preserva `fbclid`/UTMs). Conferido: o redirecionamento saiu
   como 302 e foi ajustado pelo Pedro para **301** (permanente), conferido em 2026-10-27.
 - O Google ainda mostra `quiz.korza.com.br` (19 impressões) e `www.korza.com.br/formulário` (página antiga, hoje 404).
+
+## Instagram: app e token (em andamento)
+
+O MCP da Meta já lista os posts (curtidas, comentários). Para métricas, o Pedro cria (passo a passo dado em 2026-10-27):
+
+1. **App** em developers.facebook.com/apps → Criar app → nome `Korza Marketing` → caso de uso "Outro" → tipo
+   "Empresa" → portfólio empresarial **Korza** (app e ativos no mesmo BM: não deve precisar de revisão de app) →
+   adicionar o produto **Instagram** (API com login do Facebook), sem URL de redirecionamento.
+2. **Usuário do sistema** em business.facebook.com/settings → Usuários → Usuários do sistema → `leitor-marketing`,
+   função Funcionário → atribuir ativos: app `Korza Marketing`, Página `Korza` e Instagram `korza.br` (visualização /
+   insights) → gerar token com validade "Nunca" e só `instagram_basic`, `instagram_manage_insights`,
+   `pages_show_list`, `pages_read_engagement`, `business_management`.
+3. **Token** guardado pelo Pedro num terminal fora do Claude (não colar no chat), em
+   `~/.config/korza-marketing/meta.env` como `META_IG_TOKEN=…`, permissão 600.
+
+IDs: Instagram `17841473916924433` (@korza.br), Página `637153062822915`, BM `1444893746669109`.
 
 ## PR do admin (pendente)
 
@@ -152,3 +190,6 @@ O Claude Code precisa ser aberto dentro de `marketing/` para carregar esse arqui
   (campanhas, anúncios, regras de evento do pixel). A trava é a regra da casa (plano + OK) e a confirmação
   do Claude Code a cada chamada de escrita; nunca liberar ferramentas de escrita no allowlist.
   Docs: developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/
+- **Meta devtools** (`meta-devtools`, `https://mcp.facebook.com/devtools`): lê configuração de apps, status de revisão
+  e documentação da API; não cria app. Login OAuth pelo `/mcp` (pendente). Beta, liberação gradual.
+- **Google Analytics** (`google-analytics`): `pipx run analytics-mcp` com a conta de serviço; sem `--allow-write`.
