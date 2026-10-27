@@ -26,7 +26,10 @@ serviço lê `sc-domain:korza.app`; sitemap lido sem erros (2 URLs); fluxo do GA
 de endereço aceita, `korza.app` verificado na Meta, links antigos trocados.
 Achado para a frente de SEO: na propriedade `korza.app` o Google mostra páginas de `admin.korza.app`
 (`/create-account`, `/account-deletion/<loja>`) e de `public.korza.app/website-banner/<loja>/rendered`, com o
-domínio de lojas clientes na URL. Avaliar `noindex` nesses dois hosts (é código do produto, fora do hub).
+domínio de lojas clientes na URL. Pedro pediu a remoção temporária (6 meses) no Search Console em 2026-10-27, pelos
+prefixos `https://admin.korza.app/` e `https://public.korza.app/`. Definitivo: `noindex` no admin (item 6 do "PR do
+admin") e `X-Robots-Tag: noindex` na rota `website-banner/:idOrHostname/rendered` do backend
+(`backend/src/controllers/website-banner.controller.ts`), com quem cuida do backend, antes dos 6 meses.
 
 **Fila da Fase 2, em ordem** (atualizada em 2026-10-27, 3ª sessão):
 
@@ -38,14 +41,14 @@ domínio de lojas clientes na URL. Avaliar `noindex` nesses dois hosts (é códi
    Instagram e Korza Brasil leem; token anterior revogado). **Token com escrita** (`ads_management`,
    `instagram_content_publish`, `instagram_manage_comments`, `instagram_manage_messages`, `pages_manage_ads`), por
    escolha do Pedro: os scripts só leem por padrão; qualquer escrita segue a regra da casa (plano + OK).
-5. Script de métricas (Claude): Instagram + campanhas da Korza Brasil.
+5. Script de métricas (Claude): Instagram + campanhas da Korza Brasil. **Não agora** (Pedro, 2026-10-27): entra com o
+   primeiro relatório (Fase 4); a leitura já funciona pelo token.
 6. PR do admin na branch `dev` (ver "PR do admin"), quando o Pedro pedir.
 7. Conversions API pelo backend (Fase 2b), depois do básico rodando.
 
 **Esperando terceiros / depois:** conta "Korza Brasil" ser liberada no MCP da Meta (testada em 2026-10-27, 3ª sessão: ainda bloqueada);
 banner de consentimento (política em `https://korza.app/privacy-policy/`; revisar o texto da seção 7, que nega cookies
-de marketing, e os contatos `@korza.app`; falta a seção 11); conta do Google Ads só quando for anunciar no Google; desligar o quiz e
-tirar o link do app `korza-brownies`; remoto no GitHub para o hub (hoje sem backup fora da máquina).
+de marketing, e os contatos `@korza.app`; falta a seção 11); conta do Google Ads só quando for anunciar no Google; remoto no GitHub para o hub (hoje sem backup fora da máquina).
 
 **3ª sessão:** migração para `korza.app` fechada; app `Korza Marketing` criado e vinculado.
 **1ª sessão:** conjuntos de dados da Meta identificados e renomeados; Pixel `1174…` no ar no site com
@@ -129,7 +132,8 @@ Passos (status):
   - Renomear no Gerenciador de Eventos (`Korza – Site` para o `1174…`, `Korza – Quiz` para o `1054…`,
     `[antigo] …` para os outros): aprovado pelo Pedro; o MCP não renomeia, é feito na interface.
   - Quiz: segundo o Pedro, está no ar mas não é mais usado. Ainda recebe visitas pelo botão do app
-    `korza-brownies`. Tirar o link do app e desligar o quiz fica para quando o Pedro quiser.
+    `korza-brownies`. **Desligado em 2026-10-27** (Pedro): `quiz.korza.com.br` sem DNS. O `quiz-korza.pages.dev`
+    ainda responde 200; o clone local do app ainda tem o `QUIZ_URL` (pode estar desatualizado).
 - **Banner de consentimento: depois.** Em 2026-10-27 o Pedro decidiu ligar o Pixel no site **sem banner** e
   colocar o banner depois, ciente do risco de LGPD (coleta para anúncio sem consentimento). Quando entrar:
   banner próprio (Aceitar/Recusar); o Pixel e os sinais de anúncio do Google (`gtag('consent','update',…)`)
@@ -220,6 +224,9 @@ pedir. Conteúdo:
 4. **Depois, no mesmo padrão:** `store_connected`/`ConnectStore`, `preview_view`/`ViewPreview`. `Subscribe` fica
    para o backend.
 5. **Banner de consentimento:** quando entrar no site, entra igual no admin.
+6. **`noindex`:** `<meta name="robots" content="noindex">` no `index.html`. O Google indexou `/create-account` e
+   `/account-deletion/<loja>`; o admin não deve aparecer em busca (a entrada é o site). A página de exclusão de conta
+   continua acessível para as lojas de apps.
 
 Eventos e nomes em `estrategia/plano-de-medicao.md`.
 
