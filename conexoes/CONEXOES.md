@@ -18,28 +18,23 @@ Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em ar
 
 Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no push da `main`).
 
-## Para retomar (fim da 2ª sessão de 2026-10-27)
+## Para retomar (fim da 3ª sessão de 2026-10-27)
 
-**Agora: fechar a migração para `korza.app`** (no ar e conferida; passos 5–7 em "Domínio: tudo em korza.app").
-Conferido por Claude em 2026-10-27 (3ª sessão): conta de serviço lê `sc-domain:korza.app`; sitemap enviado e lido
-sem erros (2 URLs); fluxo do GA4 em `https://korza.app`; TXT `facebook-domain-verification` no DNS do `korza.app`;
-padrão do `search_console.py` trocado para `korza.app`.
-Pendente com o Pedro: confirmar que a Alteração de endereço foi aceita (a API não mostra; se falhar, pedir a
-"Resposta HTTP" da Inspeção de URL e ver o `X-Amz-Cf-Pop`/`X-Cache`), confirmar `korza.app` como verificado no
-portfólio da Meta e trocar os links antigos (passo 7).
+**Migração para `korza.app`: concluída** (passos em "Domínio: tudo em korza.app"). Conferido por Claude: conta de
+serviço lê `sc-domain:korza.app`; sitemap lido sem erros (2 URLs); fluxo do GA4 em `https://korza.app`; TXT
+`facebook-domain-verification` no DNS; padrão do `search_console.py` em `korza.app`. Confirmado pelo Pedro: Alteração
+de endereço aceita, `korza.app` verificado na Meta, links antigos trocados.
 Achado para a frente de SEO: na propriedade `korza.app` o Google mostra páginas de `admin.korza.app`
 (`/create-account`, `/account-deletion/<loja>`) e de `public.korza.app/website-banner/<loja>/rendered`, com o
 domínio de lojas clientes na URL. Avaliar `noindex` nesses dois hosts (é código do produto, fora do hub).
 
-**Fila da Fase 2, em ordem** (atualizada em 2026-10-27, depois do "Mapa do portfólio Korza na Meta"):
+**Fila da Fase 2, em ordem** (atualizada em 2026-10-27, 3ª sessão):
 
-1. Faxina de acesso no portfólio (Pedro, interface): conferir pessoas e parceiros, tirar o acesso do dono antigo,
-   Pedro como admin com 2FA; confirmar que a Korza Brasil pertence ao portfólio e tem forma de pagamento.
-2. Ligar o `Korza - Site` à conta Korza Brasil (Gerenciador de Eventos → configurações → ativos conectados).
-3. App `Korza Marketing`: o MCP `meta-devtools` (conectado) cria, vincula ao portfólio Korza e adiciona o caso de uso
-   do Instagram, com OK do Pedro. Falta o e-mail de contato.
-4. Usuário do sistema `leitor-marketing` (Pedro): além do Instagram e da Página, atribuir a conta **Korza Brasil** e
-   incluir `ads_read` no token. Assim o hub lê a Korza Brasil pela API sem esperar o MCP.
+1. ✅ Faxina de acesso no portfólio (Pedro).
+2. ✅ `Korza - Site` ligado à conta Korza Brasil (Pedro; o MCP não confirma porque ainda não lê a Korza Brasil).
+3. ✅ App `Korza Marketing` `1816904082855324` criado pelo MCP `meta-devtools` (contato `pedroturik@gmail.com`),
+   vinculado ao portfólio Korza, caso de uso `INSTAGRAM_BUSINESS`. Em modo de desenvolvimento.
+4. **Agora:** usuário do sistema `leitor-marketing` (Pedro, passo 2 de "Instagram: app e token"). Ainda não existe.
 5. Script de métricas (Claude): Instagram + campanhas da Korza Brasil.
 6. PR do admin na branch `dev` (ver "PR do admin"), quando o Pedro pedir.
 7. Conversions API pelo backend (Fase 2b), depois do básico rodando.
@@ -49,7 +44,8 @@ banner de consentimento (política em `https://korza.app/privacy-policy/`; revis
 de marketing, e os contatos `@korza.app`; falta a seção 11); conta do Google Ads só quando for anunciar no Google; desligar o quiz e
 tirar o link do app `korza-brownies`; remoto no GitHub para o hub (hoje sem backup fora da máquina).
 
-**Feito nesta sessão:** conjuntos de dados da Meta identificados e renomeados; Pixel `1174…` no ar no site com
+**3ª sessão:** migração para `korza.app` fechada; app `Korza Marketing` criado e vinculado.
+**1ª sessão:** conjuntos de dados da Meta identificados e renomeados; Pixel `1174…` no ar no site com
 repasse do `fbclid`; domínios verificados (Meta e Search Console); GA4 (MCP) e Search Console (script)
 conectados com conta de serviço; `korza.com.br` → `www` com 301 e `canonical`; o MCP da Meta lê os posts do
 Instagram (curtidas e comentários); primeiro commit do hub.
@@ -99,9 +95,9 @@ Passos (status):
    quando a regra ainda não valia; `s-maxage` de 1 ano): **depois de mudar regras, reimplantar a `main` para limpar
    a CDN**. Testar com `Accept-Encoding: gzip, deflate, br`, senão o curl pega outra variação e engana.
 5. ✅ Search Console: propriedade `korza.app`, conta de serviço como usuário, sitemap, padrão do `search_console.py`.
-   Falta o Pedro confirmar a Alteração de endereço.
-6. ✅ GA4: URL do fluxo em `https://korza.app`. 🟨 Meta: TXT no DNS; falta confirmar a verificação no portfólio — Pedro.
-7. Trocar links antigos: app Korza Chatwoot (URL de privacidade), listagem do app na Shopify, bio do Instagram — Pedro.
+   Alteração de endereço aceita (Pedro).
+6. ✅ GA4: URL do fluxo em `https://korza.app`. ✅ Meta: `korza.app` verificado no portfólio por TXT.
+7. ✅ Trocar links antigos: app Korza Chatwoot (URL de privacidade), listagem do app na Shopify, bio do Instagram — Pedro.
 8. ✅ Conferido em 2026-10-27: 301 em um salto preservando caminho, UTMs e `fbclid`; `canonical` em `korza.app`;
    admin e MX intactos; Pixel `1174…` (`PageView`) e GA4 (`page_view`) disparam com `dl=https://korza.app/…`.
 
@@ -188,11 +184,12 @@ Passos (status):
 
 ## Instagram: app e token (em andamento)
 
-O MCP da Meta já lista os posts (curtidas, comentários). Para métricas, o Pedro cria (passo a passo dado em 2026-10-27):
+O MCP da Meta já lista os posts (curtidas, comentários). Para métricas (passo a passo dado em 2026-10-27):
 
-1. **App** em developers.facebook.com/apps → Criar app → nome `Korza Marketing` → caso de uso "Outro" → tipo
-   "Empresa" → portfólio empresarial **Korza** (app e ativos no mesmo BM: não deve precisar de revisão de app) →
-   adicionar o produto **Instagram** (API com login do Facebook), sem URL de redirecionamento.
+1. ✅ **App** `Korza Marketing` `1816904082855324`, criado pelo MCP `meta-devtools` em 2026-10-27, no portfólio
+   **Korza** (app e ativos no mesmo BM: não deve precisar de revisão de app), caso de uso `INSTAGRAM_BUSINESS`.
+   As permissões do token são opcionais nesse caso de uso: se o token não as oferecer, adicioná-las em
+   developers.facebook.com/apps/1816904082855324 → Casos de uso → Personalizar.
 2. **Usuário do sistema** em business.facebook.com/settings → Usuários → Usuários do sistema → `leitor-marketing`,
    função Funcionário → atribuir ativos: app `Korza Marketing`, Página `Korza` e Instagram `korza.br` (visualização /
    insights) e conta de anúncios **Korza Brasil** (só visualizar desempenho) → gerar token com validade "Nunca" e só
