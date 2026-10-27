@@ -107,7 +107,7 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
    - [x] `posicionamento.md` (4 pilares: recompra, conversão, marca, canal próprio + 3 facilitadores)
 1. **Studio** — estrutura pronta em 2026-10-26 (template testado, skill `/korza-video`, `studio/STUDIO.md`).
    Muita coisa será definida nas primeiras produções: ver "A definir nas primeiras vezes" em `studio/STUDIO.md`.
-2. **Conexões** — em andamento (GA4, Search Console, Meta Ads e Pixel no site prontos em 2026-10-27; falta Instagram e admin).
+2. **Conexões** — em andamento (GA4, Search Console, Meta Ads, Pixel no site e Instagram + Korza Brasil pela API prontos em 2026-10-27; falta o admin).
    Status, fila e passagem de sessão em `conexoes/CONEXOES.md` ("Para retomar"); o que medir em
    `estrategia/plano-de-medicao.md`.
 3. **Playbooks** — uma skill por frente, criada quando a tarefa for feita pela primeira vez à mão
