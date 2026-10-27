@@ -10,7 +10,7 @@ Segredos em `.env` (fora do git), nunca em arquivo versionado.
 | --- | --- | --- |
 | Rastreamento (GA4 + Pixel) no site e no admin | Código, ver `estrategia/plano-de-medicao.md` | 🟨 GA4 no ar no site (commit `2d7747e` em `dev/Site-Korza`, publicado 2026-10-26, código direto, sem GTM); falta Pixel, admin e banner de consentimento |
 | GA4 | MCP oficial do Google (`google-analytics-mcp`) | 🟨 propriedade criada (`G-HR907RLPTS`); leitura a conectar |
-| Search Console | Script próprio (API + conta de serviço) | ⬜ domínio não verificado |
+| Search Console | Script próprio (API + conta de serviço) | 🟨 propriedade de Domínio `korza.com.br` verificada (2026-10-27); leitura a conectar |
 | Meta Ads | MCP oficial da Meta (`https://mcp.facebook.com/ads`, em `.mcp.json`) | 🟨 conectado (2026-10-27); a conta das campanhas, "Korza Brasil" (`1982997825669595`), ainda não tem o MCP liberado (liberação gradual da Meta) |
 | Pixel da Meta | Reaproveitar o pixel da LP antiga `1174311258139587` | 🟨 no ar no site desde 2026-10-27 (`PageView` conferido), sem banner por decisão do Pedro; falta admin |
 | Instagram @korza.br | Script próprio (Instagram Graph API) | ⬜ a conectar (conta profissional + Página existem) |
@@ -48,9 +48,10 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
   banner próprio (Aceitar/Recusar); o Pixel e os sinais de anúncio do Google (`gtag('consent','update',…)`)
   passam a ligar só após o aceite. O banner aponta para uma política de privacidade, que **o site não tem**.
   A Korza tem política de privacidade (Pedro, 2026-10-27); pegar o link quando o banner for retomado.
-- **Domínio na Meta:** não bloqueia o Pixel (ele não é preso a domínio); vale para a Korza ter o controle oficial
-  do domínio no BM. Pedro confere se `korza.com.br` já está verificado (talvez pela LP antiga); se não, TXT no DNS,
-  que serve também ao Search Console. `korza.app` é outro domínio e precisa de verificação própria.
+- **Domínios verificados (2026-10-27):** `korza.com.br` no BM da Meta e no Search Console, por TXT no DNS
+  (Route 53, AWS; o DNS do `korza.app` também está lá). O Pedro informou `korza.app` também verificado; no DNS
+  dele não há TXT da Meta, então foi por outro método ou ainda falta. Os registros SPF e Lark dos dois domínios
+  ficam intactos ao editar o TXT (no Route 53 é um registro TXT só por nome, com vários valores).
 - **Site (`dev/Site-Korza`), commits `6b285e0` (Pixel `PageView`) e `6a11094` (repasse do `fbclid` no link
   "Criar conta", da URL ou do cookie `_fbc`; testado em Chromium):** Pedro faz o push. Depois, conferir pelo MCP
   (`ads_get_dataset_stats` do `1174…`, agregação `host`) se `www.korza.com.br` voltou a mandar eventos.
@@ -63,8 +64,10 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
   por ora, mantido `.com.br` + `.app`.
 - **GA4 entre domínios:** confirmado na tag publicada do `G-HR907RLPTS` (regra `korza.com.br` + `admin.korza.app`).
   Só vale quando o admin tiver a tag também.
-- **Ainda com o Pedro:** Search Console (TXT), conta MCC do Google Ads + developer token, OK para o primeiro
-  commit do hub `marketing/`.
+- **Hub `marketing/`:** primeiro commit `d813e8c` (2026-10-27), na branch `master`. Sem remoto ainda
+  (sem backup fora da máquina); sugerido criar um repo privado no GitHub.
+- **Ainda com o Pedro:** conta MCC do Google Ads + developer token; projeto "korza-marketing" no Google Cloud
+  (credencial para GA4 e conta de serviço para o Search Console).
 
 ## PR do admin (pendente)
 
