@@ -63,7 +63,7 @@ Portfólio **Korza** `1444893746669109`. O login do Pedro também enxerga Oryza 
 | --- | --- | --- | --- |
 | Conta **Korza Brasil** (BRL) | `1982997825669595` | Principal (Pedro). O MCP ainda não lê (liberação gradual); a API lê pelo token do `leitor-marketing`. ~R$ 3.342,74 gastos na vida da conta; 2 campanhas de leads pausadas (`CBO - Leads`, `ABO - Leads - Testes`) | **Única conta para campanhas novas** |
 | Conta **Korza** (USD) | `3921782194748691` | 25 campanhas, todas pausadas, ~US$ 1.466 de jun/2025 a mar/2026 (leads, WhatsApp, engajamento, testes nos EUA). Tem as listas de clientes | Arquivo: não apagar, não anunciar. Listas úteis são compartilhadas com a Korza Brasil |
-| Contas **Korza BR** e **Korza - Appza** (BRL) | `1302908798650805` / `907558995677158` | Vistas em 2026-10-27 (3ª sessão): vazias, sem forma de pagamento, **liberadas no MCP** | A definir com o Pedro |
+| Contas **Korza BR** e **Korza - Appza** (BRL) | `1302908798650805` / `907558995677158` | Vistas em 2026-10-27 (3ª sessão): vazias, sem forma de pagamento, **liberadas no MCP** | Não usar (Pedro, 2026-10-27): tudo fica na Korza Brasil e na Korza |
 | Página Korza | `637153062822915` | Única Página do portfólio | Usar |
 | Instagram @korza.br | `17841473916924433` | Ligado à Página | Usar |
 | Conjunto de dados `Korza - Site` | `1174311258139587` | Recebendo `PageView` do site novo | **O pixel oficial** (site e admin) |
