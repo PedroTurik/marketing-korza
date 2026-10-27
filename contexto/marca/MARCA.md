@@ -3,7 +3,7 @@
 Vale para tudo: site, posts, carrosséis, reels, stories, ads, thumbnails, OG. Tokens em [tokens.css](tokens.css).
 Prévia visual em [preview.html](preview.html). Tom de voz em [../voz.md](../voz.md).
 
-Base: o site ao vivo (korza.com.br, out/2026), que já é a direção escolhida. A apresentação de identidade
+Base: o site ao vivo (korza.app, antes korza.com.br, out/2026), que já é a direção escolhida. A apresentação de identidade
 visual (`reference/idv/`, fundos escuros e 3D cromado) virou acento raro, não padrão.
 
 ## A ideia

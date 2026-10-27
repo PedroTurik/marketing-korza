@@ -4,6 +4,7 @@ Hub onde o Pedro e o Claude cuidam de todo o marketing da Korza (korza.app; até
 conteúdo orgânico do Instagram, edição de vídeo e motion. Idioma de trabalho: **português do Brasil**.
 
 **Em construção.** Plano, decisões e status das fases em [PLANO.md](PLANO.md). Leia antes de começar.
+Fila de melhorias (o que não trava o trabalho) em [MELHORIAS.md](MELHORIAS.md).
 
 ## Contexto (leia antes de produzir)
 

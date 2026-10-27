@@ -23,6 +23,7 @@ e toda tarefa lê de lá.
 marketing/
   CLAUDE.md               regras da casa e mapa do hub
   PLANO.md                este arquivo
+  MELHORIAS.md            o que enriquece o hub sem travar o trabalho (fila de melhorias)
   contexto/               FONTE DA VERDADE (lida antes de qualquer tarefa)
     marca/                visual: tokens, logo, fontes, 3D, referências, specs por formato
     voz.md                tom, vocabulário, o que nunca dizer
@@ -31,7 +32,8 @@ marketing/
     publico.md            lojista: segmentos, dores, objeções, nível de consciência
     concorrentes.md
     posicionamento.md     mensagem-mãe ("você aluga seu cliente" → canal próprio de recompra)
-  estrategia/             plano do trimestre, metas, calendário mestre
+  conexoes/               CONEXOES.md (como ler cada canal, IDs, credenciais) + scripts
+  estrategia/             plano do trimestre, metas, calendário mestre, plano de medição
   campanhas/              ads pagos: AAAA-MM-<slug>/ (brief, copies, criativos, públicos, resultados)
   conteudo/               orgânico: calendário + uma pasta por post/carrossel/reels
   seo/                    keywords, auditorias/, blog/ (pautas e artigos)
@@ -107,9 +109,9 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
    - [x] `posicionamento.md` (4 pilares: recompra, conversão, marca, canal próprio + 3 facilitadores)
 1. **Studio** — estrutura pronta em 2026-10-26 (template testado, skill `/korza-video`, `studio/STUDIO.md`).
    Muita coisa será definida nas primeiras produções: ver "A definir nas primeiras vezes" em `studio/STUDIO.md`.
-2. **Conexões** — em andamento (GA4, Search Console, Meta Ads, Pixel no site e Instagram + Korza Brasil pela API prontos em 2026-10-27; falta o admin).
-   Status, fila e passagem de sessão em `conexoes/CONEXOES.md` ("Para retomar"); o que medir em
-   `estrategia/plano-de-medicao.md`.
+2. **Conexões** — concluída em 2026-10-27: GA4, Search Console, Meta Ads (MCP e API), Instagram, Pixel e GA4 no site,
+   site migrado para `korza.app`. Como usar em `conexoes/CONEXOES.md`; o que medir em `estrategia/plano-de-medicao.md`.
+   O que ficou de fora (admin, Conversions API, banner, Google Ads, script de relatório) está em `MELHORIAS.md`.
 3. **Playbooks** — uma skill por frente, criada quando a tarefa for feita pela primeira vez à mão
    (primeiro fazemos juntos, depois vira receita).
 4. **Ritmo** — relatório semanal, calendário editorial, ciclo de aprendizados.
@@ -120,6 +122,6 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
 - [x] Esqueleto de pastas + git
 - [x] Fase 0 — Fundação
 - [x] Fase 1 — Studio (estrutura; decisões pendentes para as primeiras produções)
-- [ ] Fase 2 — Conexões
-- [ ] Fase 3 — Playbooks
+- [x] Fase 2 — Conexões (melhorias em `MELHORIAS.md`)
+- [ ] Fase 3 — Playbooks ← **próximo:** a primeira peça real (campanha ou conteúdo), feita junto e depois virando receita
 - [ ] Fase 4 — Ritmo
