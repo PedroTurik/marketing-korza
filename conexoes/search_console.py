@@ -23,7 +23,7 @@ from urllib.parse import quote
 from google.auth.transport.requests import AuthorizedSession
 from google.oauth2 import service_account
 
-SITE = "sc-domain:korza.com.br"
+SITE = "sc-domain:korza.app"  # korza.com.br (antigo): --site sc-domain:korza.com.br
 CHAVE = os.environ.get(
     "GOOGLE_APPLICATION_CREDENTIALS",
     os.path.expanduser("~/.config/korza-marketing/google-sa.json"),

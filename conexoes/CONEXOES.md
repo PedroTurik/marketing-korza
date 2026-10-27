@@ -10,7 +10,7 @@ Segredos em `.env` ou em `~/.config/korza-marketing/` (fora do git), nunca em ar
 | --- | --- | --- |
 | Rastreamento (GA4 + Pixel) no site e no admin | Código, ver `estrategia/plano-de-medicao.md` | 🟨 GA4 e Pixel no ar no site (código direto, sem GTM); falta admin (ver "PR do admin") e banner de consentimento |
 | GA4 | MCP oficial do Google (`analytics-mcp`, servidor `google-analytics` em `.mcp.json`), conta de serviço | ✅ leitura testada em 2026-10-27 (propriedade `properties/560905270`, `G-HR907RLPTS`); sem `--allow-write` |
-| Search Console | Script `conexoes/search_console.py` (`uv run`), conta de serviço | ✅ leitura testada em 2026-10-27 (`sc-domain:korza.com.br`) |
+| Search Console | Script `conexoes/search_console.py` (`uv run`), conta de serviço | ✅ leitura testada em 2026-10-27 (`sc-domain:korza.app`, padrão do script; `sc-domain:korza.com.br` com `--site`) |
 | Meta Ads | MCP oficial da Meta (`https://mcp.facebook.com/ads`, em `.mcp.json`) | 🟨 conectado (2026-10-27); a conta das campanhas, "Korza Brasil" (`1982997825669595`), ainda não tem o MCP liberado (liberação gradual da Meta) |
 | Pixel da Meta | Reaproveitar o pixel da LP antiga `1174311258139587` | 🟨 no ar no site desde 2026-10-27 (`PageView` conferido), sem banner por decisão do Pedro; falta admin |
 | Instagram @korza.br | MCP da Meta (posts) + script próprio (Instagram Graph API, métricas) | 🟨 o MCP já lista os posts com curtidas e comentários (IG `17841473916924433`, Página `637153062822915`, via conta "Korza" `3921782194748691`); alcance, views, salvamentos, seguidores e público exigem o app + usuário do sistema |
@@ -21,12 +21,15 @@ Repositórios: site em `korza/dev/Site-Korza` (Amplify, deploy automático no pu
 ## Para retomar (fim da 2ª sessão de 2026-10-27)
 
 **Agora: fechar a migração para `korza.app`** (no ar e conferida; passos 5–7 em "Domínio: tudo em korza.app").
-Pendente com o Pedro: validar a Alteração de endereço no Search Console (a 1ª tentativa falhou por cache da CDN
-em Chicago logo após o redeploy; depois disso todas as regiões testadas dão 301), enviar `https://korza.app/sitemap.xml`
-na propriedade `korza.app`, trocar a URL do fluxo do GA4, verificar `korza.app` na Meta por TXT e trocar links antigos.
-Se a validação falhar de novo: pedir a "Resposta HTTP" da Inspeção de URL e ver o `X-Amz-Cf-Pop`/`X-Cache`.
-Depois: Claude confere TXT, verificação na Meta e acesso da conta de serviço ao `sc-domain:korza.app`, e troca o
-padrão do `search_console.py`.
+Conferido por Claude em 2026-10-27 (3ª sessão): conta de serviço lê `sc-domain:korza.app`; sitemap enviado e lido
+sem erros (2 URLs); fluxo do GA4 em `https://korza.app`; TXT `facebook-domain-verification` no DNS do `korza.app`;
+padrão do `search_console.py` trocado para `korza.app`.
+Pendente com o Pedro: confirmar que a Alteração de endereço foi aceita (a API não mostra; se falhar, pedir a
+"Resposta HTTP" da Inspeção de URL e ver o `X-Amz-Cf-Pop`/`X-Cache`), confirmar `korza.app` como verificado no
+portfólio da Meta e trocar os links antigos (passo 7).
+Achado para a frente de SEO: na propriedade `korza.app` o Google mostra páginas de `admin.korza.app`
+(`/create-account`, `/account-deletion/<loja>`) e de `public.korza.app/website-banner/<loja>/rendered`, com o
+domínio de lojas clientes na URL. Avaliar `noindex` nesses dois hosts (é código do produto, fora do hub).
 
 **Fila da Fase 2, em ordem** (atualizada em 2026-10-27, depois do "Mapa do portfólio Korza na Meta"):
 
@@ -84,8 +87,8 @@ pequeno. Nunca deixar o `korza.com.br` expirar (Registro.br) nem sair do Search 
 
 Antes da migração, no DNS do `korza.app` (Route 53): raiz sem registro A, `www` inexistente. Continua vivo e **não
 pode ser mexido**: `admin.korza.app` (CloudFront), e-mail no Lark (MX `mx1-3.larksuite.com`, SPF, TXT
-`verification-code-site-App_lark`) e um TXT `google-site-verification` (de outra conta; a conta de serviço não tem
-acesso a `sc-domain:korza.app`). TXT novos entram como valores a mais no mesmo registro.
+`verification-code-site-App_lark`) e um TXT `google-site-verification` (a conta de serviço ganhou acesso a
+`sc-domain:korza.app` em 2026-10-27). TXT novos entram como valores a mais no mesmo registro.
 
 Passos (status):
 1. ✅ Push da política de privacidade (`fe79c76`).
@@ -95,9 +98,9 @@ Passos (status):
    ~5 min para valer depois de salvas. A raiz `https://korza.com.br/` ficou presa no cache da CDN (cópia Brotli de
    quando a regra ainda não valia; `s-maxage` de 1 ano): **depois de mudar regras, reimplantar a `main` para limpar
    a CDN**. Testar com `Accept-Encoding: gzip, deflate, br`, senão o curl pega outra variação e engana.
-5. Search Console: propriedade `korza.app` + Alteração de endereço; conta de serviço como usuário; trocar o padrão
-   do `search_console.py` — Pedro, depois Claude.
-6. GA4: URL do fluxo para `https://korza.app`. Meta: verificar `korza.app` no portfólio por TXT — Pedro.
+5. ✅ Search Console: propriedade `korza.app`, conta de serviço como usuário, sitemap, padrão do `search_console.py`.
+   Falta o Pedro confirmar a Alteração de endereço.
+6. ✅ GA4: URL do fluxo em `https://korza.app`. 🟨 Meta: TXT no DNS; falta confirmar a verificação no portfólio — Pedro.
 7. Trocar links antigos: app Korza Chatwoot (URL de privacidade), listagem do app na Shopify, bio do Instagram — Pedro.
 8. ✅ Conferido em 2026-10-27: 301 em um salto preservando caminho, UTMs e `fbclid`; `canonical` em `korza.app`;
    admin e MX intactos; Pixel `1174…` (`PageView`) e GA4 (`page_view`) disparam com `dl=https://korza.app/…`.
