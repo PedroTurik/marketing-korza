@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cena 1 (modo claro). Tempo local: 0 = início da cena. Componentes em assets/brand/korza-video.css. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #s1-content {
+          gap: 36px;
+        }
+        #s1-logo {
+          margin-bottom: 120px;
+        }
+      </style>
+
+      <div id="root" class="on-light" data-composition-id="s1-cena" data-width="1080" data-height="1920">
+        <div class="bg-soft"></div>
+        <div class="content" id="s1-content">
+          <img id="s1-logo" class="logo-sm" src="assets/brand/site-assets/korza-logo.png" alt="Korza" />
+          <span id="s1-eyebrow" class="eyebrow">Seu e-commerce em um app</span>
+          <h1 class="display">
+            <span class="line" id="s1-l1">Sua marca no bolso</span>
+            <span class="line tone" id="s1-l2">do seu cliente.</span>
+          </h1>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        const textIn = { opacity: 0, y: 32 };
+        const textTo = { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" };
+
+        tl.fromTo("#s1-logo", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.5, ease: "power2.out" }, 0.1);
+        tl.fromTo("#s1-eyebrow", textIn, textTo, 0.2);
+        tl.fromTo("#s1-l1", textIn, textTo, 0.3);
+        tl.fromTo("#s1-l2", textIn, textTo, 0.4);
+
+        window.__timelines["s1-cena"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

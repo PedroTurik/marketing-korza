@@ -1,0 +1,13 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx hyperframes@0.8.158:*)",
+      "Bash(npx --yes hyperframes@0.8.158:*)",
+      "Bash(npm run check)",
+      "Bash(npm run render)",
+      "Bash(studio/novo.sh:*)",
+      "Bash(./studio/novo.sh:*)",
+      "Bash(ffprobe:*)"
+    ]
+  }
+}

@@ -1,0 +1,12 @@
+node_modules/
+.env
+renders/
+inbox/*
+!inbox/.gitkeep
+*.mp4
+*.mov
+*.wav
+.DS_Store
+.hyperframes/
+snapshots/
+studio/*/*/assets/brand/

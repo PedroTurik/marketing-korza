@@ -1,0 +1,136 @@
+/*
+ * Korza — componentes de vídeo (HyperFrames). Espelha contexto/marca/MARCA.md e studio/frame.md.
+ * Copiado para cada projeto em assets/brand/korza-video.css pelo studio/novo.sh.
+ * Não alterar por projeto: ajustes de cena vão no <style> da própria cena.
+ * A @font-face fica no index.html de cada projeto (exigência do lint do HyperFrames).
+ */
+:root {
+  --blue: #155dfc;
+  --blue-deep: #0b3cae;
+  --navy: #10213b;
+  --slate: #42556c;
+  --gray: #7d8da1;
+  --muted: #708096;
+  --line: #e5ebf2;
+  --ice: #f5f8fc;
+  --white: #ffffff;
+  --gradient-impact: linear-gradient(145deg, #236cfb 0%, #155dfc 40%, #0739b0 100%);
+  --gradient-soft: linear-gradient(140deg, #f3f7ff, #edf4ff 55%, #f9fbff);
+  /* Zona segura (sobrescrita por formato no index.html) */
+  --safe-top: 270px;
+  --safe-bottom: 670px;
+  --edge-x: 72px;
+}
+
+/* ── Fundos (modos) ── */
+.bg-light,
+.bg-soft,
+.bg-impact,
+.bg-deep {
+  position: absolute;
+  inset: 0;
+}
+.bg-light { background: var(--white); }
+.bg-soft { background: var(--gradient-soft); }
+.bg-impact { background: var(--gradient-impact); }
+.bg-deep { background: var(--navy); }
+
+/* Cor do texto por modo: aplique no #root da cena */
+.on-light { color: var(--navy); }
+.on-dark { color: var(--white); }
+
+/* ── Área de conteúdo dentro da zona segura ── */
+.content {
+  position: absolute;
+  left: var(--edge-x);
+  right: var(--edge-x);
+  top: var(--safe-top);
+  bottom: var(--safe-bottom);
+  display: flex;
+  flex-direction: column;
+}
+
+/* ── Tipografia (Plus Jakarta Sans 400/600) ── */
+.display { font-size: 116px; font-weight: 600; line-height: 1.04; letter-spacing: -0.045em; }
+.title { font-size: 80px; font-weight: 600; line-height: 1.08; letter-spacing: -0.035em; }
+.title-sm { font-size: 60px; font-weight: 600; line-height: 1.12; letter-spacing: -0.03em; }
+.body { font-size: 38px; font-weight: 400; line-height: 1.38; letter-spacing: -0.01em; color: var(--slate); }
+.eyebrow { font-size: 30px; font-weight: 600; line-height: 1.2; color: var(--blue); }
+.note { font-size: 24px; font-weight: 400; line-height: 1.4; color: var(--muted); }
+.stat { font-size: 240px; font-weight: 600; line-height: 0.9; letter-spacing: -0.055em; font-variant-numeric: tabular-nums; }
+.line { display: block; }
+
+/* Título em dois tons: <span class="tone">segunda parte.</span> */
+.tone { color: var(--blue); }
+.tone-gray { color: var(--gray); }
+.on-dark .body { color: rgba(255, 255, 255, 0.82); }
+.on-dark .eyebrow { color: rgba(255, 255, 255, 0.85); }
+.on-dark .tone { color: rgba(255, 255, 255, 0.62); }
+.on-dark .note { color: rgba(255, 255, 255, 0.7); }
+
+/* Marca-texto azul atrás de uma palavra (anime .hl-bg com scaleX 0→1) */
+.hl { position: relative; display: inline-block; padding: 0 0.12em; }
+.hl-bg { position: absolute; inset: 0.06em 0 0.02em; background: var(--blue); border-radius: 8px; transform-origin: left center; }
+.hl-text { position: relative; color: var(--white); }
+
+/* ── Componentes ── */
+.card {
+  background: var(--white);
+  border: 1px solid var(--line);
+  border-radius: 28px;
+  box-shadow: 0 12px 32px rgba(16, 33, 59, 0.08);
+}
+
+.push {
+  display: flex;
+  gap: 22px;
+  align-items: flex-start;
+  padding: 28px 30px;
+  border-radius: 30px;
+  background: rgba(255, 255, 255, 0.94);
+  border: 1px solid var(--line);
+  box-shadow: 0 16px 40px rgba(16, 33, 59, 0.1);
+  color: var(--navy);
+}
+.push-icon {
+  width: 64px; height: 64px; flex: none; border-radius: 16px;
+  display: grid; place-items: center;
+  font-size: 15px; font-weight: 600; letter-spacing: 0.04em; color: var(--white); background: var(--navy);
+}
+.push-title { font-size: 30px; font-weight: 600; line-height: 1.25; }
+.push-text { font-size: 26px; font-weight: 400; line-height: 1.35; color: var(--slate); }
+.push-when { margin-left: auto; font-size: 22px; color: var(--muted); }
+
+/* Mockup pronto do site (contexto/marca/site-assets/*-mockup.png já vem com moldura) */
+.phone { position: absolute; width: 520px; filter: drop-shadow(0 40px 60px rgba(16, 33, 59, 0.22)); }
+
+.cta {
+  display: inline-flex; align-items: center; gap: 20px; align-self: flex-start;
+  padding: 30px 46px; border-radius: 16px;
+  background: var(--blue); color: var(--white);
+  font-size: 40px; font-weight: 600; letter-spacing: -0.01em;
+}
+.on-dark .cta { background: var(--white); color: var(--blue); }
+
+.logo-sm { width: 220px; height: auto; }
+.logo-lg { width: 620px; height: auto; }
+
+/* Formas 3D (só modo profundo) e fita azul: posicione na cena */
+.shape { position: absolute; pointer-events: none; }
+
+/* Legenda de vídeo gravado (embedded captions) */
+.caption {
+  display: inline-block; padding: 14px 26px; border-radius: 14px;
+  background: rgba(16, 33, 59, 0.82); color: var(--white);
+  font-size: 52px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em;
+}
+.caption .active { color: #8fb3ff; }
+
+/* Lower third (nome/cargo sobre vídeo gravado) */
+.lower-third {
+  display: inline-flex; flex-direction: column; gap: 6px;
+  padding: 22px 30px; border-radius: 18px; background: var(--white); color: var(--navy);
+  border-left: 8px solid var(--blue);
+}
+.lower-third b { font-size: 38px; font-weight: 600; letter-spacing: -0.02em; }
+.lower-third span { font-size: 28px; color: var(--slate); }

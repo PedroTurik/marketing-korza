@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Korza — vídeo</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/brand/korza-video.css" />
+    <style>
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        src: url("assets/brand/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+        font-weight: 200 800;
+        font-style: normal;
+      }
+      /* Zona segura deste formato (ajustada por studio/novo.sh) */
+      :root {
+        --safe-top: 270px;
+        --safe-bottom: 670px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      #wipe {
+        position: absolute;
+        inset: 0;
+        background: #155dfc;
+        z-index: 50;
+        transform: scaleX(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Cada cena é uma sub-composição em compositions/. Para adicionar uma cena: crie compositions/sN-<nome>.html,
+      monte aqui com data-start/data-duration e acrescente o tempo do corte em CUTS.
+    -->
+    <div id="root" data-composition-id="main" data-start="0" data-duration="4" data-width="1080" data-height="1920">
+      <div
+        id="s1-cena"
+        class="clip"
+        data-composition-id="s1-cena"
+        data-composition-src="compositions/s1-cena.html"
+        data-start="0"
+        data-duration="4"
+        data-track-index="0"
+        data-width="1080"
+        data-height="1920"
+      ></div>
+
+      <!-- Wipe azul de transição entre cenas (animado pelo timeline principal) -->
+      <div id="wipe"></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const CUTS = [];
+
+      CUTS.forEach((cut, i) => {
+        tl.fromTo("#wipe", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.22, ease: "power2.in", immediateRender: i === 0 }, cut - 0.22);
+        tl.fromTo("#wipe", { scaleX: 1, transformOrigin: "right center" }, { scaleX: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, cut);
+      });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

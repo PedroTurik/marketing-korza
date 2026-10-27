@@ -1,0 +1,194 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Korza — prévia da marca</title>
+<link rel="stylesheet" href="tokens.css">
+<style>
+  body { margin: 0; background: var(--k-ice); color: var(--k-navy); font-family: var(--k-font); }
+  .page { max-width: 1280px; margin: 0 auto; padding: 64px 32px 120px; }
+  .page > header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 56px; }
+  .page > header img { height: 28px; }
+  .page > header span { color: var(--k-muted); font-size: 14px; }
+  h2.sec { font-size: 30px; font-weight: 600; letter-spacing: -0.03em; margin: 72px 0 8px; }
+  p.sec { color: var(--k-slate); margin: 0 0 28px; font-size: 16px; max-width: 720px; line-height: 1.6; }
+
+  .swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 14px; }
+  .sw { background: #fff; border: 1px solid var(--k-line); border-radius: 14px; overflow: hidden; font-size: 13px; }
+  .sw i { display: block; height: 84px; }
+  .sw b { display: block; padding: 10px 12px 0; font-weight: 600; }
+  .sw small { display: block; padding: 2px 12px 12px; color: var(--k-muted); }
+
+  .type { background: #fff; border: 1px solid var(--k-line); border-radius: 20px; padding: 40px; }
+  .type .d { font-size: 64px; font-weight: 600; letter-spacing: -0.045em; line-height: 1.05; margin: 0 0 20px; }
+  .type .row { display: flex; gap: 40px; flex-wrap: wrap; color: var(--k-slate); font-size: 15px; }
+
+  .pieces { display: flex; flex-wrap: wrap; gap: 32px; align-items: flex-start; }
+  figure { margin: 0; }
+  figcaption { font-size: 13px; color: var(--k-muted); margin-top: 10px; max-width: 360px; line-height: 1.5; }
+  figcaption b { color: var(--k-navy); font-weight: 600; }
+
+  /* peças em tamanho real, exibidas com zoom */
+  .art { position: relative; overflow: hidden; zoom: 0.32; border-radius: 40px; box-shadow: 0 30px 80px #10213b1f; }
+  .feed { width: 1080px; height: 1350px; }
+  .reel { width: 1080px; height: 1920px; }
+  .pad { position: absolute; inset: 0; padding: 88px 80px; display: flex; flex-direction: column; }
+  .logo-sm { height: 40px; }
+  .spacer { flex: 1; }
+
+  .phone { position: absolute; }
+  .ribbon { position: absolute; pointer-events: none; }
+
+  .push { display: flex; gap: 22px; align-items: flex-start; padding: 28px 30px; border-radius: 30px;
+    background: #ffffffeb; border: 1px solid var(--k-line); box-shadow: 0 16px 40px #10213b1a; }
+  .push .ic { width: 64px; height: 64px; border-radius: 16px; flex: none; }
+  .push .t { font: 600 28px/1.25 var(--k-font); color: var(--k-navy); letter-spacing: -0.01em; }
+  .push .s { font: 400 25px/1.35 var(--k-font); color: var(--k-slate); }
+  .push .when { margin-left: auto; font: 400 22px var(--k-font); color: var(--k-muted); }
+
+  .safe { position: absolute; left: 72px; right: 72px; top: 270px; height: 980px; border: 4px dashed #ff3b6b88; border-radius: 12px; pointer-events: none; }
+  .safe-label { position: absolute; left: 72px; top: 1262px; font: 600 24px var(--k-font); color: #ff3b6b; }
+
+  .slide-num { font: 600 24px var(--k-font); color: var(--k-muted); }
+  .price { font: 600 220px/0.9 var(--k-font); letter-spacing: -0.06em; }
+  .price small { font-size: 64px; letter-spacing: -0.03em; }
+  .checks { display: grid; gap: 22px; margin-top: 48px; }
+  .checks div { display: flex; gap: 20px; align-items: center; font: 600 40px/1.2 var(--k-font); letter-spacing: -0.02em; }
+  .checks svg { flex: none; }
+</style>
+</head>
+<body>
+<div class="page">
+  <header>
+    <img src="site-assets/korza-logo.png" alt="Korza">
+    <span>Prévia do sistema de marca · opção C · 2026-10-26</span>
+  </header>
+
+  <h1 class="k-display" style="font-size:72px;margin:0">Premium pelo capricho.<br><span class="k-tone">Simples pelo respiro.</span></h1>
+
+  <h2 class="sec">Cores</h2>
+  <p class="sec">Base clara, azul como protagonista. Um navy só (#10213B, o do site).</p>
+  <div class="swatches">
+    <div class="sw"><i style="background:#155dfc"></i><b>blue</b><small>#155DFC · a marca</small></div>
+    <div class="sw"><i style="background:linear-gradient(145deg,#236cfb,#155dfc 40%,#0739b0)"></i><b>impacto</b><small>gradiente azul</small></div>
+    <div class="sw"><i style="background:#10213b"></i><b>navy</b><small>#10213B · títulos</small></div>
+    <div class="sw"><i style="background:#42556c"></i><b>slate</b><small>#42556C · corpo</small></div>
+    <div class="sw"><i style="background:#7d8da1"></i><b>gray</b><small>#7D8DA1 · 2º tom</small></div>
+    <div class="sw"><i style="background:#e5ebf2"></i><b>line</b><small>#E5EBF2 · bordas</small></div>
+    <div class="sw"><i style="background:#f5f8fc"></i><b>ice</b><small>#F5F8FC · fundo</small></div>
+    <div class="sw"><i style="background:#fff"></i><b>white</b><small>#FFFFFF · base</small></div>
+  </div>
+
+  <h2 class="sec">Tipografia</h2>
+  <p class="sec">Plus Jakarta Sans, só 400 e 600. Títulos apertados e em dois tons.</p>
+  <div class="type">
+    <p class="d">Sua marca<br><span class="k-tone">no bolso do seu cliente.</span></p>
+    <div class="row"><span><b>Display / título</b> · 600 · tracking −4,5%</span><span><b>Corpo</b> · 400 · slate</span><span><b>Eyebrow</b> · 600 · azul</span></div>
+  </div>
+
+  <h2 class="sec">Peças de exemplo</h2>
+  <p class="sec">Só para ver o sistema funcionando. Textos seguem <code>voz.md</code> e números de <code>claims.md</code>.</p>
+
+  <div class="pieces">
+
+    <!-- 1. feed claro -->
+    <figure>
+      <div class="art feed k-light">
+        <svg class="ribbon" viewBox="0 0 1080 1350" style="inset:0;width:100%;height:100%"><defs><linearGradient id="rg1" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#dbe6ff"/><stop offset=".45" stop-color="#3d7bff"/><stop offset="1" stop-color="#0b3cae"/></linearGradient></defs><path d="M560 1400 C 760 1100, 980 900, 1200 420" fill="none" stroke="url(#rg1)" stroke-width="210" stroke-linecap="round"/></svg>
+        <img class="phone" src="site-assets/loum-mockup.png" style="width:500px;right:30px;bottom:-250px;transform:rotate(7deg)">
+        <div class="pad">
+          <img class="logo-sm" src="site-assets/korza-logo.png" style="align-self:flex-start">
+          <div style="height:120px"></div>
+          <span class="k-eyebrow">Seu e-commerce em um app</span>
+          <h1 class="k-display" style="margin:28px 0 0;max-width:620px">Sua marca no bolso <span class="k-tone">do seu cliente.</span></h1>
+          <p class="k-body" style="max-width:420px;margin:36px 0 0">App iOS e Android com a cara da sua loja. Em até 14 dias úteis.</p>
+          <div class="spacer"></div>
+          <span class="k-button" style="align-self:flex-start">Veja seu app grátis →</span>
+        </div>
+      </div>
+      <figcaption><b>Post feed · modo claro.</b> Título em dois tons, produto real, fita azul, um CTA.</figcaption>
+    </figure>
+
+    <!-- 2. feed impacto -->
+    <figure>
+      <div class="art feed k-impact">
+        <div class="pad">
+          <img class="logo-sm" src="logo/korza-logo-white.png" style="align-self:flex-start">
+          <div class="spacer"></div>
+          <span class="k-eyebrow">Case Loum · moda feminina</span>
+          <div class="k-stat" style="font-size:300px;margin:24px 0 8px">42%</div>
+          <h2 class="k-title" style="margin:0;max-width:880px">dos pedidos no app vieram de <span class="k-tone">quem já tinha comprado.</span></h2>
+          <div class="spacer"></div>
+          <span class="k-note" style="color:#ffffffb3">Resultado do case apresentado. Não é garantia de desempenho.</span>
+        </div>
+      </div>
+      <figcaption><b>Post feed · modo impacto.</b> Um número, o nome do case, a ressalva. Nada mais.</figcaption>
+    </figure>
+
+    <!-- 3. carrossel: capa + slide -->
+    <figure>
+      <div style="display:flex;gap:12px">
+        <div class="art feed k-impact">
+          <div class="pad">
+            <span class="slide-num" style="color:#ffffffb3">1/5</span>
+            <div class="spacer"></div>
+            <h1 class="k-display" style="margin:0">Quanto custa ter o app <span class="k-tone">da sua loja?</span></h1>
+            <div class="spacer"></div>
+            <span class="k-body" style="font-weight:600">Arraste →</span>
+          </div>
+        </div>
+        <div class="art feed k-light">
+          <div class="pad">
+            <span class="slide-num">2/5</span>
+            <div class="spacer"></div>
+            <span class="k-eyebrow">Plano Korza</span>
+            <div class="price" style="margin:24px 0 0">R$ 399<small>/mês</small></div>
+            <div class="checks">
+              <div><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#155dfc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sem taxa de setup</div>
+              <div><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#155dfc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Sem comissão sobre suas vendas</div>
+              <div><svg width="44" height="44" viewBox="0 0 24 24" fill="none" stroke="#155dfc" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6 9 17l-5-5"/></svg>Push ilimitado</div>
+            </div>
+            <div class="spacer"></div>
+          </div>
+        </div>
+      </div>
+      <figcaption><b>Carrossel.</b> Capa em impacto (para no feed), miolo claro (fácil de ler).</figcaption>
+    </figure>
+
+    <!-- 4. reels -->
+    <figure>
+      <div class="art reel" style="background:var(--k-gradient-soft)">
+        <svg class="ribbon" viewBox="0 0 1080 1920" style="inset:0;width:100%;height:100%"><defs><linearGradient id="rg2" x1="0" y1="1" x2="1" y2="0"><stop offset="0" stop-color="#0b3cae"/><stop offset=".55" stop-color="#3d7bff"/><stop offset="1" stop-color="#dbe6ff"/></linearGradient></defs><path d="M-120 1700 C 300 1500, 700 1560, 1200 1300" fill="none" stroke="url(#rg2)" stroke-width="230" stroke-linecap="round"/></svg>
+        <div style="position:absolute;left:72px;right:72px;top:300px">
+          <span class="k-eyebrow">Push notifications</span>
+          <h1 class="k-display" style="margin:28px 0 0">Seu cliente compra uma vez.<br><span class="k-tone">E depois?</span></h1>
+        </div>
+        <div style="position:absolute;left:72px;right:72px;top:820px;display:grid;gap:22px">
+          <div class="push"><span class="ic" style="background:#5b3a2e;color:#fff;display:grid;place-items:center;font:600 15px var(--k-font);letter-spacing:.04em">LOUM</span><div><div class="t">Que bom ter você de volta.</div><div class="s">Sua próxima descoberta está aqui.</div></div><span class="when">agora</span></div>
+          <div class="push" style="opacity:.85;transform:scale(.97)"><span class="ic" style="background:#10213b;color:#fff;display:grid;place-items:center;font:600 15px var(--k-font);letter-spacing:.04em">ONUH</span><div><div class="t">Um benefício só seu.</div><div class="s">Tem uma oferta esperando por você.</div></div><span class="when">2 min</span></div>
+        </div>
+        <div class="safe"></div><div class="safe-label">área segura do Reels (guia, não aparece no vídeo)</div>
+      </div>
+      <figcaption><b>Frame de Reels.</b> Fundo claro suave, gancho no topo, cards de push no estilo do site. A linha tracejada é a área segura.</figcaption>
+    </figure>
+
+    <!-- 5. profundo -->
+    <figure>
+      <div class="art feed k-deep">
+        <img src="graphics/3d/torus.png" style="position:absolute;width:900px;right:-260px;top:-180px;opacity:.95">
+        <div class="pad">
+          <img class="logo-sm" src="logo/korza-logo-white.png" style="align-self:flex-start">
+          <div class="spacer"></div>
+          <h1 class="k-display" style="margin:0;max-width:860px">Seu app no ar em até <span class="k-tone">14 dias úteis.</span></h1>
+          <div style="height:56px"></div>
+          <span class="k-button" style="align-self:flex-start">Veja seu app grátis →</span>
+        </div>
+      </div>
+      <figcaption><b>Modo profundo · acento raro.</b> Navy + um 3D cromado. Para lançamentos e peças especiais.</figcaption>
+    </figure>
+
+  </div>
+</div>
+</body>
+</html>

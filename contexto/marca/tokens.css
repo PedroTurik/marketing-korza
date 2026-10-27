@@ -1,0 +1,64 @@
+/* Korza — tokens da marca. Fonte: MARCA.md. Importar em qualquer peça HTML. */
+
+@font-face {
+  font-family: "Plus Jakarta Sans";
+  src: url("fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+  font-weight: 200 800;
+  font-style: normal;
+}
+
+:root {
+  --k-blue: #155dfc;
+  --k-blue-hover: #104bd0;
+  --k-blue-deep: #0b3cae;
+  --k-navy: #10213b;
+  --k-slate: #42556c;
+  --k-gray: #7d8da1;
+  --k-muted: #708096;
+  --k-line: #e5ebf2;
+  --k-ice: #f5f8fc;
+  --k-white: #ffffff;
+
+  --k-gradient-impact: linear-gradient(145deg, #236cfb 0%, #155dfc 40%, #0739b0 100%);
+  --k-gradient-soft: linear-gradient(140deg, #f3f7ff, #edf4ff 55%, #f9fbff);
+
+  --k-font: "Plus Jakarta Sans", Arial, sans-serif;
+  --k-track-display: -0.045em;
+  --k-track-title: -0.035em;
+
+  --k-radius-card: 24px;
+  --k-radius-button: 12px;
+  --k-shadow-card: 0 8px 20px #155dfc14, 0 0 0 1px #155dfc10;
+}
+
+.k-light { background: var(--k-white); color: var(--k-navy); }
+.k-ice { background: var(--k-ice); color: var(--k-navy); }
+.k-impact { background: var(--k-gradient-impact); color: var(--k-white); }
+.k-deep { background: var(--k-navy); color: var(--k-white); }
+
+.k-display { font: 600 112px/1.05 var(--k-font); letter-spacing: var(--k-track-display); }
+.k-title { font: 600 72px/1.1 var(--k-font); letter-spacing: var(--k-track-title); }
+.k-stat { font: 600 200px/0.9 var(--k-font); letter-spacing: -0.05em; }
+.k-body { font: 400 36px/1.4 var(--k-font); color: var(--k-slate); letter-spacing: -0.01em; }
+.k-eyebrow { font: 600 28px/1.2 var(--k-font); color: var(--k-blue); }
+.k-note { font: 400 22px/1.4 var(--k-font); color: var(--k-muted); }
+
+/* título em dois tons: <h1 class="k-title">Primeira parte <span class="k-tone">segunda parte.</span></h1> */
+.k-tone { color: var(--k-blue); }
+.k-tone-gray { color: var(--k-gray); }
+.k-impact .k-body, .k-deep .k-body { color: #ffffffcc; }
+.k-impact .k-eyebrow, .k-deep .k-eyebrow { color: #ffffffd9; }
+.k-impact .k-tone, .k-deep .k-tone { color: #ffffffa6; }
+
+.k-button {
+  display: inline-flex; align-items: center; gap: 18px;
+  padding: 26px 40px; border-radius: var(--k-radius-button);
+  background: var(--k-blue); color: var(--k-white);
+  font: 600 34px/1 var(--k-font); letter-spacing: -0.01em;
+}
+.k-impact .k-button, .k-deep .k-button { background: var(--k-white); color: var(--k-blue); }
+
+.k-card {
+  background: var(--k-white); border: 1px solid var(--k-line);
+  border-radius: var(--k-radius-card); box-shadow: var(--k-shadow-card);
+}
