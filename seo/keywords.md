@@ -14,7 +14,7 @@ de aparecer é só escrever bem. CPC no Google Ads: R$ 1 a 27 no topo da página
 | `/aplicativo-para-nuvemshop/` | app nuvemshop (100–1 mil), aplicativo nuvemshop (100–1 mil), nuvemshop app, aplicativo nuvem shop, app nuvem shop (10–100) | Mista: parte procura o app de gestão da Nuvemshop. A página deixa claro "app para os seus clientes" logo no título |
 | `/aplicativo-para-shopify/` | app shopify (100–1 mil), aplicativo shopify, aplicativo da shopify (10–100) | Mista, idem |
 | `/aplicativo-para-loja-virtual/` | aplicativo para loja virtual, app para loja virtual, app loja virtual, aplicativo de loja virtual, app ecommerce, aplicativo para e-commerce, transformar site em aplicativo, criar app para loja virtual, loja virtual com aplicativo, melhor aplicativo para loja virtual (10–100 cada) | Comercial |
-| `/precos/` + guia "quanto custa" | quanto custa um aplicativo (100–1 mil) | Ampla (qualquer app); o guia puxa para loja virtual |
+| Guia "quanto custa" (`/precos/` espera os planos novos) | quanto custa um aplicativo (100–1 mil) | Ampla (qualquer app); o guia puxa para loja virtual |
 | Guia: o que é push notification | push notification (1 mil–10 mil), push notification significado, push in app (10–100) | Informativa; boa parte é de desenvolvedores. Autoridade, não conversão |
 | Guia: app x PWA x site mobile | pwa e-commerce (10–100) | Comparativa |
 | Guia: custos de WhatsApp x push x e-mail | preço whatsapp api, custo whatsapp business api, whatsapp para e-commerce, e-mail marketing e-commerce (10–100 cada) | Comparativa |
@@ -22,7 +22,6 @@ de aparecer é só escrever bem. CPC no Google Ads: R$ 1 a 27 no topo da página
 | Artigo: taxa de recompra | taxa de recompra (10–100) | Educativa |
 | Artigo: LTV | ltv e-commerce (10–100) | Educativa |
 | Artigo: depois da Black Friday | pós black friday, black friday e-commerce (10–100) | Sazonal (nov/dez) |
-| `/cases/` | sem volume (marca) | Prova para quem já está comparando |
 
 ## Fora
 

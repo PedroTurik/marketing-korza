@@ -22,8 +22,8 @@ Aprovada com o Pedro em 2026-10-29. Base: [../contexto/posicionamento.md](../con
 
 ## Como produzimos
 
-**Uma leva só**, guiada pelos volumes do Planejador ([keywords.md](keywords.md)): modelo de página, 5 páginas de solução,
-4 guias e 4 artigos (13 páginas), numa branch do Site-Korza. O mapa página → keywords está em `keywords.md`. Depois, novos artigos entram quando a pauta pedir (Instagram, Search Console), sem cota semanal.
+**Uma leva só**, guiada pelos volumes do Planejador ([keywords.md](keywords.md)): modelo de página, 3 páginas de solução,
+4 guias e 4 artigos (11 páginas), numa branch do Site-Korza. O mapa página → keywords está em `keywords.md`. Depois, novos artigos entram quando a pauta pedir (Instagram, Search Console), sem cota semanal.
 Ajustamos pelos dados do Search Console a partir de 4 a 8 semanas.
 
 Cuidados da leva: cada página atende uma intenção distinta (nada de páginas quase iguais trocando a palavra), texto com
@@ -43,8 +43,7 @@ Uma página por intenção de compra, com CTA "veja seu app grátis".
 | `/aplicativo-para-nuvemshop/` | aplicativo para loja Nuvemshop, app Nuvemshop iOS Android | Todos + zero trabalho |
 | `/aplicativo-para-shopify/` | aplicativo para loja Shopify, app Shopify Brasil | Todos + preço fixo em reais |
 | `/aplicativo-para-loja-virtual/` | aplicativo para loja virtual, app para loja virtual, aplicativo para e-commerce | Marca, recompra |
-| `/precos/` | quanto custa aplicativo para loja virtual | Preço fixo, sem comissão |
-| `/cases/` (+ uma por case) | Loum, Belletonn, Pé de Algodão + "app"; prova para quem compara | Recompra, conversão |
+| `/precos/` | quanto custa aplicativo para loja virtual | **Espera os planos novos** (decisão de 2026-10-29) |
 
 ### 2. Guias comparativos (meio de funil)
 
@@ -65,6 +64,12 @@ post no Instagram **e** artigo. Cauda longa com o nosso ângulo, por exemplo:
 - Como calcular a taxa de recompra (e o que é bom para moda, cosméticos, calçados)
 - Quanto custa o WhatsApp para e-commerce em 2026
 - Como marcas como [marca conhecida] usam o app para recompra (análise de marca)
+
+**Cases:** sem página `/cases/` nesta leva (sem busca; a home já tem a seção). Cada página e guia traz o case que combina,
+só com os claims aprovados. Página própria quando houver mais material por case.
+
+**Autoria:** guias e artigos assinados por **Pedro** (cofundador e CTO) ou **Guilhermo** (cofundador e CEO), com mini-bio
+e dados estruturados de autor.
 
 ## Técnico (junto com a primeira leva de páginas)
 

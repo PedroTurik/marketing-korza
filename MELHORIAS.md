@@ -28,12 +28,12 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
   Fazer o primeiro relatório à mão e depois virar script/skill.
 
 - **Acesso Básico na API do Google Ads:** com o acesso Explorer, o Planejador de palavras-chave pela API é bloqueado
-  (`DEVELOPER_TOKEN_NOT_APPROVED`, testado em 2026-10-29). Com o Básico, o Claude pesquisa keywords sozinho. Pedido no
-  Centro de API da conta (formulário; o Google responde em alguns dias). Até lá, o Pedro exporta pela interface.
+  (`DEVELOPER_TOKEN_NOT_APPROVED`, testado em 2026-10-29). Com o Básico, o Claude pesquisa keywords sozinho. O pedido no
+  Centro de API da conta falhou em 2026-10-29; tentar de novo depois. Até lá, o Pedro exporta pela interface.
 
 ## Canais
 
-- **YouTube:** as APIs já estão ativadas no `korza-marketing`. Falta criar uma credencial OAuth "app de computador",
+- **YouTube:** as APIs já estão ativadas no `korza-marketing`. O cliente OAuth "app de computador" já existe (`conexoes/CONEXOES.md`, Credenciais). Falta
   fazer o login único com a conta dona do canal (escolher o canal da Korza, não a conta pessoal), guardar o token em
   `~/.config/korza-marketing/` e escrever `conexoes/youtube.py` só para leitura. Upload pela API fica de fora: com o app
   não verificado, os vídeos ficam presos como privados até uma auditoria do Google.
