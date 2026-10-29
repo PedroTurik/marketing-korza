@@ -22,9 +22,8 @@ Aprovada com o Pedro em 2026-10-29. Base: [../contexto/posicionamento.md](../con
 
 ## Como produzimos
 
-**Uma leva só**, assim que os volumes do Planejador do Google Ads chegarem (`keywords-para-validar.txt` → CSV em
-`inbox/`): modelo de página, as páginas de solução, os guias comparativos e a primeira leva de artigos, numa branch do
-Site-Korza. Depois, novos artigos entram quando a pauta pedir (Instagram, Search Console), sem cota semanal.
+**Uma leva só**, guiada pelos volumes do Planejador ([keywords.md](keywords.md)): modelo de página, 5 páginas de solução,
+4 guias e 4 artigos (13 páginas), numa branch do Site-Korza. O mapa página → keywords está em `keywords.md`. Depois, novos artigos entram quando a pauta pedir (Instagram, Search Console), sem cota semanal.
 Ajustamos pelos dados do Search Console a partir de 4 a 8 semanas.
 
 Cuidados da leva: cada página atende uma intenção distinta (nada de páginas quase iguais trocando a palavra), texto com
@@ -43,7 +42,7 @@ Uma página por intenção de compra, com CTA "veja seu app grátis".
 | --- | --- | --- |
 | `/aplicativo-para-nuvemshop/` | aplicativo para loja Nuvemshop, app Nuvemshop iOS Android | Todos + zero trabalho |
 | `/aplicativo-para-shopify/` | aplicativo para loja Shopify, app Shopify Brasil | Todos + preço fixo em reais |
-| `/aplicativo-para-ecommerce/` | aplicativo para e-commerce, transformar loja virtual em app | Marca, recompra |
+| `/aplicativo-para-loja-virtual/` | aplicativo para loja virtual, app para loja virtual, aplicativo para e-commerce | Marca, recompra |
 | `/precos/` | quanto custa aplicativo para loja virtual | Preço fixo, sem comissão |
 | `/cases/` (+ uma por case) | Loum, Belletonn, Pé de Algodão + "app"; prova para quem compara | Recompra, conversão |
 

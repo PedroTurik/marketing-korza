@@ -27,6 +27,10 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
   seguidores, público) e campanhas da Korza Brasil, pela Graph API com o token (`conexoes/CONEXOES.md`, "Como usar").
   Fazer o primeiro relatório à mão e depois virar script/skill.
 
+- **Acesso Básico na API do Google Ads:** com o acesso Explorer, o Planejador de palavras-chave pela API é bloqueado
+  (`DEVELOPER_TOKEN_NOT_APPROVED`, testado em 2026-10-29). Com o Básico, o Claude pesquisa keywords sozinho. Pedido no
+  Centro de API da conta (formulário; o Google responde em alguns dias). Até lá, o Pedro exporta pela interface.
+
 ## Canais
 
 - **YouTube:** as APIs já estão ativadas no `korza-marketing`. Falta criar uma credencial OAuth "app de computador",
