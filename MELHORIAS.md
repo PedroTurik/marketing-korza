@@ -21,6 +21,18 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 - **Conversions API pelo backend:** `CompleteRegistration` e `Subscribe` com `event_id` igual ao do Pixel. Depois do
   PR do admin.
 
+## SEO
+
+- **Leva de 11 páginas no Site-Korza** (branch `seo`): 3 páginas de solução, 4 guias e 4 artigos, com o mapa em
+  `seo/keywords.md` e as decisões em `seo/estrategia.md`. Antes de escrever:
+  1. Ler o código (`dev/admin`, `dev/backend`, `dev/mobile`), só leitura, e levantar funcionalidades (checkout no app,
+     cupom, segmentação e agendamento de push, integração por plataforma) → claims novos para o Pedro aprovar.
+  2. Cliente teste no admin, acessado pelo Chrome com o Pedro logado: ver onboarding e preview e tirar prints reais
+     (resolve a pendência de telas do `produto.md`). Painel mestre não (dados de todos os clientes).
+  3. Pedro responde: plataforma de cada case (Loum, Belletonn, Pé de Algodão), o que o lojista entrega nos 14 dias e
+     como é a implantação.
+  `/precos/` só depois dos planos novos; `/cases/` quando houver mais material por case.
+
 ## Dados e rotina
 
 - **Script de métricas + relatório semanal (Fase 4):** Instagram (alcance, views, salvamentos, compartilhamentos,

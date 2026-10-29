@@ -127,8 +127,8 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
   - [x] Diagnóstico de Instagram, Search Console e GA4 (linha de base em `estrategia/linha-editorial.md`)
   - [x] Linha editorial do Instagram (`estrategia/linha-editorial.md`)
   - [ ] **Revisar a linha editorial em 2026-11-26** com 4 semanas de dados (inclui Pedro × Guilhermo e o peso da Black Friday)
-  - [ ] Estratégia de SEO: keywords e mapa de páginas (`seo/`)
+  - [x] Estratégia de SEO: keywords e mapa de páginas (`seo/estrategia.md`, `seo/keywords.md`)
   - [ ] Primeiras peças (reels com fundador, carrossel) → skills
-  - [ ] Primeiras páginas de SEO no Site-Korza → skill
+  - [ ] Primeiras páginas de SEO no Site-Korza → skill (leva de 11 páginas e o que falta antes: `MELHORIAS.md`, "SEO")
   - [ ] Campanha pronta para subir quando o admin entrar → skill
 - [ ] Fase 4 — Ritmo (calendário de novembro, primeiro relatório à mão)
