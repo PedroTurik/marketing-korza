@@ -18,6 +18,8 @@ Fase 2 concluída em 2026-10-27. O que falta enriquecer está em [../MELHORIAS.m
 | Rastreamento no site | GA4 + Pixel em código direto no `korza/dev/Site-Korza` | ✅ no ar em `korza.app` (`page_view`/`PageView`), sem banner de consentimento |
 | Rastreamento no admin | `korza/dev/admin` | ⬜ melhoria (ver `estrategia/plano-de-medicao.md`) |
 | Google Ads | MCP `google-ads` (oficial do Google), conta de serviço | ✅ lê a conta `717-714-5646` (o MCP só tem leitura) |
+| YouTube | YouTube Data + Analytics, OAuth do dono do canal (a conta de serviço não serve) | ⬜ APIs ativadas no projeto `korza-marketing`; falta a credencial OAuth (melhoria) |
+| X | API paga | ⬜ fora por ora: uso manual (melhoria) |
 
 ## Como usar
 
@@ -43,7 +45,7 @@ Fase 2 concluída em 2026-10-27. O que falta enriquecer está em [../MELHORIAS.m
 
 | O quê | Onde | Observação |
 | --- | --- | --- |
-| Conta de serviço Google `leitor-marketing@korza-marketing.iam.gserviceaccount.com` | `~/.config/korza-marketing/google-sa.json` (600) | Projeto Cloud `korza-marketing` (`419588201628`), sem faturamento; APIs: Analytics Admin, Analytics Data, Search Console, Google Ads (acesso Explorer, até 2.880 operações/dia). Tem permissão acima de leitura no GA4 e no Search Console e é usuária **Padrão** no Google Ads; as ferramentas pedem só leitura. Se vazar: Cloud console → Contas de serviço → Chaves → excluir e gerar outra |
+| Conta de serviço Google `leitor-marketing@korza-marketing.iam.gserviceaccount.com` | `~/.config/korza-marketing/google-sa.json` (600) | Projeto Cloud `korza-marketing` (`419588201628`), sem faturamento; APIs: Analytics Admin, Analytics Data, Search Console, Google Ads (acesso Explorer, até 2.880 operações/dia), YouTube (ativadas pelo Pedro em 2026-10-29, ainda sem credencial). Tem permissão acima de leitura no GA4 e no Search Console e é usuária **Padrão** no Google Ads; as ferramentas pedem só leitura. Se vazar: Cloud console → Contas de serviço → Chaves → excluir e gerar outra |
 | Token Meta do usuário do sistema `leitor-marketing` (`122094640929536394`) | `~/.config/korza-marketing/meta.env` como `META_IG_TOKEN` (600) | Não expira. App `Korza Marketing`. Permissões de leitura e de escrita (`ads_management`, `instagram_content_publish`, `instagram_manage_comments`, `instagram_manage_messages`, `pages_manage_ads`…), por escolha do Pedro. Trocar: business.facebook.com/settings → Usuários do sistema → `leitor-marketing` → Revogar tokens → gerar outro e salvar com `read -rs T && printf 'META_IG_TOKEN=%s\n' "$T" > ~/.config/korza-marketing/meta.env` num terminal fora do Claude |
 | Meta Ads e Meta devtools (MCP) | Login OAuth pelo `/mcp` | Sem modo só leitura: a trava é a regra da casa e a confirmação a cada chamada de escrita. Exceção liberada pelo Pedro no `.claude/settings.local.json`: `devtools_app_use_cases_manage` |
 

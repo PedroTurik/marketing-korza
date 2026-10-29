@@ -27,6 +27,15 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
   seguidores, público) e campanhas da Korza Brasil, pela Graph API com o token (`conexoes/CONEXOES.md`, "Como usar").
   Fazer o primeiro relatório à mão e depois virar script/skill.
 
+## Canais
+
+- **YouTube:** as APIs já estão ativadas no `korza-marketing`. Falta criar uma credencial OAuth "app de computador",
+  fazer o login único com a conta dona do canal (escolher o canal da Korza, não a conta pessoal), guardar o token em
+  `~/.config/korza-marketing/` e escrever `conexoes/youtube.py` só para leitura. Upload pela API fica de fora: com o app
+  não verificado, os vídeos ficam presos como privados até uma auditoria do Google.
+- **X:** a conta existe, mas usamos manualmente (reposts de cortes e carrosséis). A API é paga, e o público
+  (lojistas Nuvemshop/Shopify) está pouco lá. Só reavaliar se o canal mostrar tração; antes, conferir o preço atual.
+
 ## Limpeza
 
 - **Quiz:** excluir o projeto `quiz-korza` no Cloudflare (o `quiz-korza.pages.dev` ainda abre, com o Pixel do quiz) e
