@@ -27,6 +27,7 @@ Fila de melhorias (o que não trava o trabalho) em [MELHORIAS.md](MELHORIAS.md).
 ## Regras da casa
 
 - Tudo fica dentro de `marketing/`. Nunca criar arquivos na raiz `korza/` nem nos outros repositórios dela.
+  Exceção: páginas do site (SEO) em `korza/dev/Site-Korza`, sempre numa branch; o Pedro revisa e faz o push.
 - `contexto/` é a fonte da verdade. Leia antes de produzir qualquer peça. Números e afirmações só de
   `contexto/claims.md`; se o pedido exigir um dado que não está lá, pergunte. Nunca inventar métrica,
   cliente, depoimento ou tela de app.

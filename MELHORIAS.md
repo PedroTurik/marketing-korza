@@ -36,6 +36,10 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 - **X:** a conta existe, mas usamos manualmente (reposts de cortes e carrosséis). A API é paga, e o público
   (lojistas Nuvemshop/Shopify) está pouco lá. Só reavaliar se o canal mostrar tração; antes, conferir o preço atual.
 
+- **Ações diárias coordenadas entre canais:** a mesma pauta desdobrada no dia em Instagram, X, YouTube (Shorts e
+  vídeos) e outros, com cortes e adaptações por canal. Entra depois que o Instagram estiver rodando com a grade de
+  `estrategia/linha-editorial.md` (e o YouTube com OAuth, se for ler métricas).
+
 ## Limpeza
 
 - **Quiz:** excluir o projeto `quiz-korza` no Cloudflare (o `quiz-korza.pages.dev` ainda abre, com o Pixel do quiz) e

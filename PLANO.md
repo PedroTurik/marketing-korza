@@ -57,8 +57,8 @@ marketing/
   (fonte única de marca, skill dedicada, catálogo, regras de claims) sem obrigação de manter o formato.
   A marca deixa de ser específica de vídeo: `frame.md` vira uma das specs de formato (vídeo, post estático,
   carrossel, OG).
-- **Site:** a pasta `korza/site` NÃO é o site atual. O site real será clonado depois (pedir ao Pedro
-  quando precisar). O hub cuida de estratégia, copy e SEO; mudanças de código acontecem no repo do site.
+- **Site:** a pasta `korza/site` NÃO é o site atual. O site real é `korza/dev/Site-Korza` (HTML estático). O hub cuida
+  de estratégia, copy e pautas; as páginas de SEO o Claude escreve no Site-Korza numa branch, e o Pedro revisa e faz o push.
 - **Vendas fora do escopo:** `crm-automacao` e `korza-leads` continuam separados.
 - **Git** para histórico de copies e campanhas, mesmo trabalhando sozinho. Mídia pesada e renders fora do git.
 - **Conexões leem por padrão; escrever (subir campanha, publicar post, responder comentário) só com OK
@@ -123,5 +123,12 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
 - [x] Fase 0 — Fundação
 - [x] Fase 1 — Studio (estrutura; decisões pendentes para as primeiras produções)
 - [x] Fase 2 — Conexões (melhorias em `MELHORIAS.md`)
-- [ ] Fase 3 — Playbooks ← **próximo:** a primeira peça real (campanha ou conteúdo), feita junto e depois virando receita
-- [ ] Fase 4 — Ritmo
+- [ ] Fase 3 — Playbooks ← **em andamento** (campanhas pagas esperam o PR do admin)
+  - [x] Diagnóstico de Instagram, Search Console e GA4 (linha de base em `estrategia/linha-editorial.md`)
+  - [x] Linha editorial do Instagram (`estrategia/linha-editorial.md`)
+  - [ ] **Revisar a linha editorial em 2026-11-26** com 4 semanas de dados (inclui Pedro × Guilhermo e o peso da Black Friday)
+  - [ ] Estratégia de SEO: keywords e mapa de páginas (`seo/`)
+  - [ ] Primeiras peças (reels com fundador, carrossel) → skills
+  - [ ] Primeiras páginas de SEO no Site-Korza → skill
+  - [ ] Campanha pronta para subir quando o admin entrar → skill
+- [ ] Fase 4 — Ritmo (calendário de novembro, primeiro relatório à mão)
