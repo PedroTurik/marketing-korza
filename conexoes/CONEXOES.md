@@ -17,7 +17,7 @@ Fase 2 concluída em 2026-10-27. O que falta enriquecer está em [../MELHORIAS.m
 | Meta devtools | MCP `meta-devtools` (`https://mcp.facebook.com/devtools`) | ✅ lê e configura apps da Meta (criou o app `Korza Marketing`) |
 | Rastreamento no site | GA4 + Pixel em código direto no `korza/dev/Site-Korza` | ✅ no ar em `korza.app` (`page_view`/`PageView`), sem banner de consentimento |
 | Rastreamento no admin | `korza/dev/admin` | ⬜ melhoria (ver `estrategia/plano-de-medicao.md`) |
-| Google Ads | MCP oficial do Google, só leitura | ⬜ melhoria: a conta não existe; criar quando for anunciar no Google |
+| Google Ads | MCP `google-ads` (oficial do Google), conta de serviço | ✅ lê a conta `717-714-5646` (o MCP só tem leitura) |
 
 ## Como usar
 
@@ -27,6 +27,8 @@ Fase 2 concluída em 2026-10-27. O que falta enriquecer está em [../MELHORIAS.m
   Cerca de 2 dias de atraso.
 - **Meta Ads (MCP):** usar o `ad_account_id` sem `act_`. Se `is_ads_mcp_enabled` for `false` (hoje, Korza Brasil),
   ler pela API.
+- **Google Ads:** ferramentas `mcp__google-ads__*`, `customer_id` `7177145646` (sem hífens), sem `login_customer_id`.
+  Antes de montar uma consulta no `search`, ver os campos com `get_resource_metadata`.
 - **Graph API (Korza Brasil, Instagram):**
   ```
   set -a; . ~/.config/korza-marketing/meta.env; set +a   # define META_IG_TOKEN
@@ -41,7 +43,7 @@ Fase 2 concluída em 2026-10-27. O que falta enriquecer está em [../MELHORIAS.m
 
 | O quê | Onde | Observação |
 | --- | --- | --- |
-| Conta de serviço Google `leitor-marketing@korza-marketing.iam.gserviceaccount.com` | `~/.config/korza-marketing/google-sa.json` (600) | Projeto Cloud `korza-marketing` (`419588201628`), sem faturamento; APIs: Analytics Admin, Analytics Data, Search Console. Tem permissão acima de leitura no GA4 e no Search Console; as ferramentas pedem só leitura. Se vazar: Cloud console → Contas de serviço → Chaves → excluir e gerar outra |
+| Conta de serviço Google `leitor-marketing@korza-marketing.iam.gserviceaccount.com` | `~/.config/korza-marketing/google-sa.json` (600) | Projeto Cloud `korza-marketing` (`419588201628`), sem faturamento; APIs: Analytics Admin, Analytics Data, Search Console, Google Ads (acesso Explorer, até 2.880 operações/dia). Tem permissão acima de leitura no GA4 e no Search Console e é usuária **Padrão** no Google Ads; as ferramentas pedem só leitura. Se vazar: Cloud console → Contas de serviço → Chaves → excluir e gerar outra |
 | Token Meta do usuário do sistema `leitor-marketing` (`122094640929536394`) | `~/.config/korza-marketing/meta.env` como `META_IG_TOKEN` (600) | Não expira. App `Korza Marketing`. Permissões de leitura e de escrita (`ads_management`, `instagram_content_publish`, `instagram_manage_comments`, `instagram_manage_messages`, `pages_manage_ads`…), por escolha do Pedro. Trocar: business.facebook.com/settings → Usuários do sistema → `leitor-marketing` → Revogar tokens → gerar outro e salvar com `read -rs T && printf 'META_IG_TOKEN=%s\n' "$T" > ~/.config/korza-marketing/meta.env` num terminal fora do Claude |
 | Meta Ads e Meta devtools (MCP) | Login OAuth pelo `/mcp` | Sem modo só leitura: a trava é a regra da casa e a confirmação a cada chamada de escrita. Exceção liberada pelo Pedro no `.claude/settings.local.json`: `devtools_app_use_cases_manage` |
 
@@ -84,16 +86,15 @@ O MCP não mostra quem tem acesso ao portfólio nem os pagamentos: isso é confe
   `facebook-domain-verification`. TXT novo entra como valor a mais no mesmo registro.
 - O Pixel não dispara em navegador automatizado padrão; para testar, desligar `AutomationControlled` no Chromium.
 
-## Google Ads (para quando for anunciar no Google)
-
-Verificado na doc do Google em 2026-10-27: o developer token foi extinto em 2026-09-09 e a MCC não é mais
-necessária. O acesso à API pertence ao projeto do Google Cloud (`korza-marketing`): ativar a Google Ads API dá
-acesso de teste; para contas reais, pedir **Explorer** em Google Ads API → Visão geral do Cloud console (até 2.880
-operações/dia). Projeto sem faturamento pode ser recusado. Ao criar a conta: modo especialista, "criar conta sem
-campanha". Conferir se o `google-ads-mcp` já roda sem token.
+**Google Ads:** conta **Korza** `717-714-5646` (BRL, `America/Sao_Paulo`, autotagging ligado), criada em 2026-10-29
+pelo fluxo guiado (o modo especialista não apareceu), sem campanha e sem pagamento. Tag `AW-18544776538`, **ainda fora
+do site**: entra como uma linha `gtag('config', 'AW-18544776538')` no gtag que já carrega o GA4, não como bloco novo.
+Vinculada ao GA4 (`560905270`); as conversões importadas do GA4 (`purchase`, `qualify_lead`, `close_convert_lead`)
+estão ocultas e sem uso.
 
 ## Configuração de MCP
 
 Servidores em `marketing/.mcp.json`, sem segredos. O Claude Code precisa ser aberto dentro de `marketing/`.
-O MCP do GA4 roda com `pipx run analytics-mcp`. Docs do MCP da Meta:
+O MCP do GA4 roda com `pipx run analytics-mcp`; o do Google Ads, com `pipx run --spec git+https://github.com/googleads/google-ads-mcp.git google-ads-mcp`,
+sem developer token (o acesso à API é do projeto do Cloud desde 2026-09-09). Docs do MCP da Meta:
 developers.facebook.com/documentation/ads-commerce/ads-ai-connectors/ads-mcp-server/

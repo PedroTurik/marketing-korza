@@ -73,7 +73,7 @@ marketing/
 | Search Console | Buscas, posições, páginas, indexação | Baixo (conta de serviço) |
 | Meta Ads | Ler performance; depois criar/ajustar campanhas com aprovação | Médio (app no Meta for Developers) |
 | Instagram (@korza.br) | Métricas por post, público, horários, comentários, benchmark de concorrentes; depois publicar com aprovação | Mesmo app do Meta Ads. Exige conta profissional ligada a uma Página do Facebook |
-| Google Ads | Ler performance; depois campanhas com aprovação | Alto (developer token, aprovação leva dias) |
+| Google Ads | Ler performance; depois campanhas com aprovação | Feito em 2026-10-29 (conta de serviço, acesso Explorer) |
 
 Instagram começa só em leitura. Publicação vem quando o fluxo de conteúdo estiver rodando.
 Limitações: a API não agenda posts de Instagram nativamente; DMs exigem permissões e revisão extras.
@@ -111,7 +111,7 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
    Muita coisa será definida nas primeiras produções: ver "A definir nas primeiras vezes" em `studio/STUDIO.md`.
 2. **Conexões** — concluída em 2026-10-27: GA4, Search Console, Meta Ads (MCP e API), Instagram, Pixel e GA4 no site,
    site migrado para `korza.app`. Como usar em `conexoes/CONEXOES.md`; o que medir em `estrategia/plano-de-medicao.md`.
-   O que ficou de fora (admin, Conversions API, banner, Google Ads, script de relatório) está em `MELHORIAS.md`.
+   Google Ads conectado em 2026-10-29. O que ficou de fora (admin, Conversions API, banner, tag do Google Ads, script de relatório) está em `MELHORIAS.md`.
 3. **Playbooks** — uma skill por frente, criada quando a tarefa for feita pela primeira vez à mão
    (primeiro fazemos juntos, depois vira receita).
 4. **Ritmo** — relatório semanal, calendário editorial, ciclo de aprendizados.

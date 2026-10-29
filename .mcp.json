@@ -19,6 +19,20 @@
     "meta-devtools": {
       "type": "http",
       "url": "https://mcp.facebook.com/devtools"
+    },
+    "google-ads": {
+      "type": "stdio",
+      "command": "pipx",
+      "args": [
+        "run",
+        "--spec",
+        "git+https://github.com/googleads/google-ads-mcp.git",
+        "google-ads-mcp"
+      ],
+      "env": {
+        "GOOGLE_APPLICATION_CREDENTIALS": "${HOME}/.config/korza-marketing/google-sa.json",
+        "GOOGLE_PROJECT_ID": "korza-marketing"
+      }
     }
   }
 }

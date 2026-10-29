@@ -16,6 +16,8 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
   os contatos `@korza.app`, falta a seção 11. Hoje o Pixel roda sem banner, por decisão do Pedro (2026-10-27).
 - **Guardar a origem na conta:** o admin salva UTMs, `fbclid`/`gclid` e a página de entrada junto da conta criada
   (`estrategia/plano-de-medicao.md`, "UTMs e atribuição").
+- **Tag do Google Ads e conversão de cadastro:** pôr `AW-18544776538` no site e importar o `sign_up` do GA4 como
+  conversão principal no Google Ads. Antes da primeira campanha no Google, depois do PR do admin.
 - **Conversions API pelo backend:** `CompleteRegistration` e `Subscribe` com `event_id` igual ao do Pixel. Depois do
   PR do admin.
 
@@ -24,7 +26,6 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 - **Script de métricas + relatório semanal (Fase 4):** Instagram (alcance, views, salvamentos, compartilhamentos,
   seguidores, público) e campanhas da Korza Brasil, pela Graph API com o token (`conexoes/CONEXOES.md`, "Como usar").
   Fazer o primeiro relatório à mão e depois virar script/skill.
-- **Google Ads:** conta + acesso à API + MCP, quando houver plano de campanha no Google (`conexoes/CONEXOES.md`).
 
 ## Limpeza
 
