@@ -44,6 +44,7 @@ Para cada frente, uma decisão com o motivo:
 
 - `relatorios/AAAA-MM-DD.md`: números, decisões e o que ficou em aberto, em até uma tela.
 - Atualize `conteudo/calendario.md`, `estrategia/radar.md` e `aprendizados.md`.
+- Trabalho operacional da semana vira arquivo em `demandas/`, a partir de `demandas/_modelo.md`.
 
 ## 6. Entregar
 

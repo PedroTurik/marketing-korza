@@ -4,7 +4,7 @@ Criado em 2026-10-26. Hub único onde o Pedro, junto com o Claude, cuida de todo
 (korza.app; antes korza.com.br): ads pagos, copy, SEO, conteúdo orgânico, edição de vídeo e motion.
 
 Este arquivo descreve a arquitetura do hub e o status das fases. O que o marketing vai fazer, com metas e verba, está em
-`estrategia/plano-90-dias.md`. Desde 2026-10-30, o Claude atua como CMO (`CLAUDE.md`).
+`estrategia/plano-90-dias.md`. Os modos Executor e CMO do Claude estão no `CLAUDE.md`.
 
 ## Princípio
 
@@ -37,6 +37,7 @@ marketing/
     posicionamento.md     mensagem-mãe ("você aluga seu cliente" → canal próprio de recompra)
   conexoes/               CONEXOES.md (como ler cada canal, IDs, credenciais) + scripts
   estrategia/             plano de 90 dias, radar, linha editorial, plano de medição, dados do painel
+  demandas/               trabalho operacional pedido pelo CMO, um arquivo por demanda
   campanhas/              ads pagos: AAAA-MM-<slug>/ (brief, copies, criativos, públicos, resultados)
   conteudo/               orgânico: calendário + uma pasta por post/carrossel/reels
   seo/                    keywords, auditorias/, blog/ (pautas e artigos)
@@ -95,7 +96,8 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
 ## Rotina de uso
 
 - **Segunda:** `/cmo` puxa todas as fontes, varre o radar, confere a cadência e define as prioridades da semana.
-- **Semana:** o CMO toca o calendário e traz as peças para aprovar; pedidos do Pedro entram em linguagem natural.
+- **Semana:** no Modo CMO, o Claude toca o calendário e gera demandas em `demandas/`; o Pedro as executa em chats
+  especialistas, fora do Modo CMO, e o CMO avalia o resultado.
 - **Ao fechar algo:** registra no calendário ou catálogo da frente e o aprendizado em `aprendizados.md`.
 
 ## Fases
