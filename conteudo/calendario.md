@@ -56,7 +56,7 @@ Semana 1 sem fundador: os reels só existem depois da gravação de 4/11, e o pr
 | --- | --- | --- | --- | --- | --- |
 | Seg 23/11 | Reels (Pedro) | Dados e mercado | Três erros na semana da Black Friday | pauta | Avaliar |
 | Ter 24/11 | Carrossel | Retenção e recompra | A mensagem que manda o cliente de volta depois da compra | pauta | Não |
-| Qua 25/11 | Reels (Guilhermo) | Análise de marcas | Black Friday de uma marca conhecida, ao vivo | pauta | Não |
+| Qua 25/11 | Reels (Guilhermo) | Análise de marcas | O que uma marca conhecida já mostra antes da Black Friday | pauta | Não |
 | Qui 26/11 | Motion | Dados e mercado | O número da semana | pauta | Não |
 | Sex 27/11 | Estático | Korza | Mensagem curta da Black Friday | pauta | Não |
 
