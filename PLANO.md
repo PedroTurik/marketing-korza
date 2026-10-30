@@ -3,6 +3,9 @@
 Criado em 2026-10-26. Hub único onde o Pedro, junto com o Claude, cuida de todo o marketing da Korza
 (korza.app; antes korza.com.br): ads pagos, copy, SEO, conteúdo orgânico, edição de vídeo e motion.
 
+Este arquivo descreve a arquitetura do hub e o status das fases. O que o marketing vai fazer, com metas e verba, está em
+`estrategia/plano-90-dias.md`. Desde 2026-10-30, o Claude atua como CMO (`CLAUDE.md`).
+
 ## Princípio
 
 O hub não é um repositório de código, é um **cérebro com receitas**. Tudo depende das mesmas perguntas:
@@ -13,7 +16,7 @@ e toda tarefa lê de lá.
 | --- | --- | --- |
 | 1. Contexto | Marca, voz, claims, produto, público, concorrentes, posicionamento | `contexto/` |
 | 2. Playbooks | Skills do Claude, uma por tarefa recorrente | `.claude/skills/` |
-| 3. Conexões | Meta Ads, Instagram, Google Ads, GA4, Search Console | `.mcp.json` / scripts |
+| 3. Conexões | Meta Ads, Instagram, Google Ads, GA4, Search Console, HubSpot, Chatwoot | `.mcp.json` / scripts |
 | 4. Produção | Uma pasta por frente | `campanhas/`, `conteudo/`, `seo/`, `studio/` |
 | 5. Memória | Catálogo do que foi feito, resultados, aprendizados | `aprendizados.md`, catálogos por frente |
 
@@ -33,7 +36,7 @@ marketing/
     concorrentes.md
     posicionamento.md     mensagem-mãe ("você aluga seu cliente" → canal próprio de recompra)
   conexoes/               CONEXOES.md (como ler cada canal, IDs, credenciais) + scripts
-  estrategia/             plano do trimestre, metas, calendário mestre, plano de medição
+  estrategia/             plano de 90 dias, radar, linha editorial, plano de medição, dados do painel
   campanhas/              ads pagos: AAAA-MM-<slug>/ (brief, copies, criativos, públicos, resultados)
   conteudo/               orgânico: calendário + uma pasta por post/carrossel/reels
   seo/                    keywords, auditorias/, blog/ (pautas e artigos)
@@ -59,7 +62,8 @@ marketing/
   carrossel, OG).
 - **Site:** a pasta `korza/site` NÃO é o site atual. O site real é `korza/dev/Site-Korza` (HTML estático). O hub cuida
   de estratégia, copy e pautas; as páginas de SEO o Claude escreve no Site-Korza numa branch, e o Pedro revisa e faz o push.
-- **Vendas fora do escopo:** `crm-automacao` e `korza-leads` continuam separados.
+- **Vendas fora do escopo:** `crm-automacao` e `korza-leads` continuam separados. O hub só lê HubSpot e Chatwoot, para fechar
+  o funil e aprender com as objeções (decisão de 2026-10-30).
 - **Git** para histórico de copies e campanhas, mesmo trabalhando sozinho. Mídia pesada e renders fora do git.
 - **Conexões leem por padrão; escrever (subir campanha, publicar post, responder comentário) só com OK
   explícito para aquele plano.**
@@ -90,10 +94,9 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
 
 ## Rotina de uso
 
-- **Segunda:** `/relatorio` puxa Meta, Instagram, GA4 e Search Console, compara com a semana anterior e sugere ações.
-- **Semana:** pedidos em linguagem natural ("carrossel sobre recompra", "campanha de fundo de funil",
-  "audita o SEO da home", "edita esse vídeo") → o playbook certo é usado.
-- **Ao fechar algo:** registra no catálogo da frente e o aprendizado em `aprendizados.md`.
+- **Segunda:** `/cmo` puxa todas as fontes, varre o radar, confere a cadência e define as prioridades da semana.
+- **Semana:** o CMO toca o calendário e traz as peças para aprovar; pedidos do Pedro entram em linguagem natural.
+- **Ao fechar algo:** registra no calendário ou catálogo da frente e o aprendizado em `aprendizados.md`.
 
 ## Fases
 
@@ -128,7 +131,10 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
   - [x] Linha editorial do Instagram (`estrategia/linha-editorial.md`)
   - [ ] **Revisar a linha editorial em 2026-11-26** com 4 semanas de dados (inclui Pedro × Guilhermo e o peso da Black Friday)
   - [x] Estratégia de SEO: keywords e mapa de páginas (`seo/estrategia.md`, `seo/keywords.md`)
+  - [x] Coleta do painel: funcionalidades, telas, dados e claims novos (`estrategia/dados-do-painel.md`, `contexto/telas/`)
   - [ ] Primeiras peças (reels com fundador, carrossel) → skills
-  - [ ] Primeiras páginas de SEO no Site-Korza → skill (leva de 11 páginas e o que falta antes: `MELHORIAS.md`, "SEO")
-  - [ ] Campanha pronta para subir quando o admin entrar → skill
-- [ ] Fase 4 — Ritmo (calendário de novembro, primeiro relatório à mão)
+  - [ ] Primeiras páginas de SEO no Site-Korza → skill (leva de 11 páginas: `MELHORIAS.md`, "SEO")
+  - [ ] Campanha pronta para subir quando os portões abrirem (`estrategia/plano-90-dias.md`) → skill
+- [ ] Fase 4 — Ritmo
+  - [x] Calendário de novembro (`conteudo/calendario.md`), radar e ritual `/cmo`
+  - [ ] Primeiro relatório semanal em `relatorios/`

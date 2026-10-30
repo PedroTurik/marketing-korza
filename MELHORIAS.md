@@ -5,15 +5,11 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 
 ## Medição e site
 
-- **PR do admin (`korza/dev/admin`, branch `dev`): GA4, Pixel, `sign_up`/`CompleteRegistration` e `noindex`.**
-  Fazer antes da primeira campanha paga que leve ao cadastro: sem isso não se mede conta criada e a Meta não otimiza.
-  Detalhe em `estrategia/plano-de-medicao.md` ("Admin").
 - **`noindex` no `public.korza.app`:** cabeçalho `X-Robots-Tag: noindex` na rota `website-banner/:idOrHostname/rendered`
   (`korza/dev/backend/src/controllers/website-banner.controller.ts`), com quem cuida do backend. A remoção temporária
   no Search Console (pedida em 2026-10-27 para `admin.korza.app` e `public.korza.app`) vale até ~2027-04-27.
-- **Banner de consentimento (LGPD):** banner próprio (Aceitar/Recusar) no site e no admin; Pixel e sinais de anúncio
-  do Google só após o aceite. Junto, revisar a política de privacidade: a seção 7 nega cookies de marketing, conferir
-  os contatos `@korza.app`, falta a seção 11. Hoje o Pixel roda sem banner, por decisão do Pedro (2026-10-27).
+- **Sessões de "Paid Search" sem campanha:** o GA4 mostrou 12 sessões, com engajamento zero, nos 28 dias até 2026-10-29,
+  e a conta do Google Ads não tem campanha. Provável tráfego automático; olhar quando o relatório semanal for rodar.
 - **Guardar a origem na conta:** o admin salva UTMs, `fbclid`/`gclid` e a página de entrada junto da conta criada
   (`estrategia/plano-de-medicao.md`, "UTMs e atribuição").
 - **Tag do Google Ads e conversão de cadastro:** pôr `AW-18544776538` no site e importar o `sign_up` do GA4 como
@@ -24,13 +20,7 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 ## SEO
 
 - **Leva de 11 páginas no Site-Korza** (branch `seo`): 3 páginas de solução, 4 guias e 4 artigos, com o mapa em
-  `seo/keywords.md` e as decisões em `seo/estrategia.md`. Antes de escrever:
-  1. Ler o código (`dev/admin`, `dev/backend`, `dev/mobile`), só leitura, e levantar funcionalidades (checkout no app,
-     cupom, segmentação e agendamento de push, integração por plataforma) → claims novos para o Pedro aprovar.
-  2. Cliente teste no admin, acessado pelo Chrome com o Pedro logado: ver onboarding e preview e tirar prints reais
-     (resolve a pendência de telas do `produto.md`). Painel mestre não (dados de todos os clientes).
-  3. Pedro responde: plataforma de cada case (Loum, Belletonn, Pé de Algodão), o que o lojista entrega nos 14 dias e
-     como é a implantação.
+  `seo/keywords.md` e as decisões em `seo/estrategia.md`. Sem pré-requisitos pendentes.
   `/precos/` só depois dos planos novos; `/cases/` quando houver mais material por case.
 
 ## Dados e rotina
@@ -52,12 +42,12 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 - **X:** a conta existe, mas usamos manualmente (reposts de cortes e carrosséis). A API é paga, e o público
   (lojistas Nuvemshop/Shopify) está pouco lá. Só reavaliar se o canal mostrar tração; antes, conferir o preço atual.
 
-- **Ações diárias coordenadas entre canais:** a mesma pauta desdobrada no dia em Instagram, X, YouTube (Shorts e
-  vídeos) e outros, com cortes e adaptações por canal. Entra depois que o Instagram estiver rodando com a grade de
-  `estrategia/linha-editorial.md` (e o YouTube com OAuth, se for ler métricas).
-
 ## Limpeza
 
 - **Quiz:** excluir o projeto `quiz-korza` no Cloudflare (o `quiz-korza.pages.dev` ainda abre, com o Pixel do quiz) e
   a Edge Function `meta-pageview` no Supabase (mandava os eventos do quiz para a Meta pelo servidor); confirmar que o botão do quiz saiu do app `korza-brownies` (`dev/mobile/tenants/korza-brownies/dynamic/bundle.ts`).
-- **Token da Meta:** o atual passou pelo chat; trocar quando for conveniente (passo a passo em `conexoes/CONEXOES.md`).
+- **Conta de teste do onboarding:** `pedroturik+2026103001@gmail.com` (pedido `QFFnW4`, "Korza Brownies Teste", telefone
+  fictício) ficou parada na etapa de notificação, sem criar loja. Apagar quando for conveniente.
+
+O que **trava** a mídia paga (PR do admin, privacidade e banner, case da home) saiu daqui e está em
+`estrategia/plano-90-dias.md`, "Portões da mídia paga para o cadastro".

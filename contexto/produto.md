@@ -15,7 +15,29 @@ próprio de recompra.
 - Integração com Nuvemshop e Shopify
 - Campanhas de push: criar a mensagem, escolher o destino e agendar. Push ilimitado
 - Painel com vendas, recompras, campanhas e clientes
-- Construção e publicação em até 14 dias úteis, 100% feitas pela Korza
+- Construção e publicação em até 14 dias úteis, 100% feitas pela Korza. A implantação é assíncrona e automática: depois do onboarding, o lojista não precisa fazer mais nada
+
+## Funcionalidades — verificado no painel em 2026-10-30
+
+| Área | O que existe |
+| --- | --- |
+| Início | Faturamento, vendas, ticket e downloads; próxima campanha; próximos passos; últimas campanhas |
+| Campanhas | Título, mensagem, destino (página inicial ou outra), envio agora ou agendado, teste no aparelho, preview no iPhone, lista e calendário, exportação, importação por CSV (até 5.000 linhas) |
+| Analytics | Abas Resumo, Vendas, Push, Usuários e Pedidos; app × site, participação do app, recompras, ROI, matriz RFM, retenção, CSV |
+| App | Banner de cupom, notificação de boas-vindas, banner no site para baixar o app, dynamic config |
+| Equipe e cobrança | Convite por e-mail, assinatura e pagamentos |
+| Públicos | 11 filtros (compra, gasto, frequência, último acesso, clique e outros). **Ligado em 6 de 75 lojas**; nas demais, "Em breve" |
+| Carrinho abandonado | **Em breve.** Não vender como disponível |
+
+Prints em [telas/](telas/README.md). Dados da base em [../estrategia/dados-do-painel.md](../estrategia/dados-do-painel.md).
+
+## Funil real — verificado em 2026-10-30
+
+Cadastro por magic link → plataforma → nome, loja e e-mail → logo → barra de navegação e cor → notificação de teste →
+"seu app está sendo construído", com o time entrando em contato. Por enquanto não há pagamento no fluxo; o lojista
+passará a pagar a mensalidade pela plataforma, e a comissão que ainda existe no código sai (o PR do admin espera isso).
+O preview usa a marca do lojista sobre um esqueleto, sem produtos, e segue como oferta forte; um emulador mais robusto vem depois.
+Públicos estão em teste com 6 lojas e entram num plano futuro: ignorar nas peças.
 
 ## Preço e condições — verificado em 2026-10-26
 
@@ -72,10 +94,10 @@ nem estrutura a marca.
 
 ## Pendências
 
-- [ ] Telas reais do onboarding/preview para usar em criativos (pedir prints ou acesso)
 - [ ] Atualizar quando os novos planos e as features comissionadas forem lançados
 
 ## Histórico
 
 - 2026-10-26: criado a partir do site ao vivo ([fontes/site-2026-10-26.md](fontes/site-2026-10-26.md))
   e das respostas do Pedro.
+- 2026-10-30: funcionalidades e funil real a partir do painel; prints em `telas/`.

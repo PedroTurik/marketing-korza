@@ -25,7 +25,7 @@ Quatro pilares no mesmo nível. Toda peça defende **um**. Recompra é o coraç�
 
 | Pilar | Promessa | Prova |
 | --- | --- | --- |
-| **Recompra** | Seu cliente volta, sem você pagar mídia de novo | Case Loum 42%; Case Pé de Algodão +4,98%; meta de +10–15% de recompra |
+| **Recompra** | Seu cliente volta, sem você pagar mídia de novo | Case Loum 88,6% em 90 dias; Case Pé de Algodão +4,98%; meta de +10–15% de recompra |
 | **Conversão** | No app, comprar é mais fácil: 1 clique do push até o produto | Conversão até 25% maior; Case Belletonn 26,6%; meta de ticket médio +20% |
 | **Marca** | Sua loja na App Store e no Google Play, ao lado das grandes marcas. Presença e confiança | +60 e-commerces; apps de Loum, Hiven, Belletonn |
 | **Canal próprio** | Fale com seu cliente quando quiser, sem depender de algoritmo, leilão de mídia ou WhatsApp saturado | Push com abertura 30% maior que outros canais |

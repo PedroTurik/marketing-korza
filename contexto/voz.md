@@ -24,7 +24,7 @@ de ferramenta toda semana. Cético, pensa em recompra, margem e tempo. Detalhes 
 
 Gancho humano → fato → convite.
 
-- "Seu cliente compra uma vez. E depois?" → "42% dos pedidos no app vieram de quem já tinha comprado (Case Loum)." → "Veja seu app grátis."
+- "Seu cliente compra uma vez. E depois?" → "88,6% dos pedidos no app em 90 dias vieram de quem já tinha comprado (Case Loum)." → "Veja seu app grátis."
 - "Um toque. E você voltou." → "Push direto na tela, com abertura 30% maior que outros canais." → "Crie sua conta grátis."
 - "Seu app, sem letra miúda." → "R$ 399/mês. Sem setup. Sem comissão sobre suas vendas." → "Veja como fica o seu."
 

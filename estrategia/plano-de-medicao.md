@@ -7,7 +7,7 @@ otimizar para quem cria conta e assina. Criado em 2026-10-26.
 
 - **Site (`korza.app`):** GA4 `G-HR907RLPTS` e Pixel `1174311258139587` no ar (`page_view`/`PageView`), código direto,
   sem banner de consentimento. O link "Criar conta" repassa o `fbclid`.
-- **Admin (`admin.korza.app`):** nada instalado ainda. É a próxima melhoria (seção "Admin" abaixo; `MELHORIAS.md`).
+- **Admin (`admin.korza.app`):** nada instalado ainda. É o primeiro portão da mídia paga (seção "Admin" abaixo; `plano-90-dias.md`).
 
 ## Funil e eventos
 
@@ -37,7 +37,7 @@ Regras:
 - **Conversions API (Meta) do backend** para `CompleteRegistration` e `Subscribe`, com `event_id` igual ao do
   pixel (deduplicação). Recupera o que bloqueador de anúncio e iOS escondem. Melhoria, depois do admin (`MELHORIAS.md`).
 - **LGPD:** banner de consentimento + Consent Mode v2 do Google; Pixel só dispara marketing após consentimento.
-  Pendente: o Pixel entrou no site em 2026-10-27 sem banner, por decisão do Pedro (ver `MELHORIAS.md`).
+  Pendente: o Pixel entrou no site em 2026-10-27 sem banner, por decisão do Pedro (ver `plano-90-dias.md`, "Portões").
 - **Código direto (gtag.js + fbq) em vez de GTM:** o Pedro mantém o código e o Claude edita; um lugar a menos
   para configurar. Rever se a quantidade de tags crescer.
 

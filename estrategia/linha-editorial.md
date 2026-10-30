@@ -37,6 +37,8 @@ Análise de marca fala do que é público e observável; nada de inventar númer
 
 A grade é ponto de partida: os dados mandam. Black Friday (27/11/2026) entra **no mix**, 1 a 2 posts por semana
 em novembro (preparar, vender, e o que fazer com os clientes novos depois). Se render acima da média, ganha mais espaço.
+O ângulo da temporada é o depois da Black Friday (`plano-90-dias.md`, "Calendário comercial"), e as pautas estão em
+`../conteudo/calendario.md`. Vídeos dos fundadores são gravados por fora; motion, carrosséis e estáticos saem do hub.
 
 ## Fundadores em vídeo
 

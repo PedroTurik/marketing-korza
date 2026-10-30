@@ -56,7 +56,7 @@ Fontes: [PricingSaaS/Tapcart](https://pricingsaas.com/companies/tapcart/diffs/20
 4. **Sem conta de desenvolvedor:** a Korza publica nas contas dela. Mobilizei e FoxAppy deixam isso
    (e os US$ 99/ano da Apple) com o lojista.
 5. **Shopify + Nuvemshop** juntos: entre os brasileiros, só a FoxAppy também cobre os dois.
-6. **Ninguém mostra case com número** como a Korza (42%, 26,6%, +4,98%). É prova forte.
+6. **Ninguém mostra case com número** como a Korza (88,6%, 26,6%, +4,98%). É prova forte.
 7. **Prazo parece ponto fraco, mas as comparações não são iguais.** A FoxAppy diz "pronto em 1-3 dias" e a
    Mobile Stores "em poucos dias". Os "poucos minutos" da Mobilizei são para o app ficar *pronto para
    publicar*: a publicação depende de o lojista ter contas de desenvolvedor próprias (Apple exige conta de
