@@ -19,8 +19,9 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 
 ## SEO
 
-- **Leva de 11 páginas no Site-Korza** (branch `seo-leva-1`): 3 páginas de solução, 4 guias e 4 artigos, na demanda
-  `demandas/2026-10-30-seo-leva-11-paginas.md`. Sem pré-requisitos pendentes.
+- **Leva de 11 páginas no Site-Korza:** pronta na branch `seo-leva-1` em 2026-10-30, sem push, à espera da revisão do Pedro.
+  Fonte das páginas e gerador em `seo/modelo/` (`demandas/2026-10-30-seo-leva-11-paginas.md`, seção "Entrega").
+- **Imagem de Open Graph:** as páginas usam `korza-logo.png`, por falta de arte 1200×630 em `assets/`. Criar uma e trocar em `build.py`.
   `/precos/` só depois dos planos novos; `/cases/` quando houver mais material por case.
 
 ## Dados e rotina

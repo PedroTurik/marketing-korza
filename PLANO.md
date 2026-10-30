@@ -135,7 +135,7 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
   - [x] Estratégia de SEO: keywords e mapa de páginas (`seo/estrategia.md`, `seo/keywords.md`)
   - [x] Coleta do painel: funcionalidades, telas, dados e claims novos (`estrategia/dados-do-painel.md`, `contexto/telas/`)
   - [ ] Primeiras peças (reels com fundador, carrossel) → skills
-  - [ ] Primeiras páginas de SEO no Site-Korza → skill (leva de 11 páginas: `MELHORIAS.md`, "SEO")
+  - [ ] Primeiras páginas de SEO no Site-Korza → skill (11 páginas prontas na branch `seo-leva-1`, falta revisão e push: `MELHORIAS.md`, "SEO")
   - [ ] Campanha pronta para subir quando os portões abrirem (`estrategia/plano-90-dias.md`) → skill
 - [ ] Fase 4 — Ritmo
   - [x] Calendário de novembro (`conteudo/calendario.md`), radar e ritual `/cmo`

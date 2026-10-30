@@ -1,6 +1,6 @@
 # Demanda: leva de SEO com 11 páginas no site
 
-**Status:** `aberta`
+**Status:** `feita`
 **Criada em:** 2026-10-30
 **Especialidade:** site/SEO
 **Skill:** nenhuma. Ao terminar, registre em "Entrega" o que vale virar skill.
@@ -88,16 +88,39 @@ Crie todas na mesma branch. Faça primeiro o modelo e a página 1, depois siga a
 
 ## Critério de pronto
 
-- [ ] Branch `seo-leva-1` criada a partir da `main` atual, com commits por página, sem push
-- [ ] 11 páginas abrindo num servidor local, com header, footer e fontes corretos, conferidas em 1440px e 390px
-- [ ] Os CTAs chegam ao cadastro; com `?fbclid=teste` na URL, o link leva o parâmetro
-- [ ] GA4 e Pixel presentes em todas as páginas; nenhum erro no console
-- [ ] Dados estruturados com JSON válido em todas as páginas
-- [ ] Sitemap com 13 URLs, XML válido, e links do footer funcionando
-- [ ] Todo número conferido contra `claims.md`; todo dado de terceiro com fonte e data
-- [ ] Nenhum termo proibido: busque por "retenção", "churn", "30%", "16 milhões", "é seu", "mais barata", "carrinho abandonado"
-- [ ] Atualizar o Status de `seo/` em `MELHORIAS.md` e em `PLANO.md`
+- [x] Branch `seo-leva-1` criada a partir da `main` atual, com commits por página, sem push
+- [x] 11 páginas abrindo num servidor local, com header, footer e fontes corretos, conferidas em 1440px e 390px
+- [x] Os CTAs chegam ao cadastro; com `?fbclid=teste` na URL, o link leva o parâmetro
+- [x] GA4 e Pixel presentes em todas as páginas; nenhum erro no console
+- [x] Dados estruturados com JSON válido em todas as páginas
+- [x] Sitemap com 13 URLs, XML válido, e links do footer funcionando
+- [x] Todo número conferido contra `claims.md`; todo dado de terceiro com fonte e data
+- [x] Nenhum termo proibido: busque por "retenção", "churn", "30%", "16 milhões", "é seu", "mais barata", "carrinho abandonado"
+- [x] Atualizar o Status de `seo/` em `MELHORIAS.md` e em `PLANO.md`
 
 ## Entrega
 
-Preenchido por quem executou: onde está o resultado e o que ficou diferente do pedido.
+Concluída em 2026-10-30. Branch `seo-leva-1` em `korza/dev/Site-Korza`, 11 commits a partir da `main` local (que estava 1 commit à
+frente da `origin`), sem push. Fonte das páginas e gerador em `seo/modelo/`: edite `paginas/*.py` e rode `build.py`, sem mexer no HTML.
+
+**Decisões do Pedro:** autores Pedro Turik Firmino e Guilhermo Herter, bio só com cargo e Korza. "Fale com um especialista" vai para
+o WhatsApp 55 51 9455-3299, com mensagem preenchida.
+
+**Diferente do pedido:**
+- Guia 8: R$ 0,3217 por mensagem de marketing veio do Pedro. Não consegui ler a tabela de tarifas da Meta; só vi o mesmo valor em
+  sites de terceiros. A página cita a Meta como fonte: conferir na tabela antes do push.
+- Guia 8: as demais tarifas do WhatsApp no Brasil ficaram de fora, sem fonte primária.
+- Guia 5: preços de concorrentes conferidos na fonte em 2026-10-30, exceto o da solução com comissão, cuja página não abriu. Por isso
+  essa linha não tem percentual. Agência sem valor, por falta de fonte.
+- Guia 6: a página da Apple sobre permissão só carregou o título; a afirmação segue a documentação citada, mas vale conferir.
+- `cta_click` do GA4 também conta o clique no WhatsApp. É o evento que já existia, sem tag nova.
+- Sem índice de blog e guias: os links internos bastam. Guias e artigos entram pelas páginas de solução, os "Leia também" e o sitemap.
+- `og:image` é o logo, por falta de arte no formato (em `MELHORIAS.md`).
+- Os links do footer da home entraram na coluna "Explore".
+- Claims não usados: `push-abertura-30` e `vendas-16m`, como pedido. Os exemplos de conta são marcados como ilustrativos.
+
+**Verificado:** 11 páginas em 1440px e 390px, em navegador sem interface, sem rolagem horizontal nem erro de página; `fbclid` no link de
+cadastro ao clicar; GA4 e Pixel carregados; JSON-LD válido; sitemap com 13 URLs; links do footer; termos proibidos sem ocorrência. O
+envio ao GA4 e ao Pixel e o link de WhatsApp não foram testados de ponta a ponta.
+
+**Vira skill:** o fluxo de `seo/modelo/` (modelo, página por arquivo, checagem no navegador). Vale criar `/korza-seo` na próxima página.
