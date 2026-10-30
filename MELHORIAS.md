@@ -19,8 +19,8 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 
 ## SEO
 
-- **Leva de 11 páginas no Site-Korza** (branch `seo`): 3 páginas de solução, 4 guias e 4 artigos, com o mapa em
-  `seo/keywords.md` e as decisões em `seo/estrategia.md`. Sem pré-requisitos pendentes.
+- **Leva de 11 páginas no Site-Korza** (branch `seo-leva-1`): 3 páginas de solução, 4 guias e 4 artigos, na demanda
+  `demandas/2026-10-30-seo-leva-11-paginas.md`. Sem pré-requisitos pendentes.
   `/precos/` só depois dos planos novos; `/cases/` quando houver mais material por case.
 
 ## Dados e rotina
