@@ -1,6 +1,6 @@
 # Estratégia de SEO
 
-Aprovada com o Pedro em 2026-10-29. Base: [../contexto/posicionamento.md](../contexto/posicionamento.md),
+Aprovada com o Pedro em 2026-10-29. **Hipótese de partida:** muda com o que o Search Console mostrar. Base: [../contexto/posicionamento.md](../contexto/posicionamento.md),
 [../contexto/publico.md](../contexto/publico.md), [../contexto/concorrentes.md](../contexto/concorrentes.md).
 
 ## Ponto de partida (2026-10-29)
@@ -80,9 +80,9 @@ e dados estruturados de autor.
 
 ## Como medimos
 
-| Métrica | Fonte | Meta de 90 dias (até 2027-01-27) |
+| Métrica | Fonte | O que observar |
 | --- | --- | --- |
-| Páginas indexadas | Search Console | Todas as publicadas |
-| Impressões fora da marca | Search Console | Sair do zero; crescer mês a mês |
-| Posição das páginas de solução | Search Console | Top 10 nas buscas-alvo |
+| Páginas indexadas | Search Console | Se as publicadas entram no índice |
+| Impressões fora da marca | Search Console | Se saem do zero e para quais buscas |
+| Posição das páginas de solução | Search Console | Quais buscas-alvo ganham tração |
 | Sessões orgânicas e contas criadas vindas do orgânico | GA4 (contas depois do PR do admin) | Linha de base |

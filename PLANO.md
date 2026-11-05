@@ -3,8 +3,8 @@
 Criado em 2026-10-26. Hub único onde o Pedro, junto com o Claude, cuida de todo o marketing da Korza
 (korza.app; antes korza.com.br): ads pagos, copy, SEO, conteúdo orgânico, edição de vídeo e motion.
 
-Este arquivo descreve a arquitetura do hub e o status das fases. O que o marketing vai fazer, com metas e verba, está em
-`estrategia/plano-90-dias.md`. Os modos Executor e CMO do Claude estão no `CLAUDE.md`.
+Este arquivo descreve a arquitetura do hub e o status das fases. Os modos Executor e CMO do Claude estão no `CLAUDE.md`.
+Não há metas nem plano fixo: a estratégia é hipótese, as decisões ficam em `aprendizados.md` e mudam com o dado.
 
 ## Princípio
 
@@ -36,17 +36,17 @@ marketing/
     concorrentes.md
     posicionamento.md     mensagem-mãe ("você aluga seu cliente" → canal próprio de recompra)
   conexoes/               CONEXOES.md (como ler cada canal, IDs, credenciais) + scripts
-  estrategia/             plano de 90 dias, radar, linha editorial, plano de medição, dados do painel
+  estrategia/             radar, linha editorial, plano de medição, dados do painel (hipóteses)
   demandas/               trabalho operacional pedido pelo CMO, um arquivo por demanda
   campanhas/              ads pagos: AAAA-MM-<slug>/ (brief, copies, criativos, públicos, resultados)
-  conteudo/               orgânico: calendário + uma pasta por post/carrossel/reels
+  conteudo/               orgânico: pautas (sem data), publicações + uma pasta por post/carrossel/reels
   seo/                    keywords, auditorias/, blog/ (pautas e artigos)
   studio/
     kit/                  peças de marca reutilizáveis: abertura, encerramento, lower third, legenda, CTA
     motion/               ads 100% animados (HyperFrames)
     gravados/             vídeos com filmagem: brutos → transcrição → roteiro de corte → render
-  relatorios/             semanais/mensais a partir dos dados reais
-  aprendizados.md         o que funcionou e o que não, com números
+  relatorios/             análises sob demanda a partir dos dados reais
+  aprendizados.md         decisões (aposta, validada, revogada) e o que funcionou, com números
   inbox/                  material bruto
   .claude/skills/         playbooks
 ```
@@ -95,10 +95,12 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
 
 ## Rotina de uso
 
-- **Segunda:** `/cmo` puxa todas as fontes, varre o radar, confere a cadência e define as prioridades da semana.
-- **Semana:** no Modo CMO, o Claude toca o calendário e gera demandas em `demandas/`; o Pedro as executa em chats
-  especialistas, fora do Modo CMO, e o CMO avalia o resultado.
-- **Ao fechar algo:** registra no calendário ou catálogo da frente e o aprendizado em `aprendizados.md`.
+Tudo sob demanda: nada roda sozinho.
+
+- **Análise:** quando o Pedro pede, `/cmo` puxa as fontes, varre o radar e diz o que aprendemos e o que muda.
+- **Produção:** no Modo CMO, o Claude transforma pautas em demandas (`demandas/`); o Pedro as executa em chats
+  especialistas, fora do Modo CMO, e o CMO avalia o resultado. Vários vídeos ou peças podem sair ao mesmo tempo.
+- **Ao fechar algo:** registra em `conteudo/publicacoes.md` ou no catálogo da frente, e a decisão em `aprendizados.md`.
 
 ## Fases
 
@@ -119,7 +121,7 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
    Google Ads conectado em 2026-10-29. O que ficou de fora (admin, Conversions API, banner, tag do Google Ads, script de relatório) está em `MELHORIAS.md`.
 3. **Playbooks** — uma skill por frente, criada quando a tarefa for feita pela primeira vez à mão
    (primeiro fazemos juntos, depois vira receita).
-4. **Ritmo** — relatório semanal, calendário editorial, ciclo de aprendizados.
+4. **Ritmo** — análise sob demanda, banco de pautas, ciclo de aprendizados.
 
 ## Status
 
@@ -128,15 +130,14 @@ refinamento num editor (ou exportar lista de cortes para DaVinci/Premiere).
 - [x] Fase 0 — Fundação
 - [x] Fase 1 — Studio (estrutura; decisões pendentes para as primeiras produções)
 - [x] Fase 2 — Conexões (melhorias em `MELHORIAS.md`)
-- [ ] Fase 3 — Playbooks ← **em andamento** (campanhas pagas esperam o PR do admin)
+- [ ] Fase 3 — Playbooks ← **em andamento**
   - [x] Diagnóstico de Instagram, Search Console e GA4 (linha de base em `estrategia/linha-editorial.md`)
   - [x] Linha editorial do Instagram (`estrategia/linha-editorial.md`)
-  - [ ] **Revisar a linha editorial em 2026-11-26** com 4 semanas de dados (inclui Pedro × Guilhermo e o peso da Black Friday)
   - [x] Estratégia de SEO: keywords e mapa de páginas (`seo/estrategia.md`, `seo/keywords.md`)
   - [x] Coleta do painel: funcionalidades, telas, dados e claims novos (`estrategia/dados-do-painel.md`, `contexto/telas/`)
   - [ ] Primeiras peças (reels com fundador, carrossel) → skills
   - [ ] Primeiras páginas de SEO no Site-Korza → skill (11 páginas prontas na branch `seo-leva-1`, falta revisão e push: `MELHORIAS.md`, "SEO")
-  - [ ] Campanha pronta para subir quando os portões abrirem (`estrategia/plano-90-dias.md`) → skill
+  - [ ] Primeira campanha paga → skill
 - [ ] Fase 4 — Ritmo
-  - [x] Calendário de novembro (`conteudo/calendario.md`), radar e ritual `/cmo`
-  - [ ] Primeiro relatório semanal em `relatorios/`
+  - [x] Banco de pautas (`conteudo/pautas.md`), publicações, radar e análise `/cmo` sob demanda
+  - [ ] Primeira análise em `relatorios/`

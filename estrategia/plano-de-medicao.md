@@ -7,7 +7,8 @@ otimizar para quem cria conta e assina. Criado em 2026-10-26.
 
 - **Site (`korza.app`):** GA4 `G-HR907RLPTS` e Pixel `1174311258139587` no ar (`page_view`/`PageView`), código direto,
   sem banner de consentimento. O link "Criar conta" repassa o `fbclid`.
-- **Admin (`admin.korza.app`):** nada instalado ainda. É o primeiro portão da mídia paga (seção "Admin" abaixo; `plano-90-dias.md`).
+- **Admin (`admin.korza.app`):** nada instalado ainda. Sem isso, campanha que leva ao cadastro não mede conta criada
+  (seção "Admin" abaixo).
 
 ## Funil e eventos
 
@@ -37,7 +38,7 @@ Regras:
 - **Conversions API (Meta) do backend** para `CompleteRegistration` e `Subscribe`, com `event_id` igual ao do
   pixel (deduplicação). Recupera o que bloqueador de anúncio e iOS escondem. Melhoria, depois do admin (`MELHORIAS.md`).
 - **LGPD:** banner de consentimento + Consent Mode v2 do Google; Pixel só dispara marketing após consentimento.
-  Pendente: o Pixel entrou no site em 2026-10-27 sem banner, por decisão do Pedro (ver `plano-90-dias.md`, "Portões").
+  Pendente: o Pixel entrou no site em 2026-10-27 sem banner, por decisão do Pedro (`MELHORIAS.md`, "Privacidade").
 - **Código direto (gtag.js + fbq) em vez de GTM:** o Pedro mantém o código e o Claude edita; um lugar a menos
   para configurar. Rever se a quantidade de tags crescer.
 
@@ -71,7 +72,7 @@ Padrão para todo link que a Korza controla:
 da primeira visita (first touch) junto da conta criada. Assim dá para saber qual campanha gerou cada
 assinatura, inclusive no HubSpot, sem depender só do GA4/Meta.
 
-## Métricas do relatório semanal
+## Métricas da análise (`/cmo`)
 
 Visitas → cliques no CTA → contas criadas → previews vistos → assinaturas, por canal e campanha.
 Custo por conta criada e por assinatura. Recompra e receita ficam fora (são resultado do cliente, não do marketing).

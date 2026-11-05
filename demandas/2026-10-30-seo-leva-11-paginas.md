@@ -1,6 +1,6 @@
 # Demanda: leva de SEO com 11 páginas no site
 
-**Status:** `feita`
+**Status:** `aprovada`
 **Criada em:** 2026-10-30
 **Especialidade:** site/SEO
 **Skill:** nenhuma. Ao terminar, registre em "Entrega" o que vale virar skill.

@@ -1,10 +1,10 @@
 # Linha editorial — Instagram (@korza.br)
 
-Decidida com o Pedro em 2026-10-29. Revisar em 2026-11-26, com 4 semanas de dados.
+Decidida com o Pedro em 2026-10-29. **Hipótese de partida:** nada aqui é regra, e muda com o dado das publicações.
 Base: [../contexto/posicionamento.md](../contexto/posicionamento.md), [../contexto/publico.md](../contexto/publico.md),
 [../contexto/voz.md](../contexto/voz.md). Números só de [../contexto/claims.md](../contexto/claims.md).
 
-## Objetivo (próximos 90 dias)
+## Objetivo
 
 1. **Audiência:** alcançar e conquistar donos e gestores de e-commerce (Nuvemshop/Shopify, R$ 30 mil+/mês).
 2. **Credibilidade e aquecimento:** o perfil convence quem chega pelo outbound e pelos futuros anúncios, e forma
@@ -25,26 +25,23 @@ A Korza aparece como consequência: no fim do post, na assinatura visual, no CTA
 Dado de terceiro (relatório, notícia) entra com fonte e data na legenda. Dado da Korza só de `claims.md`.
 Análise de marca fala do que é público e observável; nada de inventar número de outra empresa.
 
-## Frequência e grade (5 por semana)
+## Formatos
 
-| Dia | Formato | Território padrão |
+| Formato | Território que combina | Quem faz |
 | --- | --- | --- |
-| Seg | Reels com fundador | Dados e mercado |
-| Ter | Carrossel | Retenção e recompra |
-| Qua | Reels com fundador | Análise de marcas |
-| Qui | Carrossel ou reels em motion | Análise de marcas ou dados |
-| Sex | Livre: bastidor, case ou produto | O "1 em 5" da Korza |
+| Reels com fundador | Dados e mercado, análise de marcas | Gravado por fora; roteiro e edição no hub |
+| Carrossel | Retenção e recompra, análise de marcas | Hub |
+| Reels em motion | Dados, Korza | Hub |
+| Estático | Bastidor, case, produto | Hub |
 
-A grade é ponto de partida: os dados mandam. Black Friday (27/11/2026) entra **no mix**, 1 a 2 posts por semana
-em novembro (preparar, vender, e o que fazer com os clientes novos depois). Se render acima da média, ganha mais espaço.
-O ângulo da temporada é o depois da Black Friday (`plano-90-dias.md`, "Calendário comercial"), e as pautas estão em
-`../conteudo/calendario.md`. Vídeos dos fundadores são gravados por fora; motion, carrosséis e estáticos saem do hub.
+Sem frequência fixa: produzimos em lote, conforme os playbooks existem, e os dados dizem quanto e o quê. As pautas ficam em
+`../conteudo/pautas.md` e o que já foi produzido, em `../conteudo/publicacoes.md`.
 
 ## Fundadores em vídeo
 
-**Pedro e Guilhermo** revezam. Ainda não sabemos quem rende mais: nas 4 primeiras semanas os dois gravam os mesmos
-territórios, alternando, e na revisão comparamos alcance, retenção do vídeo e compartilhamentos por fundador para
-definir o tema de cada um. Vídeo curto de fala, gravado no celular. Fluxo: o Claude
+**Pedro e Guilhermo** revezam. Ainda não sabemos quem rende mais: os dois gravam os mesmos territórios, alternando, e
+quando houver vídeos suficientes comparamos alcance, retenção do vídeo e compartilhamentos por fundador para definir o
+tema de cada um. Vídeo curto de fala, gravado no celular. Fluxo: o Claude
 roteiriza → o fundador grava → o Claude edita (`/korza-video`: corte, legenda, marca) → aprovação → publicação.
 
 ## Publicação

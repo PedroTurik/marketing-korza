@@ -9,7 +9,7 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
   (`korza/dev/backend/src/controllers/website-banner.controller.ts`), com quem cuida do backend. A remoção temporária
   no Search Console (pedida em 2026-10-27 para `admin.korza.app` e `public.korza.app`) vale até ~2027-04-27.
 - **Sessões de "Paid Search" sem campanha:** o GA4 mostrou 12 sessões, com engajamento zero, nos 28 dias até 2026-10-29,
-  e a conta do Google Ads não tem campanha. Provável tráfego automático; olhar quando o relatório semanal for rodar.
+  e a conta do Google Ads não tem campanha. Provável tráfego automático; olhar na próxima análise do `/cmo`.
 - **Guardar a origem na conta:** o admin salva UTMs, `fbclid`/`gclid` e a página de entrada junto da conta criada
   (`estrategia/plano-de-medicao.md`, "UTMs e atribuição").
 - **Tag do Google Ads e conversão de cadastro:** pôr `AW-18544776538` no site e importar o `sign_up` do GA4 como
@@ -26,7 +26,7 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 
 ## Dados e rotina
 
-- **Script de métricas + relatório semanal (Fase 4):** Instagram (alcance, views, salvamentos, compartilhamentos,
+- **Script de métricas para a análise `/cmo` (Fase 4):** Instagram (alcance, views, salvamentos, compartilhamentos,
   seguidores, público) e campanhas da Korza Brasil, pela Graph API com o token (`conexoes/CONEXOES.md`, "Como usar").
   Fazer o primeiro relatório à mão e depois virar script/skill.
 
@@ -50,5 +50,8 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 - **Conta de teste do onboarding:** `pedroturik+2026103001@gmail.com` (pedido `QFFnW4`, "Korza Brownies Teste", telefone
   fictício) ficou parada na etapa de notificação, sem criar loja. Apagar quando for conveniente.
 
-O que **trava** a mídia paga (PR do admin, privacidade e banner, case da home) saiu daqui e está em
-`estrategia/plano-90-dias.md`, "Portões da mídia paga para o cadastro".
+## Privacidade
+
+- **Política × Pixel:** a seção 7 da política de privacidade do site diz que não há cookies de marketing, mas o Pixel da
+  Meta roda no `korza.app` desde 2026-10-27, sem banner. Corrigir a política (conferir também os contatos `@korza.app` e a
+  seção 11, que falta) e avaliar um banner de consentimento (`estrategia/plano-de-medicao.md`, LGPD).

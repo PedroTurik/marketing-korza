@@ -1,6 +1,7 @@
 # Radar — marcos e features
 
-Tudo que pode virar conteúdo nasce aqui. O `/cmo` varre as fontes toda semana e registra a decisão: **vira conteúdo? como?
+Tudo que pode virar conteúdo nasce aqui. Quando o Pedro pede, o `/cmo` varre as fontes e registra a decisão (os níveis
+abaixo são ponto de partida, não regra): **vira conteúdo? como?
 impulsiona? qual criativo?** Só anunciar o que já está em produção; commit em `dev` é sinal, não lançamento.
 
 ## Fontes
@@ -16,8 +17,8 @@ impulsiona? qual criativo?** Só anunciar o que já está em produção; commit 
 
 | Nível | Quando | O que acontece |
 | --- | --- | --- |
-| **A** | Muda a oferta ou destrava objeção | Pauta-mãe da semana, todos os canais, impulsionar, avisar o outbound |
-| **B** | Feature útil ou marco redondo | 1 post e 1 story; impulsiona se render 2× a média |
+| **A** | Muda a oferta ou destrava objeção | Pauta prioritária em todos os canais, avaliar impulsionar, avisar o outbound |
+| **B** | Feature útil ou marco redondo | 1 post e 1 story; avaliar impulsionar se render acima da média |
 | **C** | Melhoria pequena | Só bastidor, ou nada |
 
 ## Na fila
@@ -27,7 +28,7 @@ impulsiona? qual criativo?** Só anunciar o que já está em produção; commit 
 | Pagamento na plataforma (self-serve) | A | Com o PR do admin | Vira "assine sem falar com ninguém". Abre a mídia paga |
 | Novos planos | A | Sem data | Revisar preço, claims, `/precos/` e `sem-setup-comissao` antes de qualquer peça |
 | Listagem na Loja de Aplicativos Nuvem e Shopify App Store | A | Sem data | Lançamento + frente de SEO (`seo/estrategia.md`) |
-| Carrinho abandonado | A | "Em breve" | Não vender antes de sair. Ao sair: pauta-mãe, tema de maior dor |
+| Carrinho abandonado | A | "Em breve" | Não vender antes de sair. Ao sair: pauta prioritária, tema de maior dor |
 | Públicos | B | Plano futuro | Ignorar nas peças até o plano sair |
 | Logo opcional no onboarding (2026-10-30, em `dev`) | C | Ao entrar em produção | Sem peça |
 
@@ -50,5 +51,4 @@ Base: painel em 2026-10-30. Ao bater, conferir, aprovar em `claims.md` e decidir
 | --- | --- | --- |
 | Preço e `sem-setup-comissao` | 2026-11-25 | Confirmar com o Pedro |
 | Preços de `concorrentes.md` | Antes de qualquer comparação | Conferir na fonte |
-| Revisão da linha editorial | 2026-11-26 | Comparar Pedro × Guilhermo |
 | Remoção temporária no Search Console | ~2027-04-27 | Resolver o `noindex` antes |
