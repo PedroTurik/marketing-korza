@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cena 4 (11,6–14,42s), tópico 2: "App no ar em até quatorze dias úteis." "14" gigante cresce no "quatorze", régua de 14
+         dias úteis enche de azul e o selo "App no ar" carimba no fim. Sem contagem: só o 14 passa pela tela. Quadros 11–12.
+         Claim: prazo-14-dias. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s4-bg { position: absolute; inset: 0; background: radial-gradient(1100px 900px at 70% 60%, #dbe7ff 0%, rgba(219,231,255,0) 70%), radial-gradient(900px 800px at 18% 28%, #e6eeff 0%, rgba(230,238,255,0) 70%), #f5f8fc; }
+        #s4-all { position: absolute; inset: 0; }
+        #s4-n { position: absolute; left: 50px; top: 470px; font-size: 560px; font-weight: 600; letter-spacing: -0.07em; line-height: 0.9; color: #155dfc; transform-origin: 30% 80%; opacity: 0; }
+        #s4-u { position: absolute; left: 650px; top: 740px; font-size: 104px; font-weight: 600; letter-spacing: -0.045em; line-height: 1.02; color: #10213b; }
+        #s4-rg { left: 72px; top: 1130px; }
+                #s4-rg b { position: absolute; inset: 0; border-radius: 14px; background: #155dfc; clip-path: inset(100% 0 0 0); }
+        #s4-rg i { position: relative; }
+        #s4-pill { left: 560px; top: 1290px; opacity: 0; }
+        .eb { opacity: 0; }
+      </style>
+
+      <div id="root" class="on-light" data-composition-id="s4-prazo" data-width="1080" data-height="1920">
+        <div id="s4-bg"></div>
+        <div id="s4-all">
+          <div id="s4-stg" class="stg">
+            <div id="s4-n">14</div>
+            <div id="s4-u"><span class="mk"><span class="in">dias</span></span><span class="mk"><span class="in">úteis.</span></span></div>
+            <div class="rg" id="s4-rg"><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i><i><b></b></i></div>
+            <div class="pill" id="s4-pill">App no ar</div>
+          </div>
+          <div class="ttl" id="s4-t" style="font-size: 76px"><div class="eb">Prazo<s><b class="on"></b><b class="on"></b><b></b></s></div><span class="mk"><span class="in">App no ar em até</span></span></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const S = "[data-composition-id='s4-prazo']";
+          const q = (s) => document.querySelector(S + " " + s);
+          const qa = (s) => document.querySelectorAll(S + " " + s);
+          const tl = gsap.timeline({ paused: true });
+
+          // Entra em chicote (continua o da cena 3)
+          tl.fromTo("#s4-all", { x: 1250, filter: "blur(26px)" }, { x: 0, filter: "blur(0px)", duration: 0.28, ease: "power3.out" }, 0);
+          tl.fromTo("#s4-t .eb", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }, 0.05);
+          m1In(tl, q("#s4-t .in"), 0.11);
+          tl.fromTo(qa("#s4-rg i"), { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.3, stagger: 0.025, ease: "power3.out", immediateRender: false }, 0.35);
+
+          // "quatorze" (1,51): o 14 cresce
+          tl.fromTo("#s4-n", { opacity: 0, scale: 0.35, y: 60 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "back.out(1.5)", immediateRender: false }, 1.45);
+          tl.to("#s4-n", { scale: 1.03, duration: 1.0, ease: "sine.inOut" }, 1.95);
+          m1In(tl, qa("#s4-u .in")[0], 1.98);
+          m1In(tl, qa("#s4-u .in")[1], 2.3);
+          // Régua de dias úteis enche
+          tl.to(qa("#s4-rg b"), { clipPath: "inset(0% 0 0 0)", duration: 0.18, stagger: 0.055, ease: "power2.out" }, 1.6);
+          // Selo "App no ar"
+          tl.fromTo("#s4-pill", { opacity: 0, scale: 1.8, rotation: -14 }, { opacity: 1, scale: 1, rotation: -4, duration: 0.3, ease: "power4.out", immediateRender: false }, 2.42);
+
+          // Saída (2,64–2,82): sobe em chicote
+          tl.to("#s4-all", { y: -1500, filter: "blur(24px)", duration: 0.18, ease: "power2.in" }, 2.64);
+
+          window.__timelines["s4-prazo"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

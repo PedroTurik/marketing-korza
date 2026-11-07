@@ -1,0 +1,84 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Korza — M1 A notificação (v2)</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <script src="assets/v2/camera-shake.js"></script>
+    <script src="assets/v2/m1v2.js"></script>
+    <link rel="stylesheet" href="assets/brand/korza-video.css" />
+    <link rel="stylesheet" href="assets/v2/m1v2.css" />
+    <style>
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        src: url("assets/brand/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+        font-weight: 200 800;
+        font-style: normal;
+      }
+      /* Zona segura deste formato (ajustada pelo build.sh) */
+      :root {
+        --safe-top: 270px;
+        --safe-bottom: 670px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      #legenda {
+        z-index: 40;
+      }
+      /* Variante 4:5 (build.sh troca data-fmt). Fica aqui porque o CSS das cenas é isolado.
+         Todo o conteúdo fora dos títulos mora num .stg, que no 4:5 sobe e encolhe. */
+      .stg { position: absolute; left: 0; top: 0; width: 1080px; height:1920px; transform-origin: 540px 960px; }
+      [data-fmt="feed"] .stg { transform: translateY(-210px) scale(0.78); }
+      [data-fmt="feed"] #s1-stg { transform: translateY(-330px) scale(0.86); }
+      [data-fmt="feed"] .st3, [data-fmt="feed"] #s1-frame { overflow: visible; }
+      [data-fmt="feed"] .ttl { font-size: 80px !important; }
+      [data-fmt="feed"] #s5-t2 { font-size: 104px !important; }
+      [data-fmt="feed"] .eb { margin-bottom: 12px; }
+      [data-fmt="feed"] .lg-g { top: 1196px !important; }
+    </style>
+  </head>
+  <body>
+    <!--
+      M1 v2 "A notificação". Storyboard: STORYBOARD.md. Uma fonte para os 2 renders: build.sh gera o 4:5 trocando data-fmt e o quadro.
+      As transições são de câmera, dentro das cenas (chicote, mergulho, push que vira o azul): não há wipe.
+      Áudio: assets/audio/mix.wav (voz + trilha Eleven Music + efeitos, -14 LUFS), gerado por assets/audio/mix.sh.
+    -->
+    <div id="root" data-fmt="reels" data-composition-id="main" data-start="0" data-duration="22.5" data-width="1080" data-height="1920">
+      <div id="s1-gancho" class="clip" data-composition-id="s1-gancho" data-composition-src="compositions/s1-gancho.html" data-start="0" data-duration="4.7" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s2-app" class="clip" data-composition-id="s2-app" data-composition-src="compositions/s2-app.html" data-start="4.7" data-duration="4.3" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s3-plataformas" class="clip" data-composition-id="s3-plataformas" data-composition-src="compositions/s3-plataformas.html" data-start="9" data-duration="2.6" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s4-prazo" class="clip" data-composition-id="s4-prazo" data-composition-src="compositions/s4-prazo.html" data-start="11.6" data-duration="2.82" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s5-push" class="clip" data-composition-id="s5-push" data-composition-src="compositions/s5-push.html" data-start="14.42" data-duration="2.58" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s6-cta" class="clip" data-composition-id="s6-cta" data-composition-src="compositions/s6-cta.html" data-start="17" data-duration="3.3" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="vinheta" class="clip" data-composition-id="vinheta" data-composition-src="compositions/vinheta.html" data-start="20.3" data-duration="2.2" data-track-index="0" data-width="1080" data-height="1920"></div>
+
+      <div id="legenda" class="clip" data-composition-id="legenda" data-composition-src="compositions/legenda.html" data-start="0" data-duration="17" data-track-index="1" data-width="1080" data-height="1920"></div>
+
+      <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="22.5" data-track-index="2" data-volume="1"></audio>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      tl.set({}, {}, 22.5);
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

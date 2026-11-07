@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Gancho "busca" (0–3.65s, por cima do ato 1, que começa em 3.2000s). GERADO por assets/audio/busca/gerar.py: não edite à mão.
+      Modo profundo igual ao ato 1. A pergunta é digitada numa barra de busca genérica (sem marca de buscador); no Enter a
+      barra sobe e o fundo some, revelando a "resposta": o título e o orçamento do ato 1.
+    -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #bz-bg {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(120% 70% at 50% 30%, #1a2f52 0%, #10213b 55%, #0a1628 100%);
+        }
+        #bz-grid {
+          position: absolute;
+          inset: -120px;
+          background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+          background-size: 72px 72px;
+        }
+        #bz-bar {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: 600px;
+          display: flex;
+          align-items: flex-start;
+          gap: 30px;
+          padding: 46px 52px 50px 44px;
+          background: #fff;
+          border-radius: 48px;
+          box-shadow: 0 40px 90px rgba(3, 10, 24, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.08);
+          color: #10213b;
+          transform-origin: 50% 50%;
+        }
+        #bz-ico {
+          flex: none;
+          width: 64px;
+          height: 64px;
+          margin-top: 10px;
+        }
+        #bz-txt {
+          font-size: 70px;
+          font-weight: 600;
+          line-height: 1.16;
+          letter-spacing: -0.035em;
+        }
+        .bz-wd {
+          white-space: nowrap;
+        }
+        .bz-c {
+          display: none;
+        }
+        #bz-cur {
+          display: inline-block;
+          width: 6px;
+          height: 0.9em;
+          margin-left: 4px;
+          vertical-align: -0.1em;
+          border-radius: 3px;
+          background: #10213b;
+        }
+        #bz-load {
+          position: absolute;
+          left: 48px;
+          right: 48px;
+          bottom: 0;
+          height: 6px;
+          border-radius: 3px;
+          background: #10213b;
+          opacity: 0;
+          transform-origin: left center;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s0-busca" data-width="1080" data-height="1920">
+        <div id="bz-bg"><div id="bz-grid"></div></div>
+        <div id="bz-bar" data-layout-ignore>
+          <svg id="bz-ico" viewBox="0 0 64 64" fill="none" stroke="#7d8da1" stroke-width="6" stroke-linecap="round">
+            <circle cx="27" cy="27" r="18" />
+            <line x1="40.5" y1="40.5" x2="57" y2="57" />
+          </svg>
+          <div id="bz-txt"><span class="bz-wd">Como</span> <span class="bz-wd">criar</span> <span class="bz-wd">um</span> <span class="bz-wd">app</span><span class="bz-c" data-t="0.713"> </span><span class="bz-wd"><span class="bz-c" data-t="0.733">d</span><span class="bz-c" data-t="0.773">o</span></span><span class="bz-c" data-t="0.880"> </span><span class="bz-wd"><span class="bz-c" data-t="0.900">m</span><span class="bz-c" data-t="0.940">e</span><span class="bz-c" data-t="0.980">u</span></span><span class="bz-c" data-t="1.100"> </span><span class="bz-wd"><span class="bz-c" data-t="1.120">e</span><span class="bz-c" data-t="1.160">-</span><span class="bz-c" data-t="1.200">c</span><span class="bz-c" data-t="1.240">o</span><span class="bz-c" data-t="1.280">m</span><span class="bz-c" data-t="1.320">m</span><span class="bz-c" data-t="1.360">e</span><span class="bz-c" data-t="1.400">r</span><span class="bz-c" data-t="1.440">c</span><span class="bz-c" data-t="1.480">e</span></span><span class="bz-c" data-t="1.720"> </span><span class="bz-wd"><span class="bz-c" data-t="1.740">S</span><span class="bz-c" data-t="1.780">h</span><span class="bz-c" data-t="1.820">o</span><span class="bz-c" data-t="1.860">p</span><span class="bz-c" data-t="1.900">i</span><span class="bz-c" data-t="1.940">f</span><span class="bz-c" data-t="1.980">y</span></span><span class="bz-c" data-t="2.473"> </span><span class="bz-wd"><span class="bz-c" data-t="2.493">o</span><span class="bz-c" data-t="2.533">u</span></span><span class="bz-c" data-t="2.620"> </span><span class="bz-wd"><span class="bz-c" data-t="2.640">N</span><span class="bz-c" data-t="2.680">u</span><span class="bz-c" data-t="2.720">v</span><span class="bz-c" data-t="2.760">e</span><span class="bz-c" data-t="2.800">m</span><span class="bz-c" data-t="2.840">s</span><span class="bz-c" data-t="2.880">h</span><span class="bz-c" data-t="2.920">o</span><span class="bz-c" data-t="2.960">p</span><span class="bz-c" data-t="3.000">?</span></span><span id="bz-cur"></span></div>
+          <div id="bz-load"></div>
+        </div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        // câmera: aproximação lenta durante a digitação
+        tl.fromTo("#bz-bar", { scale: 0.97 }, { scale: 1.02, duration: 3.08, ease: "none" }, 0);
+        tl.fromTo("#bz-grid", { y: 0 }, { y: 36, duration: 3.65, ease: "none" }, 0);
+        // letras
+        document.querySelectorAll("#bz-txt .bz-c").forEach((c) => tl.set(c, { display: "inline" }, +c.dataset.t));
+        // cursor pisca enquanto a voz alcança o texto
+        [0.25, 0.75, 3.2].forEach((t) => tl.set("#bz-cur", { opacity: 0 }, t));
+        [0.5, 2.78].forEach((t) => tl.set("#bz-cur", { opacity: 1 }, t));
+        // Enter: a barra afunda, a linha de carregamento corre
+        tl.to("#bz-bar", { scale: 0.985, duration: 0.07, ease: "power2.out" }, 3.08);
+        tl.to("#bz-bar", { scale: 1.02, duration: 0.12, ease: "power2.out" }, 3.15);
+        tl.set("#bz-load", { opacity: 1 }, 3.08);
+        tl.fromTo("#bz-load", { scaleX: 0 }, { scaleX: 1, duration: 0.22, ease: "power2.inOut", immediateRender: false }, 3.08);
+        // resposta: a barra sobe e sai, o fundo some e revela o ato 1
+        tl.to("#bz-bar", { y: -1100, rotation: -3, duration: 0.4, ease: "power3.in" }, 3.22);
+        tl.to("#bz-bg", { opacity: 0, duration: 0.3, ease: "power1.inOut" }, 3.32);
+        window.__timelines["s0-busca"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

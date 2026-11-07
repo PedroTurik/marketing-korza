@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cena 1 (0–4,7s): gancho no escuro e a virada. A notificação "Amor" bate; a câmera reage; o mesmo cartão vira o push
+         da "Sua Loja"; a câmera recua e um campo de celulares acende. Sai num chicote para a cena 2. Quadros 01–05. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s1-night { position: absolute; inset: 0; background: radial-gradient(900px 1100px at 50% 46%, #17336f 0%, #0b1730 55%, #060d1c 100%); }
+        #s1-ice { position: absolute; inset: 0; opacity: 0; background: radial-gradient(1100px 900px at 70% 60%, #dbe7ff 0%, rgba(219,231,255,0) 70%), radial-gradient(900px 800px at 18% 28%, #e6eeff 0%, rgba(230,238,255,0) 70%), #f5f8fc; }
+        #s1-glow { position: absolute; left: -110px; top: 110px; width: 1300px; height: 1500px; border-radius: 50%; background: radial-gradient(closest-side, rgba(80,140,255,.6), rgba(80,140,255,0)); opacity: 0.35; }
+        #s1-whip { position: absolute; inset: 0; }
+        #s1-frame { position: absolute; inset: 0; overflow: hidden; }
+        #s1-rig { position: absolute; inset: 0; transform-style: preserve-3d; }
+        #s1-jolt { position: absolute; inset: 0; }
+        #s1-dim { position: absolute; inset: 0; background: #020611; opacity: 0.45; z-index: 7; }
+        #s1-wpl { opacity: 0; }
+        #s1-ul { position: absolute; left: 148px; top: 600px; width: 420px; height: 10px; border-radius: 5px; background: #155dfc; clip-path: inset(0 100% 0 0); }
+        #s1-icl { opacity: 0; }
+        .s1-mp { opacity: 0; }
+        .s1-mp .n { opacity: 0; }
+        #s1-scrim { position: absolute; left: 0; right: 0; top: 0; height: 640px; opacity: 0; background: linear-gradient(#f5f8fc 0%, #f5f8fc 70%, rgba(245,248,252,0) 100%); }
+      </style>
+
+      <div id="root" data-composition-id="s1-gancho" data-width="1080" data-height="1920">
+        <div id="s1-night"></div>
+        <div id="s1-ice"></div>
+        <div id="s1-whip">
+          <div id="s1-glow"></div>
+          <div id="s1-stg" class="stg">
+            <div id="s1-frame"><div id="s1-rig"><div id="s1-jolt">
+              <div class="st3" id="s1-st" data-layout-allow-overflow="true">
+                <div class="cam3" id="s1-cam">
+                  <div class="mp s1-mp" id="s1-m1" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+                  <div class="mp s1-mp" id="s1-m2" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+                  <div class="mp s1-mp" id="s1-m3" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+                  <div class="mp s1-mp" id="s1-m4" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+                  <div class="mp s1-mp" id="s1-m5" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+                  <div class="mp s1-mp" id="s1-m6" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+                  <div class="mp s1-mp" id="s1-m7" data-layout-ignore><div class="scr"><div class="wp wp-loja"></div><div class="t">21:47</div><div class="n"><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você.</span></div></div></div></div>
+
+                  <div class="ph3" id="s1-ph" data-layout-ignore>
+                    <div class="ph3-body"><div class="ph3-screen">
+                      <div class="wp wp-noite"></div>
+                      <div class="wp wp-loja" id="s1-wpl"></div>
+                      <div class="lk-time">21:47</div>
+                      <div class="lk-date">quinta-feira, 5 de novembro</div>
+                      <div class="nt" id="s1-nt">
+                        <div class="nt-ic">
+                          <img id="s1-icl" src="assets/v2/icone-loja.svg" alt="" />
+                          <div class="ic-msg" id="s1-icm"><svg viewBox="0 0 24 24" fill="#fff"><path d="M12 3C6.9 3 3 6.5 3 10.8c0 2.4 1.2 4.5 3.1 5.9-.2 1.4-.9 2.7-1.9 3.6 2 0 3.8-.7 5.1-1.8.9.2 1.8.3 2.7.3 5.1 0 9-3.5 9-7.9S17.1 3 12 3z" /></svg></div>
+                        </div>
+                        <div class="nt-body">
+                          <div class="nt-head">
+                            <div class="nt-title roll"><span class="s1-r">Amor<svg viewBox="0 0 24 24" fill="#E8414E"><path d="M12 21s-7.5-4.6-9.6-9.2C1 8.6 3 5 6.6 5c2.1 0 3.6 1.1 5.4 3 1.8-1.9 3.3-3 5.4-3C21 5 23 8.6 21.6 11.8 19.5 16.4 12 21 12 21z" /></svg></span><span class="s1-r">Sua Loja</span></div>
+                            <span class="nt-when">agora</span>
+                          </div>
+                          <div class="nt-text roll"><span class="s1-r">Precisamos conversar...</span><span class="s1-r">Novidade pra você. Vem ver.</span></div>
+                        </div>
+                      </div>
+                      <div id="s1-ul"></div>
+                      <div id="s1-dim"></div>
+                      <div class="ph3-cam"></div>
+                      <div class="ph3-glare" id="s1-glare"></div>
+                    </div></div>
+                  </div>
+                </div>
+              </div>
+            </div></div></div>
+          </div>
+          <div id="s1-scrim"></div>
+          <div class="ttl" id="s1-t"><span class="mk"><span class="in">Seu cliente</span></span><span class="mk"><span class="in"><em>também lê.</em></span></span></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const S = "[data-composition-id='s1-gancho']";
+          const q = (s) => document.querySelector(S + " " + s);
+          const qa = (s) => document.querySelectorAll(S + " " + s);
+          m1Edges(S);
+          const tl = gsap.timeline({ paused: true });
+          const ph = q("#s1-ph");
+
+          // Poses (quadros 01–05)
+          const P1 = { x: 0, y: 140, z: 260, rotationX: 16, rotationY: -24, rotationZ: 5, scale: 1 };
+          const P2 = { x: 0, y: 330, z: 420, rotationX: 6, rotationY: -7, rotationZ: 1, scale: 1 };
+          const P3 = { x: -40, y: 330, z: 900, rotationX: 2, rotationY: -3, rotationZ: 0, scale: 1 };
+          const P4 = { x: 0, y: 420, z: 600, rotationX: 4, rotationY: -4, rotationZ: 0, scale: 1 };
+          const P5 = { x: 0, y: 220, z: 40, rotationX: 10, rotationY: -10, rotationZ: 0, scale: 0.62 };
+          gsap.set(ph, P1);
+
+          // Mão segurando a câmera: tremido leve o tempo todo (registry: camera-shake)
+          if (window.cameraShake) cameraShake(tl, q("#s1-rig"), { profile: "handheld-normal-mild", intensity: 0.3, duration: 4.7, at: 0, overscan: 1.03 });
+
+          // 0–0,4: a notificação bate, a tela acende, tranco de câmera
+          tl.fromTo("#s1-nt", { y: -90, scale: 0.96, opacity: 0.85 }, { y: 0, scale: 1, opacity: 1, duration: 0.38, ease: "expo.out" }, 0);
+          tl.to("#s1-dim", { opacity: 0, duration: 0.35, ease: "power2.out" }, 0.02);
+          tl.fromTo("#s1-glow", { opacity: 0.35, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.5, ease: "power2.out" }, 0.02);
+          m1Jolt(tl, q("#s1-jolt"), 0.05, 1);
+
+          // 0,4–2,45: câmera chega perto; reflexo corre no vidro
+          tl.to(ph, { ...P2, duration: 2.05, ease: "power2.inOut" }, 0.4);
+          tl.fromTo("#s1-glare", { backgroundPosition: "100% 0" }, { backgroundPosition: "-60% 0", duration: 1.2, ease: "sine.inOut" }, 0.95);
+
+          // "né?" (2,49): close extremo e sublinhado de quem leu
+          tl.to(ph, { ...P3, duration: 0.4, ease: "expo.out" }, 2.45);
+          m1Jolt(tl, q("#s1-jolt"), 2.47, 0.5);
+          tl.to("#s1-ul", { clipPath: "inset(0 0% 0 0)", duration: 0.35, ease: "power3.out" }, 2.55);
+
+          // Virada (3,23 "Seu cliente"): o mesmo cartão vira o push da loja; a noite clareia
+          tl.to(ph, { ...P4, duration: 0.5, ease: "power3.inOut" }, 3.18);
+          tl.to("#s1-ul", { clipPath: "inset(0 0% 0 100%)", duration: 0.2, ease: "power2.in" }, 3.18);
+          tl.to(qa(".s1-r"), { yPercent: -100, duration: 0.42, ease: "power3.inOut" }, 3.22);
+          tl.to("#s1-icl", { opacity: 1, duration: 0.2 }, 3.3);
+          tl.to("#s1-icm", { opacity: 0, scale: 0.6, duration: 0.25, ease: "power2.in" }, 3.25);
+          tl.to("#s1-wpl", { opacity: 1, duration: 0.45, ease: "power2.inOut" }, 3.22);
+          tl.to("#s1-ice", { opacity: 1, duration: 0.3, ease: "power2.out" }, 3.22);
+          tl.to("#s1-glow", { opacity: 0, duration: 0.4 }, 3.3);
+          m1In(tl, qa("#s1-t .in")[0], 3.3);
+
+          // "também lê" (3,78): recuo rápido, campo de celulares acende em cascata
+          tl.to(ph, { ...P5, duration: 0.6, ease: "power3.inOut" }, 3.74);
+          tl.to("#s1-scrim", { opacity: 1, duration: 0.3 }, 3.85);
+          m1In(tl, qa("#s1-t .in")[1], 3.8);
+          const M = [[-720, -330, -300, 16], [420, -350, -300, -14], [-700, 400, -260, 14], [400, 410, -260, -12], [-1080, 20, -900, 20], [780, 0, -900, -18], [-170, 900, -500, 4]];
+          const order = [0, 1, 2, 3, 4, 5, 6];
+          M.forEach((m, i) => {
+            const el = q("#s1-m" + (i + 1));
+            const k = order.indexOf(i);
+            gsap.set(el, { x: m[0], y: m[1], z: m[2] - 900, rotationY: m[3] });
+            tl.to(el, { z: m[2], opacity: 1, duration: 0.55, ease: "power3.out" }, 3.8 + k * 0.03);
+            tl.fromTo(el.querySelector(".n"), { opacity: 0, y: -30, scale: 0.9 }, { opacity: 1, y: 0, scale: 1, duration: 0.25, ease: "back.out(2)", immediateRender: false }, 4.0 + k * 0.06);
+          });
+
+          // Saída (4,48–4,7): chicote para a esquerda com borrão
+          tl.to("#s1-whip", { x: -1250, filter: "blur(26px)", duration: 0.22, ease: "power2.in" }, 4.48);
+
+          window.__timelines["s1-gancho"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

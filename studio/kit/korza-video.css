@@ -134,3 +134,41 @@
 }
 .lower-third b { font-size: 38px; font-weight: 600; letter-spacing: -0.02em; }
 .lower-third span { font-size: 28px; color: var(--slate); }
+
+/* ── Celular genérico (tela de bloqueio) — sem marca de fabricante. Posicione .lock na cena ── */
+.lock {
+  position: absolute; width: 800px; height: 1640px; padding: 20px;
+  border-radius: 116px; background: #0e1a2e;
+  box-shadow: 0 50px 90px rgba(16, 33, 59, 0.28), inset 0 0 0 3px #2a3a55;
+}
+.lock-screen {
+  position: relative; width: 100%; height: 100%; overflow: hidden; border-radius: 98px;
+  background: linear-gradient(165deg, #3f72fb 0%, #155dfc 45%, #0b3cae 100%);
+}
+.lock-cam { position: absolute; top: 34px; left: 50%; width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; background: #0e1a2e; }
+.lock-time { position: absolute; top: 120px; left: 0; right: 0; text-align: center; color: #fff; font-size: 176px; font-weight: 600; letter-spacing: -0.04em; line-height: 1; }
+.lock-date { position: absolute; top: 318px; left: 0; right: 0; text-align: center; color: rgba(255, 255, 255, 0.88); font-size: 38px; font-weight: 400; }
+
+/* ── Notificação na tela de bloqueio (grande, legível em < 1s) ── */
+.notif {
+  position: absolute; left: 26px; right: 26px; display: flex; gap: 26px; align-items: flex-start;
+  padding: 32px 34px; border-radius: 46px; background: rgba(255, 255, 255, 0.95);
+  box-shadow: 0 22px 50px rgba(16, 33, 59, 0.28); color: var(--navy);
+}
+.notif-icon { width: 96px; height: 96px; flex: none; border-radius: 26px; display: grid; place-items: center; background: var(--blue); }
+.notif-icon svg { width: 58px; height: 58px; }
+.notif-body { flex: 1; min-width: 0; }
+.notif-head { display: flex; align-items: baseline; gap: 16px; }
+.notif-title { font-size: 46px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; display: inline-flex; align-items: center; gap: 12px; }
+.notif-title svg { width: 40px; height: 40px; }
+.notif-when { margin-left: auto; font-size: 38px; color: var(--muted); }
+.notif-text { font-size: 42px; line-height: 1.3; color: var(--slate); margin-top: 4px; }
+
+/* ── Legenda queimada (padrão Korza): pílula branca, Plus Jakarta 600, palavra ativa em azul ── */
+.cap {
+  display: inline-flex; flex-wrap: wrap; justify-content: center; column-gap: 0.26em;
+  padding: 18px 32px; border-radius: 22px; background: #fff; border: 1px solid var(--line);
+  box-shadow: 0 12px 32px rgba(16, 33, 59, 0.16);
+  color: var(--navy); font-size: 58px; font-weight: 600; line-height: 1.15; letter-spacing: -0.02em;
+}
+.cap .w.on { color: var(--blue); }

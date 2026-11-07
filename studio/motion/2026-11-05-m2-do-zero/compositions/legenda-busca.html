@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Legenda queimada (padrão Korza). GERADO por assets/audio/busca/gerar.py a partir dos tempos da voz: não edite à mão. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .lg-g {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: 1480px;
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+        }
+      </style>
+
+      <div id="root" data-composition-id="legenda-busca" data-width="1080" data-height="1920">
+          <div class="lg-g" id="lb-g0" data-s="0.078" data-e="0.833"><div class="cap"><span class="w" data-s="0.128">Como</span> <span class="w" data-s="0.213">criar</span> <span class="w" data-s="0.533">um</span> <span class="w" data-s="0.700">app</span></div></div>
+          <div class="lg-g" id="lb-g1" data-s="0.883" data-e="1.840"><div class="cap"><span class="w" data-s="0.933">do</span> <span class="w" data-s="1.100">meu</span> <span class="w" data-s="1.320">e-commerce</span></div></div>
+          <div class="lg-g" id="lb-g2" data-s="1.890" data-e="3.389"><div class="cap"><span class="w" data-s="1.940">Shopify</span> <span class="w" data-s="2.693">ou</span> <span class="w" data-s="2.840">Nuvemshop?</span></div></div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        document.querySelectorAll("[data-composition-id='legenda-busca'] .lg-g").forEach((g) => {
+          const s = +g.dataset.s, e = +g.dataset.e;
+          tl.fromTo(g, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, s);
+          tl.set(g, { opacity: 0 }, e);
+          g.querySelectorAll(".w").forEach((w, i, all) => {
+            const ws = +w.dataset.s;
+            tl.set(w, { color: "#155DFC" }, ws);
+            const next = all[i + 1];
+            if (next) tl.set(w, { color: "#10213B" }, +next.dataset.s);
+          });
+        });
+        window.__timelines["legenda-busca"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

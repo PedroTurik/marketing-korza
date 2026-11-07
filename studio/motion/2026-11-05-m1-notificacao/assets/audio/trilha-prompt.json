@@ -1,0 +1,30 @@
+{
+  "composition_plan": {
+    "positive_global_styles": ["modern minimal electronic", "premium tech product ad", "instrumental", "clean mix", "120 bpm", "precise tight drums", "continuous energy until the very end"],
+    "negative_global_styles": ["vocals", "lyrics", "choir", "epic orchestral", "dubstep drop", "lo-fi", "fade out", "silence", "phone ringtone"],
+    "sections": [
+      {
+        "section_name": "noite e virada",
+        "positive_local_styles": ["intimate late-night mood", "soft deep sub pulse like a heartbeat", "sparse muted keys", "light suspense", "short riser building into the next section at the end"],
+        "negative_local_styles": ["drums", "bright", "busy"],
+        "duration_ms": 4600,
+        "lines": []
+      },
+      {
+        "section_name": "korza - groove",
+        "positive_local_styles": ["release", "bright airy plucks", "light confident groove", "crisp claps on 2 and 4", "major key", "optimistic", "punchy accents"],
+        "negative_local_styles": ["dark", "aggressive", "heavy bass", "breakdown"],
+        "duration_ms": 12400,
+        "lines": []
+      },
+      {
+        "section_name": "fechamento",
+        "positive_local_styles": ["lifts one step", "full and confident", "same groove sustained", "ends with a clean resolved final chord at the last second"],
+        "negative_local_styles": ["fade out", "silence", "breakdown", "outro too early"],
+        "duration_ms": 5500,
+        "lines": []
+      }
+    ]
+  },
+  "model_id": "music_v1"
+}

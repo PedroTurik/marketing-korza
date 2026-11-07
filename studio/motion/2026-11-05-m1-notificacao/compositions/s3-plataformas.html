@@ -1,0 +1,87 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cena 3 (9,0–11,6s), tópico 1: "Para lojas Nuvemshop e Shopify." Cartões com os logos batem um a um e uma linha
+         pontilhada liga os dois à loja no celular. Logos: Nuvemshop (PNG oficial do site) e Shopify (SVG oficial do site),
+         pedido do Pedro no OK do storyboard. Quadros 09–10. Claim: plataformas. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s3-bg { position: absolute; inset: 0; background: radial-gradient(1100px 900px at 70% 60%, #dbe7ff 0%, rgba(219,231,255,0) 70%), radial-gradient(900px 800px at 18% 28%, #e6eeff 0%, rgba(230,238,255,0) 70%), #f5f8fc; }
+        #s3-all { position: absolute; inset: 0; }
+        .s3-c { position: absolute; display: flex; align-items: center; padding: 40px 54px; border-radius: 38px; background: #fff; box-shadow: 0 40px 80px rgba(16,33,59,.16), 0 0 0 1px rgba(16,33,59,.05); opacity: 0; }
+        #s3-nv { left: 90px; top: 700px; }
+        #s3-nv img { height: 96px; display: block; }
+        #s3-sh { left: 130px; top: 940px; }
+        #s3-sh img { height: 104px; display: block; }
+        #s3-lines { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; }
+        #s3-lines path { stroke-dasharray: 3 14; stroke-dashoffset: 0; opacity: 0; }
+        #s3-pulse { position: absolute; left: 24px; right: 24px; top: 440px; height: 160px; border-radius: 46px; border: 6px solid #fff; opacity: 0; }
+        .eb { opacity: 0; }
+      </style>
+
+      <div id="root" class="on-light" data-composition-id="s3-plataformas" data-width="1080" data-height="1920">
+        <div id="s3-bg"></div>
+        <div id="s3-all">
+          <div id="s3-stg" class="stg">
+            <div class="st3" style="perspective-origin: 760px 1000px"><div class="cam3">
+              <div class="ph3" id="s3-ph" data-layout-ignore>
+                <div class="ph3-body"><div class="ph3-screen">
+                  <div class="wp wp-loja"></div>
+                  <div class="lk-time">21:48</div><div class="lk-date">quinta-feira, 5 de novembro</div>
+                  <div class="nt" id="s3-nt"><div class="nt-ic"><img src="assets/v2/icone-loja.svg" alt="" /></div><div class="nt-body"><div class="nt-head"><div class="nt-title">Sua Loja</div><span class="nt-when">agora</span></div><div class="nt-text">Novidade pra você. Vem ver.</div></div></div>
+                  <div id="s3-pulse"></div>
+                  <div class="ph3-cam"></div>
+                  <div class="ph3-glare" id="s3-glare"></div>
+                </div></div>
+              </div>
+            </div></div>
+            <svg id="s3-lines" viewBox="0 0 1080 1920" data-layout-ignore><path id="s3-l1" d="M560 790 C 700 800, 720 950, 790 1010" fill="none" stroke="#155dfc" stroke-width="6" stroke-linecap="round" /><path id="s3-l2" d="M560 1030 C 660 1035, 720 1040, 790 1050" fill="none" stroke="#155dfc" stroke-width="6" stroke-linecap="round" /></svg>
+            <div class="s3-c" id="s3-nv" data-layout-ignore><img src="assets/v2/logo-nuvemshop.png" alt="Nuvemshop" /></div>
+            <div class="s3-c" id="s3-sh" data-layout-ignore><img src="assets/v2/logo-shopify.svg" alt="Shopify" /></div>
+          </div>
+          <div class="ttl" id="s3-t"><div class="eb">Plataformas<s><b class="on"></b><b></b><b></b></s></div><span class="mk"><span class="in">Para lojas</span></span><span class="mk"><span class="in"><em>Nuvemshop e Shopify.</em></span></span></div>
+        </div>
+      </div>
+
+      <script>
+        (function () {
+          const S = "[data-composition-id='s3-plataformas']";
+          const q = (s) => document.querySelector(S + " " + s);
+          const qa = (s) => document.querySelectorAll(S + " " + s);
+          m1Edges(S);
+          const tl = gsap.timeline({ paused: true });
+          const ph = q("#s3-ph");
+          const P9 = { x: 260, y: 560, z: -500, rotationX: 16, rotationY: -24, rotationZ: 0, scale: 0.7 };
+          const P10 = { x: 300, y: 540, z: -500, rotationX: 14, rotationY: -28, rotationZ: 0, scale: 0.68 };
+          gsap.set(ph, { ...P9, y: 1300, z: -200, rotationZ: -10 });
+
+          // Entrada: o mergulho da cena 2 assenta aqui
+          tl.fromTo("#s3-all", { scale: 0.86, opacity: 0, transformOrigin: "540px 960px" }, { scale: 1, opacity: 1, duration: 0.3, ease: "power3.out" }, 0);
+          tl.fromTo("#s3-t .eb", { opacity: 0, y: 16 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out", immediateRender: false }, 0.02);
+          m1In(tl, qa("#s3-t .in")[0], 0.1);
+          tl.to(ph, { ...P9, duration: 0.7, ease: "power3.out" }, 0.05);
+          tl.to(ph, { ...P10, duration: 1.8, ease: "sine.inOut" }, 0.75);
+
+          // "Nuvemshop" (0,92): o cartão bate
+          tl.fromTo("#s3-nv", { opacity: 0, scale: 1.7, rotation: -12, y: -40 }, { opacity: 1, scale: 1, rotation: -4, y: 0, duration: 0.34, ease: "power4.out", immediateRender: false }, 0.86);
+          // "e Shopify." (1,74): o segundo cartão bate, o primeiro abre espaço; linha 2 do título
+          tl.to("#s3-nv", { y: -40, scale: 0.9, rotation: -3, duration: 0.4, ease: "power3.out" }, 1.66);
+          tl.fromTo("#s3-sh", { opacity: 0, scale: 1.7, rotation: 10, y: 40 }, { opacity: 1, scale: 0.92, rotation: 2, y: 0, duration: 0.34, ease: "power4.out", immediateRender: false }, 1.72);
+          m1In(tl, qa("#s3-t .in")[1], 1.74);
+          // Linhas pontilhadas ligam as duas à loja; a notificação pulsa
+          tl.fromTo(qa("#s3-lines path"), { opacity: 0, clipPath: "inset(0 100% 0 0)" }, { opacity: 1, clipPath: "inset(0 0% 0 0)", duration: 0.35, ease: "power2.out", stagger: 0.06, immediateRender: false }, 1.98);
+          tl.fromTo("#s3-pulse", { opacity: 0.9, scale: 1 }, { opacity: 0, scale: 1.12, duration: 0.5, ease: "power2.out", immediateRender: false }, 2.2);
+
+          // Saída (2,42–2,6): chicote para a esquerda
+          tl.to("#s3-all", { x: -1250, filter: "blur(26px)", duration: 0.18, ease: "power2.in" }, 2.42);
+
+          window.__timelines["s3-plataformas"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

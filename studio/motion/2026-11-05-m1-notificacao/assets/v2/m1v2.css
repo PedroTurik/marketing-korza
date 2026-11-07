@@ -1,0 +1,122 @@
+/*
+ * M1 v2 — componentes próprios deste projeto (não é kit). Ligado no index.html depois do korza-video.css.
+ * Celular com volume (camadas de espessura em 3D), luz de tela, notificação, push da loja, títulos cinéticos.
+ */
+
+/* ── Palco 3D ── */
+.st3 { position: absolute; inset: 0; perspective: 2200px; perspective-origin: 540px 900px; overflow: hidden; }
+.cam3 { position: absolute; left: 540px; top: 900px; width: 0; height: 0; transform-style: preserve-3d; }
+
+/* ── Celular com volume ──
+   .ph3 é centrado na origem da câmera; posicione/rotacione com GSAP (x, y, z, rotationX/Y/Z, scale). */
+.ph3 { position: absolute; left: -360px; top: -740px; width: 720px; height: 1480px; transform-style: preserve-3d; }
+.ph3-e {
+  position: absolute; inset: 0; border-radius: 112px;
+  background: linear-gradient(120deg, #4c5f7e 0%, #1c2a40 38%, #6a7d9c 62%, #22324a 100%);
+  box-shadow: inset 0 0 0 2px rgba(255, 255, 255, 0.08);
+}
+.ph3-body {
+  position: absolute; inset: 0; border-radius: 112px; padding: 20px;
+  background: #0a1424;
+  box-shadow: inset 0 0 0 2px #3a4d6c, inset 0 0 0 7px #0a1424, inset 0 0 0 8px rgba(255, 255, 255, 0.07);
+}
+.ph3-btn { position: absolute; width: 8px; border-radius: 4px; background: #24334a; }
+.ph3-screen {
+  position: relative; width: 100%; height: 100%; border-radius: 94px; overflow: hidden;
+  background: #0b1a3a;
+}
+.ph3-cam { position: absolute; top: 36px; left: 50%; width: 30px; height: 30px; margin-left: -15px; border-radius: 50%; background: #050b16; box-shadow: inset 0 0 0 3px #1a263a; z-index: 9; }
+.ph3-glare {
+  position: absolute; inset: 0; border-radius: 94px; pointer-events: none; z-index: 8;
+  background: linear-gradient(115deg, rgba(255, 255, 255, 0) 30%, rgba(255, 255, 255, 0.16) 44%, rgba(255, 255, 255, 0.04) 52%, rgba(255, 255, 255, 0) 60%);
+  background-size: 260% 100%; background-position: 100% 0;
+}
+
+/* Papéis de parede */
+.wp { position: absolute; inset: 0; }
+.wp-noite {
+  background:
+    radial-gradient(520px 620px at 78% 82%, rgba(21, 93, 252, 0.75) 0%, rgba(21, 93, 252, 0) 70%),
+    radial-gradient(460px 520px at 12% 18%, rgba(63, 114, 251, 0.45) 0%, rgba(63, 114, 251, 0) 70%),
+    linear-gradient(170deg, #142a5c 0%, #0b1a3a 55%, #071026 100%);
+}
+.wp-loja { background: linear-gradient(165deg, #4a7dff 0%, #155dfc 45%, #0b3cae 100%); }
+.wp-claro { background: linear-gradient(170deg, #eef3fc 0%, #dfe8f8 100%); }
+
+/* Tela de bloqueio */
+.lk-time { position: absolute; top: 150px; left: 0; right: 0; text-align: center; color: #fff; font-size: 172px; font-weight: 600; letter-spacing: -0.045em; line-height: 1; }
+.lk-date { position: absolute; top: 342px; left: 0; right: 0; text-align: center; color: rgba(255, 255, 255, 0.82); font-size: 36px; font-weight: 400; }
+
+/* Notificação (pessoal e da loja usam o mesmo cartão: a virada troca o conteúdo) */
+.nt {
+  position: absolute; left: 24px; right: 24px; top: 440px; display: flex; gap: 24px; align-items: center;
+  padding: 30px 30px; border-radius: 46px; background: rgba(255, 255, 255, 0.96); color: #10213b;
+  box-shadow: 0 24px 60px rgba(4, 12, 30, 0.45);
+}
+.nt-ic { position: relative; width: 100px; height: 100px; flex: none; border-radius: 26px; overflow: hidden; }
+.nt-ic > * { position: absolute; inset: 0; width: 100%; height: 100%; }
+.nt-ic .ic-msg { display: grid; place-items: center; background: #155dfc; }
+.nt-ic .ic-msg svg { width: 60px; height: 60px; position: static; }
+.nt-body { flex: 1; min-width: 0; }
+.nt-head { display: flex; align-items: baseline; }
+.nt-when { margin-left: auto; font-size: 34px; color: #708096; }
+.nt-title { font-size: 48px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.2; }
+.nt-text { font-size: 42px; line-height: 1.25; color: #42556c; margin-top: 4px; white-space: nowrap; }
+.nt-title svg { width: 40px; height: 40px; vertical-align: -4px; margin-left: 6px; }
+/* Troca rolando (virada): duas linhas empilhadas dentro de uma janela de 1 linha */
+.roll { display: block; overflow: hidden; height: 1.25em; }
+.roll > span { display: block; height: 1.25em; line-height: 1.25em; white-space: nowrap; }
+.nt-title.roll { height: 1.2em; }
+.nt-title.roll > span { height: 1.2em; line-height: 1.2em; }
+
+/* Brilho da tela no ambiente (luz) */
+.glow { position: absolute; border-radius: 50%; pointer-events: none; }
+
+/* Push grande, solto do celular (para quem assiste ler) */
+.pz {
+  position: absolute; width: 760px; display: flex; gap: 26px; align-items: center; padding: 30px 34px;
+  border-radius: 44px; background: #fff; color: #10213b;
+  box-shadow: 0 40px 90px rgba(16, 33, 59, 0.3), 0 0 0 1px rgba(16, 33, 59, 0.05);
+}
+.pz img { width: 104px; height: 104px; border-radius: 26px; flex: none; }
+.pz b { display: block; font-size: 42px; font-weight: 600; letter-spacing: -0.02em; }
+.pz span { display: block; font-size: 36px; color: #42556c; margin-top: 2px; letter-spacing: -0.01em; }
+.pz i { position: absolute; right: 34px; top: 30px; font-style: normal; font-size: 30px; color: #708096; }
+
+/* Celular mini (campo de celulares) */
+.mp { position: absolute; width: 300px; height: 620px; border-radius: 52px; padding: 10px; background: #0a1424; box-shadow: inset 0 0 0 2px #3a4d6c, 0 30px 60px rgba(4, 12, 30, 0.35); }
+.mp .scr { position: relative; width: 100%; height: 100%; border-radius: 43px; overflow: hidden; }
+.mp .t { position: absolute; top: 70px; left: 0; right: 0; text-align: center; color: #fff; font-size: 72px; font-weight: 600; letter-spacing: -0.045em; }
+.mp .n { position: absolute; left: 12px; right: 12px; top: 190px; display: flex; gap: 10px; align-items: center; padding: 14px; border-radius: 22px; background: rgba(255, 255, 255, 0.96); }
+.mp .n img { width: 44px; height: 44px; border-radius: 11px; flex: none; }
+.mp .n b { display: block; font-size: 20px; font-weight: 600; color: #10213b; letter-spacing: -0.01em; }
+.mp .n span { display: block; font-size: 17px; color: #42556c; white-space: nowrap; }
+
+/* Títulos cinéticos (padrão M3: dois tons, entrada por máscara) */
+.ttl { position: absolute; left: 72px; right: 60px; top: var(--safe-top); font-size: 96px; font-weight: 600; line-height: 1.04; letter-spacing: -0.045em; color: #10213b; }
+.ttl em { font-style: normal; color: #155dfc; }
+.ttl.dk { color: #fff; }
+.ttl.dk em { color: rgba(255, 255, 255, 0.62); }
+.mk { display: block; overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+.mk > .in { display: block; }
+.eb { display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 600; color: #155dfc; letter-spacing: -0.01em; margin-bottom: 18px; }
+.eb s { display: flex; gap: 7px; text-decoration: none; }
+.eb s b { display: block; width: 40px; height: 6px; border-radius: 3px; background: #d5e0f0; }
+.eb s b.on { background: #155dfc; }
+
+/* Tópico: palavra-cartão grande */
+.wc { position: absolute; display: inline-flex; align-items: center; gap: 22px; padding: 30px 46px; border-radius: 34px; background: #fff; color: #10213b; font-size: 84px; font-weight: 600; letter-spacing: -0.04em; box-shadow: 0 40px 80px rgba(16, 33, 59, 0.16), 0 0 0 1px rgba(16, 33, 59, 0.05); white-space: nowrap; }
+.wc .dot { width: 22px; height: 22px; border-radius: 50%; background: #155dfc; }
+
+/* Régua de dias úteis */
+.rg { position: absolute; display: flex; gap: 12px; }
+.rg i { display: block; width: 52px; height: 120px; border-radius: 14px; background: #dfe7f4; }
+.rg i.on { background: #155dfc; }
+.rg i.we { width: 22px; background: transparent; }
+
+.pill { position: absolute; display: inline-flex; align-items: center; gap: 14px; padding: 18px 30px; border-radius: 999px; background: #155dfc; color: #fff; font-size: 38px; font-weight: 600; letter-spacing: -0.01em; box-shadow: 0 20px 40px rgba(21, 93, 252, 0.35); white-space: nowrap; }
+.pill::before { content: ''; width: 16px; height: 16px; border-radius: 50%; background: #fff; }
+
+/* Estados iniciais (frame 0): escondidos no CSS, o GSAP revela */
+.mk > .in { visibility: hidden; opacity: 0; }
+.eb s b { transition: none; }

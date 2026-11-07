@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Legenda queimada (padrão Korza). GERADO por assets/audio/legenda.py a partir dos tempos da voz: não edite à mão. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .lg-g {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: 1480px;
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+        }
+      </style>
+
+      <div id="root" data-composition-id="legenda" data-width="1080" data-height="1920">
+          <div class="lg-g" id="lg-g0" data-s="0.239" data-e="1.090"><div class="cap"><span class="w" data-s="0.289">Um</span> <span class="w" data-s="0.37">app</span> <span class="w" data-s="0.603">do</span> <span class="w" data-s="0.79">zero</span></div></div>
+          <div class="lg-g" id="lg-g1" data-s="1.140" data-e="1.890"><div class="cap"><span class="w" data-s="1.19">pode</span> <span class="w" data-s="1.574">custar</span></div></div>
+          <div class="lg-g" id="lg-g2" data-s="1.940" data-e="3.530"><div class="cap"><span class="w" data-s="1.99">até</span> <span class="w" data-s="2.35">R$</span> <span class="w" data-s="2.61">100</span> <span class="w" data-s="2.87">mil.</span></div></div>
+          <div class="lg-g" id="lg-g3" data-s="3.580" data-e="5.378"><div class="cap"><span class="w" data-s="3.63">Meses</span> <span class="w" data-s="4.337">de</span> <span class="w" data-s="4.47">projeto.</span></div></div>
+          <div class="lg-g" id="lg-g4" data-s="5.428" data-e="6.210"><div class="cap"><span class="w" data-s="5.478">Conta</span> <span class="w" data-s="5.777">na</span> <span class="w" data-s="5.897">Apple</span></div></div>
+          <div class="lg-g" id="lg-g5" data-s="6.260" data-e="7.170"><div class="cap"><span class="w" data-s="6.31">e</span> <span class="w" data-s="6.443">no</span> <span class="w" data-s="6.607">Google.</span></div></div>
+          <div class="lg-g" id="lg-g6" data-s="7.220" data-e="9.214"><div class="cap"><span class="w" data-s="7.27">Aprovação</span> <span class="w" data-s="7.97">nas</span> <span class="w" data-s="8.203">lojas.</span></div></div>
+          <div class="lg-g" id="lg-g7" data-s="9.264" data-e="9.874"><div class="cap"><span class="w" data-s="9.314">Na</span> <span class="w" data-s="9.43">Korza,</span></div></div>
+          <div class="lg-g" id="lg-g8" data-s="9.924" data-e="11.383"><div class="cap"><span class="w" data-s="9.974">você</span> <span class="w" data-s="10.127">conecta</span> <span class="w" data-s="10.67">sua</span> <span class="w" data-s="10.897">loja,</span></div></div>
+          <div class="lg-g" id="lg-g9" data-s="11.433" data-e="12.970"><div class="cap"><span class="w" data-s="11.483">escolhe</span> <span class="w" data-s="11.894">logo</span> <span class="w" data-s="12.19">e</span> <span class="w" data-s="12.323">cores…</span></div></div>
+          <div class="lg-g" id="lg-g10" data-s="13.020" data-e="13.850"><div class="cap"><span class="w" data-s="13.07">e</span> <span class="w" data-s="13.179">pronto.</span></div></div>
+          <div class="lg-g" id="lg-g11" data-s="13.900" data-e="14.850"><div class="cap"><span class="w" data-s="13.95">A</span> <span class="w" data-s="14.27">gente</span> <span class="w" data-s="14.516">constrói</span></div></div>
+          <div class="lg-g" id="lg-g12" data-s="14.900" data-e="16.150"><div class="cap"><span class="w" data-s="14.95">e</span> <span class="w" data-s="15.076">publica</span> <span class="w" data-s="15.55">seu</span> <span class="w" data-s="15.73">app,</span></div></div>
+          <div class="lg-g" id="lg-g13" data-s="16.200" data-e="17.570"><div class="cap"><span class="w" data-s="16.25">iOS</span> <span class="w" data-s="16.87">e</span> <span class="w" data-s="17.02">Android,</span></div></div>
+          <div class="lg-g" id="lg-g14" data-s="17.620" data-e="19.890"><div class="cap"><span class="w" data-s="17.67">em</span> <span class="w" data-s="17.89">até</span> <span class="w" data-s="18.123">14</span> <span class="w" data-s="18.774">dias</span> <span class="w" data-s="19.15">úteis!</span></div></div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        document.querySelectorAll("[data-composition-id='legenda'] .lg-g").forEach((g) => {
+          const s = +g.dataset.s, e = +g.dataset.e;
+          tl.fromTo(g, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, s);
+          tl.set(g, { opacity: 0 }, e);
+          g.querySelectorAll(".w").forEach((w, i, all) => {
+            const ws = +w.dataset.s;
+            tl.set(w, { color: "#155DFC" }, ws);
+            const next = all[i + 1];
+            if (next) tl.set(w, { color: "#10213B" }, +next.dataset.s);
+          });
+        });
+        window.__timelines["legenda"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

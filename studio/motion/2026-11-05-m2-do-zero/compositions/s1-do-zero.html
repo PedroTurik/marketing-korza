@@ -1,0 +1,485 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Ato 1 — "Do zero" (0–9,15s). Modo profundo, monocromático (o azul fica guardado para a Korza).
+      Acúmulo: orçamento → calendário → contas de desenvolvedor → aprovação. Cada camada cai em cima da anterior.
+    -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #fff;
+        }
+        #dz-bg {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(120% 70% at 50% 30%, #1a2f52 0%, #10213b 55%, #0a1628 100%);
+        }
+        #dz-grid {
+          position: absolute;
+          inset: -120px;
+          background-image: linear-gradient(rgba(255, 255, 255, 0.045) 1px, transparent 1px),
+            linear-gradient(90deg, rgba(255, 255, 255, 0.045) 1px, transparent 1px);
+          background-size: 72px 72px;
+        }
+
+        /* ── Título (zona segura do topo) ── */
+        .dz-head {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: var(--safe-top);
+        }
+        .dz-kicker {
+          font-size: 60px;
+          font-weight: 600;
+          line-height: 1.1;
+          letter-spacing: -0.03em;
+        }
+        .dz-kicker .dim {
+          color: rgba(255, 255, 255, 0.5);
+        }
+        .dz-stat {
+          display: flex;
+          align-items: baseline;
+          gap: 18px;
+          margin-top: 18px;
+          font-weight: 600;
+          letter-spacing: -0.05em;
+          white-space: nowrap;
+        }
+        .dz-stat .ate {
+          font-size: 64px;
+          letter-spacing: -0.02em;
+          color: rgba(255, 255, 255, 0.6);
+        }
+        .dz-stat .rs {
+          font-size: 120px;
+        }
+        .dz-stat .num {
+          font-size: 230px;
+          line-height: 0.9;
+          font-variant-numeric: tabular-nums;
+        }
+        .dz-stat .mil {
+          font-size: 120px;
+        }
+        .dz-big {
+          font-size: 112px;
+          font-weight: 600;
+          line-height: 1.02;
+          letter-spacing: -0.045em;
+        }
+        .dz-big .dim {
+          color: rgba(255, 255, 255, 0.45);
+        }
+
+        /* ── Pilha ── */
+        #dz-world {
+          position: absolute;
+          inset: 0;
+          transform-origin: 540px 1300px;
+        }
+        .paper {
+          position: absolute;
+          background: #fff;
+          color: #10213b;
+          border-radius: 30px;
+          box-shadow: 0 30px 70px rgba(3, 10, 24, 0.55), 0 0 0 1px rgba(16, 33, 59, 0.06);
+        }
+        .paper-h {
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 34px 40px 22px;
+          border-bottom: 2px solid #e5ebf2;
+          font-size: 34px;
+          font-weight: 600;
+          letter-spacing: -0.02em;
+        }
+        .paper-h small {
+          font-size: 24px;
+          font-weight: 400;
+          color: #7d8da1;
+          letter-spacing: 0;
+        }
+
+        /* Orçamento */
+        #dz-inv {
+          left: 150px;
+          top: 760px;
+          width: 780px;
+          height: 900px;
+          transform: rotate(-5deg);
+        }
+        .inv-row {
+          display: flex;
+          align-items: center;
+          gap: 20px;
+          padding: 22px 40px;
+          border-bottom: 1px solid #eef2f7;
+          font-size: 30px;
+          color: #42556c;
+        }
+        .inv-row b {
+          margin-left: auto;
+          width: 150px;
+          height: 22px;
+          border-radius: 11px;
+          background: #dfe5ee;
+        }
+        .inv-row i {
+          width: 18px;
+          height: 18px;
+          border-radius: 5px;
+          border: 2px solid #b9c4d3;
+          flex: none;
+        }
+        .inv-total {
+          display: flex;
+          align-items: center;
+          padding: 30px 40px;
+          font-size: 32px;
+          font-weight: 600;
+        }
+        .inv-total b {
+          margin-left: auto;
+          width: 230px;
+          height: 30px;
+          border-radius: 15px;
+          background: #10213b;
+        }
+
+        /* Calendário */
+        #dz-cal {
+          left: 300px;
+          top: 930px;
+          width: 660px;
+          height: 640px;
+          transform: rotate(6deg);
+        }
+        .cal-m {
+          font-size: 40px;
+        }
+        .cal-grid {
+          display: grid;
+          grid-template-columns: repeat(7, 1fr);
+          gap: 10px;
+          padding: 24px 34px;
+        }
+        .cal-grid span {
+          height: 62px;
+          border-radius: 12px;
+          background: #f1f4f8;
+          position: relative;
+        }
+        .cal-grid span.x::before,
+        .cal-grid span.x::after {
+          content: "";
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          top: 29px;
+          height: 4px;
+          border-radius: 2px;
+          background: #9aa8ba;
+          transform: rotate(45deg);
+        }
+        .cal-grid span.x::after {
+          transform: rotate(-45deg);
+        }
+        .cal-pages {
+          position: absolute;
+          inset: 0;
+          z-index: -1;
+        }
+        .cal-pages div {
+          position: absolute;
+          inset: 0;
+          background: #fff;
+          border-radius: 30px;
+          box-shadow: 0 10px 30px rgba(3, 10, 24, 0.35);
+        }
+
+        /* Contas de desenvolvedor */
+        .acc {
+          width: 600px;
+          height: 520px;
+        }
+        #dz-acc1 {
+          left: 40px;
+          top: 1010px;
+          transform: rotate(-9deg);
+        }
+        #dz-acc2 {
+          left: 450px;
+          top: 1180px;
+          transform: rotate(7deg);
+        }
+        .acc-f {
+          margin: 18px 40px 0;
+        }
+        .acc-f label {
+          display: block;
+          font-size: 22px;
+          color: #7d8da1;
+          margin-bottom: 8px;
+        }
+        .acc-f div {
+          height: 58px;
+          border-radius: 12px;
+          border: 2px solid #e5ebf2;
+          display: flex;
+          align-items: center;
+          padding: 0 18px;
+          font-size: 24px;
+          color: #9aa8ba;
+        }
+        .acc-wait {
+          display: flex;
+          align-items: center;
+          gap: 14px;
+          margin: 26px 40px 0;
+          font-size: 24px;
+          color: #42556c;
+        }
+        .spin {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          border: 4px solid #dfe5ee;
+          border-top-color: #42556c;
+        }
+
+        /* Status de aprovação */
+        .pill {
+          position: absolute;
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          padding: 22px 30px;
+          border-radius: 999px;
+          background: #22365a;
+          color: #fff;
+          font-size: 32px;
+          font-weight: 600;
+          letter-spacing: -0.01em;
+          white-space: nowrap;
+          box-shadow: 0 18px 40px rgba(3, 10, 24, 0.5), inset 0 0 0 2px rgba(255, 255, 255, 0.1);
+        }
+        .pill .dot {
+          width: 16px;
+          height: 16px;
+          border-radius: 50%;
+          background: #9aa8ba;
+        }
+        .pill small {
+          font-size: 24px;
+          font-weight: 400;
+          color: rgba(255, 255, 255, 0.6);
+        }
+
+        .mk {
+          display: block;
+          overflow: hidden;
+          padding-bottom: 0.08em;
+          margin-bottom: -0.08em;
+        }
+        .mk .in {
+          display: block;
+        }
+        .dz-stat .num {
+          display: inline-block;
+        }
+        .cal-m {
+          position: relative;
+          display: inline-block;
+          width: 300px;
+          height: 50px;
+        }
+        .cal-m span + span {
+          opacity: 0;
+        }
+        .cal-m span {
+          position: absolute;
+          left: 0;
+          top: 0;
+          line-height: 50px;
+        }
+        .spin {
+          will-change: transform;
+        }
+        #dz-h2,
+        #dz-h3,
+        #dz-h4 {
+          opacity: 0;
+        }
+        #dz-curtain {
+          position: absolute;
+          inset: 0;
+          background: #fff;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s1-do-zero" data-width="1080" data-height="1920">
+        <div id="dz-bg"></div>
+        <div id="dz-grid" data-layout-ignore></div>
+
+        <div id="dz-world" data-layout-allow-overflow="true" data-layout-ignore>
+          <!-- 1. Orçamento: itens sem valor, só o total vira o título -->
+          <div id="dz-inv" class="paper" data-layout-allow-overflow="true">
+            <div class="paper-h">Orçamento · App da loja <small>Proposta 01</small></div>
+            <div class="inv-row"><i></i>Design das telas<b></b></div>
+            <div class="inv-row"><i></i>App iOS<b></b></div>
+            <div class="inv-row"><i></i>App Android<b></b></div>
+            <div class="inv-row"><i></i>Integração com a loja<b></b></div>
+            <div class="inv-row"><i></i>Servidor e hospedagem<b></b></div>
+            <div class="inv-row"><i></i>Publicação nas lojas<b></b></div>
+            <div class="inv-row"><i></i>Manutenção<b></b></div>
+            <div class="inv-total">Total<b></b></div>
+          </div>
+
+          <!-- 2. Calendário: meses virando, dias riscados -->
+          <div id="dz-cal" class="paper" data-layout-allow-overflow="true">
+            <div class="cal-pages"><div style="transform: rotate(-4deg) translate(-14px, 10px)"></div><div style="transform: rotate(3deg) translate(12px, 18px)"></div></div>
+            <div class="paper-h"><span class="cal-m" id="dz-month"><span>Janeiro</span><span>Fevereiro</span><span>Março</span><span>Abril</span><span>Maio</span><span>Junho</span><span>Julho</span></span><small>Cronograma</small></div>
+            <div class="cal-grid">
+              <span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span>
+              <span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span>
+              <span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span><span class="x"></span>
+              <span class="x"></span><span class="x"></span><span class="x"></span><span></span><span></span><span></span><span></span>
+              <span></span><span></span><span></span><span></span><span></span><span></span><span></span>
+            </div>
+          </div>
+
+          <!-- 3. Contas de desenvolvedor -->
+          <div id="dz-acc1" class="paper acc" data-layout-allow-overflow="true">
+            <div class="paper-h">Conta de desenvolvedor <small>Apple</small></div>
+            <div class="acc-f"><label>Razão social</label><div>—</div></div>
+            <div class="acc-f"><label>CNPJ</label><div>—</div></div>
+            <div class="acc-f"><label>Taxa anual</label><div>Pagamento pendente</div></div>
+            <div class="acc-wait"><span class="spin"></span>Verificando identidade…</div>
+          </div>
+          <div id="dz-acc2" class="paper acc" data-layout-allow-overflow="true">
+            <div class="paper-h">Conta de desenvolvedor <small>Google Play</small></div>
+            <div class="acc-f"><label>Nome do desenvolvedor</label><div>—</div></div>
+            <div class="acc-f"><label>Documentos</label><div>Enviar arquivos</div></div>
+            <div class="acc-f"><label>Taxa de registro</label><div>Pagamento pendente</div></div>
+            <div class="acc-wait"><span class="spin"></span>Em verificação…</div>
+          </div>
+
+          <!-- 4. Aprovação nas lojas -->
+          <div class="pill" id="dz-p1" style="left: 90px; top: 1040px"><span class="dot"></span>Em análise <small>App Store</small></div>
+          <div class="pill" id="dz-p2" style="left: 470px; top: 1150px"><span class="dot"></span>Ajustes pedidos <small>Google Play</small></div>
+          <div class="pill" id="dz-p3" style="left: 130px; top: 1330px"><span class="dot"></span>Reenviado <small>App Store</small></div>
+          <div class="pill" id="dz-p4" style="left: 420px; top: 1480px"><span class="dot"></span>Em análise <small>Google Play</small></div>
+          <div class="pill" id="dz-p5" style="left: 60px; top: 1640px"><span class="dot"></span>Aguardando revisão <small>App Store</small></div>
+        </div>
+
+        <!-- Títulos: um por batida -->
+        <div class="dz-head" id="dz-h1">
+          <div class="dz-kicker">Um app do zero <span class="dim">pode custar</span></div>
+          <div class="dz-stat"><span class="ate">até</span><span class="rs">R$</span><span class="num" id="dz-num">100</span><span class="mil">mil</span></div>
+        </div>
+        <div class="dz-head dz-big" id="dz-h2"><span class="mk"><span class="in">Meses</span></span><span class="mk"><span class="in"><span class="dim">de projeto.</span></span></span></div>
+        <div class="dz-head dz-big" id="dz-h3"><span class="mk"><span class="in">Conta na Apple</span></span><span class="mk"><span class="in"><span class="dim">e no Google.</span></span></span></div>
+        <div class="dz-head dz-big" id="dz-h4"><span class="mk"><span class="in">Aprovação</span></span><span class="mk"><span class="in"><span class="dim">nas lojas.</span></span></span></div>
+
+        <div id="dz-curtain" data-layout-ignore></div>
+      </div>
+
+      <script>
+        // Ato 1 (0–9,15s locais = globais; voz em +0,15s). Batidas na fala:
+        // gancho 0 · "Meses" 3.63 · "Conta" 5.48 · "Aprovação" 7.27 · queda 8.7 · cortina branca 8.75–9.15
+        const tl = gsap.timeline({ paused: true });
+        const B = { meses: 3.63, contas: 5.48, aprov: 7.27, fall: 8.7, end: 9.15 };
+        const R = (sel) => document.querySelector("[data-composition-id='s1-do-zero'] " + sel);
+
+        // ── Títulos: sai o anterior (sobe), entra o próximo por máscara ──
+        const headIn = (id, t) => {
+          tl.fromTo(`${id} .in`, { yPercent: 110 }, { yPercent: 0, duration: 0.42, ease: "power4.out", stagger: 0.06 }, t);
+          tl.set(id, { opacity: 1 }, t);
+        };
+        const headOut = (id, t) => tl.to(id, { y: -70, opacity: 0, duration: 0.22, ease: "power2.in" }, t - 0.2);
+                headOut("#dz-h1", B.meses); headIn("#dz-h2", B.meses);
+        headOut("#dz-h2", B.contas); headIn("#dz-h3", B.contas);
+        headOut("#dz-h3", B.aprov); headIn("#dz-h4", B.aprov);
+
+        // ── Gancho: o "100" já está no frame 0 e infla a cada item do orçamento; soco no "cem mil" ──
+        // (sem contagem nem giro de dígitos: nenhum valor diferente de R$ 100 mil pode aparecer na tela)
+        tl.fromTo("#dz-num", { scale: 1 }, { scale: 1.06, duration: 2.0, ease: "power1.in", transformOrigin: "0% 85%" }, 0.3);
+        tl.fromTo(".dz-stat .mil", { x: 0 }, { x: 25, duration: 2.0, ease: "power1.in" }, 0.3);
+        for (let i = 0; i < 7; i++) {
+          tl.fromTo("#dz-num", { y: 0 }, { y: -8, duration: 0.07, ease: "power2.out", yoyo: true, repeat: 1, immediateRender: false }, 0.6 + i * 0.2);
+        }
+        tl.to("#dz-num", { scale: 1.12, duration: 0.12, ease: "power3.out" }, 2.32);
+        tl.to(".dz-stat .mil", { x: 50, duration: 0.12, ease: "power3.out" }, 2.32);
+        tl.to("#dz-num", { scale: 1.06, duration: 0.35, ease: "power2.out" }, 2.46);
+        tl.to(".dz-stat .mil", { x: 25, duration: 0.35, ease: "power2.out" }, 2.46);
+        tl.fromTo(".dz-stat .ate", { opacity: 0.6 }, { opacity: 1, duration: 0.2, yoyo: true, repeat: 1, immediateRender: false }, 1.95);
+
+        // ── 1. Orçamento ──
+        tl.fromTo("#dz-inv", { y: 140, rotation: -9, scale: 0.97 }, { y: 0, rotation: -5, scale: 1, duration: 1.6, ease: "power3.out" }, 0);
+        tl.fromTo("#dz-inv .inv-row", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.3, ease: "power2.out", stagger: 0.2 }, 0.5);
+        tl.fromTo("#dz-inv .inv-row b", { scaleX: 0, transformOrigin: "100% 50%" }, { scaleX: 1, duration: 0.35, ease: "power3.out", stagger: 0.2 }, 0.6);
+        tl.fromTo("#dz-inv .inv-total", { opacity: 0 }, { opacity: 1, duration: 0.2 }, 1.95);
+        tl.fromTo("#dz-inv .inv-total b", { scaleX: 0, transformOrigin: "100% 50%" }, { scaleX: 1, duration: 0.5, ease: "power4.out" }, 2.2);
+
+        // ── 2. Calendário cai por cima; meses viram; dias riscados ──
+        tl.fromTo("#dz-cal", { y: -2300, rotation: 24, opacity: 1 }, { y: 0, rotation: 6, duration: 0.5, ease: "power4.out", immediateRender: true }, B.meses - 0.08);
+        const months = document.querySelectorAll("[data-composition-id='s1-do-zero'] #dz-month span");
+        months.forEach((m, i) => {
+          if (i > 0) {
+            const t = B.meses + 0.15 + i * 0.24;
+            tl.fromTo(m, { opacity: 0, y: 26 }, { opacity: 1, y: 0, duration: 0.12, ease: "power2.out" }, t);
+            tl.to(months[i - 1], { opacity: 0, y: -26, duration: 0.12, ease: "power2.in" }, t);
+          }
+        });
+        tl.fromTo("#dz-cal .cal-grid span.x", { scale: 0.4, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.12, ease: "back.out(3)", stagger: 0.055 }, B.meses + 0.25);
+
+        // ── 3. Contas de desenvolvedor batem tortas ──
+        tl.fromTo("#dz-acc1", { x: -1100, rotation: -28 }, { x: 0, rotation: -9, duration: 0.45, ease: "power4.out", immediateRender: true }, B.contas - 0.08);
+        tl.fromTo("#dz-acc2", { x: 1100, rotation: 26 }, { x: 0, rotation: 7, duration: 0.45, ease: "power4.out", immediateRender: true }, B.contas + 0.55);
+        tl.fromTo("#dz-acc1 .acc-f, #dz-acc2 .acc-f", { opacity: 0.25 }, { opacity: 1, duration: 0.2, stagger: 0.12 }, B.contas + 0.2);
+        tl.fromTo(".spin", { rotation: 0 }, { rotation: 360 * 4, duration: B.end - B.contas, ease: "none" }, B.contas);
+
+        // ── 4. Status de aprovação chovem ──
+        const pr = [-4, 5, 3, -6, -2];
+        document.querySelectorAll("[data-composition-id='s1-do-zero'] .pill").forEach((p, i) => {
+          tl.fromTo(p, { y: -260, opacity: 0, scale: 1.25, rotation: pr[i] * 3 }, { y: 0, opacity: 1, scale: 1, rotation: pr[i], duration: 0.32, ease: "back.out(1.6)", immediateRender: true }, B.aprov - 0.05 + i * 0.24);
+        });
+
+        // ── Câmera: recua conforme a pilha cresce; impacto a cada camada; tremor no fim ──
+        tl.fromTo("#dz-world", { scale: 1.04, y: 0 }, { scale: 0.98, duration: B.meses, ease: "none" }, 0);
+        tl.to("#dz-world", { scale: 0.95, duration: B.contas - B.meses, ease: "none" }, B.meses);
+        tl.to("#dz-world", { scale: 0.92, duration: B.aprov - B.contas, ease: "none" }, B.contas);
+        tl.to("#dz-world", { scale: 0.89, duration: B.fall - B.aprov, ease: "none" }, B.aprov);
+        [B.meses + 0.35, B.contas + 0.3, B.contas + 0.95].forEach((t) => {
+          tl.fromTo("#dz-world", { y: 0 }, { y: 18, duration: 0.06, ease: "power1.out", yoyo: true, repeat: 1, immediateRender: false }, t);
+        });
+        const shake = { k: 0 };
+        tl.fromTo(shake, { k: 0 }, {
+          k: 1, duration: B.fall - (B.aprov + 0.9), ease: "power1.in", immediateRender: false,
+          onUpdate() {
+            const t = tl.time();
+            gsap.set(R("#dz-grid"), { x: Math.sin(t * 61) * 8 * shake.k, y: Math.cos(t * 47) * 6 * shake.k });
+          },
+        }, B.aprov + 0.9);
+        tl.to("#dz-world", { keyframes: [{ x: -10, rotation: -0.6 }, { x: 12, rotation: 0.7 }, { x: -12, rotation: -0.8 }, { x: 10, rotation: 0.6 }, { x: 0, rotation: 0 }], duration: 0.5, ease: "none" }, B.aprov + 0.95);
+
+        // ── Queda da pilha + cortina branca (vira o ato 2) ──
+        tl.to("#dz-world", { y: 1500, rotation: 7, duration: 0.5, ease: "power3.in" }, B.fall);
+        tl.to("#dz-h4", { y: -90, opacity: 0, duration: 0.3, ease: "power2.in" }, B.fall);
+        tl.fromTo("#dz-curtain", { yPercent: 100 }, { yPercent: 0, duration: 0.42, ease: "power3.inOut" }, B.end - 0.42);
+
+        window.__timelines["s1-do-zero"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

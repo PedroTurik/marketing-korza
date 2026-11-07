@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Cena 3 — "A gente constrói e publica seu app, iOS e Android" (claim app-nativo).
+      Apps reais de clientes (mockups de contexto/marca/site-assets): Hiven no centro, Loum, Belletonn e Pé de Algodão em profundidade.
+    -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #10213b;
+        }
+        #a-bg {
+          position: absolute;
+          inset: 0;
+          background: radial-gradient(90% 55% at 50% 72%, #dce8ff 0%, #eef4ff 45%, #ffffff 100%);
+        }
+        .a-head {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: var(--safe-top);
+        }
+        .a-t {
+          font-size: 96px;
+          font-weight: 600;
+          line-height: 1.02;
+          letter-spacing: -0.045em;
+        }
+        .a-t .tone {
+          color: #155dfc;
+        }
+        .a-tags {
+          display: flex;
+          gap: 14px;
+          margin-top: 30px;
+        }
+        .a-tags span {
+          display: inline-flex;
+          align-items: center;
+          gap: 16px;
+          padding: 14px 30px 14px 16px;
+          border-radius: 999px;
+          background: #fff;
+          border: 2px solid #dbe6fb;
+          font-size: 34px;
+          font-weight: 600;
+          color: #10213b;
+          box-shadow: 0 10px 26px rgba(16, 33, 59, 0.08);
+        }
+        .a-tags img {
+          width: 48px;
+          height: 48px;
+        }
+        .mk {
+          display: block;
+          overflow: hidden;
+          padding-bottom: 0.1em;
+          margin-bottom: -0.1em;
+        }
+        .mk .in {
+          display: block;
+        }
+        #a-stage {
+          position: absolute;
+          inset: 0;
+          perspective: 2200px;
+          perspective-origin: 540px 1200px;
+        }
+        #a-world {
+          position: absolute;
+          inset: 0;
+          transform-style: preserve-3d;
+        }
+        .ph {
+          position: absolute;
+          width: 600px;
+          left: 540px;
+          top: 700px;
+          margin-left: -300px;
+          filter: drop-shadow(0 40px 50px rgba(16, 33, 59, 0.22));
+        }
+        #a-hiven {
+          width: 660px;
+          margin-left: -330px;
+          top: 680px;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s3-apps" data-width="1080" data-height="1920">
+        <div id="a-bg"></div>
+        <div id="a-stage" data-layout-allow-overflow="true">
+          <div id="a-world" data-layout-allow-overflow="true">
+            <img class="ph" id="a-loum" src="assets/brand/site-assets/loum-mockup.png" alt="App Loum" />
+            <img class="ph" id="a-pda" src="assets/brand/site-assets/pe-de-algodao-mockup.png" alt="App Pé de Algodão" />
+            <img class="ph" id="a-belle" src="assets/brand/site-assets/belletonn-mockup.png" alt="App Belletonn" />
+            <img class="ph" id="a-hiven" src="assets/brand/site-assets/hiven-mockup.png" alt="App Hiven" />
+          </div>
+        </div>
+        <div class="a-head" id="a-h">
+          <div class="a-t"><span class="mk"><span class="in">A gente constrói</span></span><span class="mk"><span class="in tone">e publica.</span></span></div>
+          <div class="a-tags">
+            <span id="a-ios"><img src="assets/img/logo-appstore.svg" alt="App Store" />iOS</span>
+            <span id="a-and"><img src="assets/img/logo-googleplay.svg" alt="Google Play" />Android</span>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Cena 3 (local 0 = 13,85s). Fala: "A gente" 0.1 · "constrói" 0.67 · "publica" 1.23 · "iOS" 2.4 · "Android" 3.17 · fim 3.7
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#a-h .mk .in", { yPercent: 110 }, { yPercent: 0, duration: 0.5, ease: "power4.out", stagger: 1.0 }, 0.08);
+        // Hiven sobe com rastro de velocidade
+        tl.fromTo("#a-hiven", { y: 650, rotateX: 22, scale: 0.92, filter: "blur(14px) drop-shadow(0 40px 50px rgba(16,33,59,0.22))" },
+          { y: 0, rotateX: 0, scale: 1, filter: "blur(0px) drop-shadow(0 40px 50px rgba(16,33,59,0.22))", duration: 0.6, ease: "power4.out" }, 0.0);
+        // Os outros abrem em leque, de trás do Hiven
+        const fan = [
+          ["#a-loum", { x: -400, z: -380, rotateY: 26, y: 30 }],
+          ["#a-belle", { x: 400, z: -380, rotateY: -26, y: 30 }],
+          ["#a-pda", { x: 0, z: -900, y: -60, rotateY: 0 }],
+        ];
+        fan.forEach(([sel, to], i) => {
+          tl.fromTo(sel, { x: 0, z: -200, rotateY: 0, y: 60, opacity: 0 }, { ...to, opacity: 1, duration: 0.7, ease: "power3.out", immediateRender: true }, 1.18 + i * 0.1);
+        });
+        // Câmera orbita devagar a cena inteira
+        tl.fromTo("#a-world", { rotateY: -7, z: -40 }, { rotateY: 6, z: 60, duration: 3.7, ease: "sine.inOut" }, 0);
+        // Selos iOS / Android no ritmo da fala
+        tl.fromTo("#a-ios", { opacity: 0, scale: 0.6, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(2.4)" }, 2.36);
+        tl.fromTo("#a-and", { opacity: 0, scale: 0.6, y: 16 }, { opacity: 1, scale: 1, y: 0, duration: 0.35, ease: "back.out(2.4)" }, 3.05);
+        // Saída: empurra para dentro do Hiven
+        tl.to("#a-world", { scale: 1.25, y: -120, duration: 0.3, ease: "power3.in" }, 3.4);
+        tl.to("#a-h", { y: -60, opacity: 0, duration: 0.22, ease: "power2.in" }, 3.48);
+        window.__timelines["s3-apps"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

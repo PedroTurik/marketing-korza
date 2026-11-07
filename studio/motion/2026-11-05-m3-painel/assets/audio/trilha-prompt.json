@@ -1,0 +1,30 @@
+{
+  "composition_plan": {
+    "positive_global_styles": ["modern minimal electronic", "premium tech product film", "instrumental", "clean precise mix", "120 bpm", "tight punchy drums", "short plucky bass", "bright precise synth plucks", "continuous energy until the very end"],
+    "negative_global_styles": ["vocals", "lyrics", "choir", "epic orchestral", "dubstep drop", "lo-fi", "fade out", "silence", "guitar"],
+    "sections": [
+      {
+        "section_name": "abertura",
+        "positive_local_styles": ["ticking pulse", "filtered synth plucks", "building anticipation", "riser into the next section"],
+        "negative_local_styles": ["full drums", "dark", "aggressive"],
+        "duration_ms": 3300,
+        "lines": []
+      },
+      {
+        "section_name": "voo pelo painel",
+        "positive_local_styles": ["full precise groove", "four on the floor kick", "crisp hats", "bright arpeggiated plucks", "confident", "steady forward motion", "no breakdown"],
+        "negative_local_styles": ["breakdown", "heavy bass", "dark"],
+        "duration_ms": 16700,
+        "lines": []
+      },
+      {
+        "section_name": "fechamento",
+        "positive_local_styles": ["lift and open", "wide warm chords", "same groove sustained", "major key", "optimistic", "ends with a clean resolved final chord at the last second"],
+        "negative_local_styles": ["fade out", "silence", "breakdown", "outro too early"],
+        "duration_ms": 6800,
+        "lines": []
+      }
+    ]
+  },
+  "model_id": "music_v1"
+}

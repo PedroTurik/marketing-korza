@@ -1,0 +1,124 @@
+// Extrai as telas reais do admin (com mocks do e2e, sem dados reais) para HTML autônomo: estilos computados inline,
+// sem Públicos, sem domínio/nome de teste, celular separado. Roda numa CÓPIA do admin. Guardado em assets/telas/.
+import { mkdirSync, writeFileSync } from 'node:fs';
+import { mockT31Sales, mockStoreWithWebsiteBanner } from './fixtures/routes';
+import { mockCouponBanner, mockWelcomeNotification, couponBannerFixture, welcomeNotificationFixture } from './fixtures/app-editor';
+import { websiteBannerFixture } from './fixtures/t31-store';
+import { test } from './support/test';
+const OUT = process.env.REF_OUT!; mkdirSync(`${OUT}/img`, { recursive: true });
+
+const FLATTEN = () => {
+  const w: any = window;
+  const SKIP = new Set(['transition','transition-property','transition-duration','transition-timing-function','transition-delay','transition-behavior','animation','animation-name','animation-duration','will-change','cursor','pointer-events','user-select','-webkit-user-select','caret-color','text-decoration-color','text-emphasis-color','-webkit-text-fill-color','-webkit-text-stroke-color','column-rule-color','border-block-end-color','border-block-start-color','border-inline-end-color','border-inline-start-color','block-size','inline-size','min-block-size','min-inline-size','max-block-size','max-inline-size','perspective-origin','border-block-end-width','border-block-start-width','border-inline-end-width','border-inline-start-width','border-block-end-style','border-block-start-style','border-inline-end-style','border-inline-start-style','padding-block-end','padding-block-start','padding-inline-end','padding-inline-start','margin-block-end','margin-block-start','margin-inline-end','margin-inline-start','inset-block-end','inset-block-start','inset-inline-end','inset-inline-start','border-end-end-radius','border-end-start-radius','border-start-end-radius','border-start-start-radius','tab-size','scrollbar-color','scrollbar-width','overflow-block','overflow-inline','app-region','touch-action','interpolate-size','-webkit-tap-highlight-color']);
+  const ifr = document.createElement('iframe'); ifr.style.cssText='position:absolute;width:0;height:0;border:0'; document.body.appendChild(ifr);
+  const defs: Record<string, Record<string,string>> = {};
+  const defaults = (el: Element) => {
+    const svgEl = el.namespaceURI?.includes('svg'); const nome = (svgEl || el.localName==='img') ? el.localName : 'div';
+    const key = (el.namespaceURI||'')+nome;
+    if (defs[key]) return defs[key];
+    const d = ifr.contentDocument!; const c = d.createElementNS(el.namespaceURI, nome); d.body.appendChild(c);
+    const cs = ifr.contentWindow!.getComputedStyle(c); const o: Record<string,string> = {};
+    for (let i=0;i<cs.length;i++) o[cs[i]] = cs.getPropertyValue(cs[i]);
+    c.remove(); return (defs[key]=o);
+  };
+  const assets: Record<string,string> = {}; w.__assets = assets;
+  const styleOf = (el: Element, win: Window, pseudo?: string) => {
+    const cs = win.getComputedStyle(el, pseudo); const d = defaults(el); let s = '';
+    for (let i=0;i<cs.length;i++) { const p = cs[i]; if (p.startsWith('--')||SKIP.has(p)) continue; const v = cs.getPropertyValue(p);
+      if (v !== d[p] || /^border-(top|right|bottom|left)-width$/.test(p) || p==='outline-width' || p==='box-sizing') s += `${p}:${v};`; }
+    return s.replace(/"/g,"'");
+  };
+  const conv = (node: Node, win: Window): string => {
+    if (node.nodeType === 3) return (node.textContent||'').replace(/&/g,'&amp;').replace(/</g,'&lt;');
+    if (node.nodeType !== 1) return '';
+    const el = node as HTMLElement; const tag = el.localName;
+    if (['script','style','template','title','noscript','link','meta'].includes(tag)) return '';
+    const cs = win.getComputedStyle(el);
+    if (cs.display === 'none') return '';
+    if (cs.position==='absolute' && cs.clip==='rect(0px, 0px, 0px, 0px)') return '';
+    if (tag === 'canvas') { const url=(el as HTMLCanvasElement).toDataURL('image/png'); const k=`canvas-${Object.keys(assets).length}.png`; assets[k]=url; const r=el.getBoundingClientRect();
+      return `<img src="__IMG__/${k}" style="display:block;width:${r.width}px;height:${r.height}px" />`; }
+    if (tag === 'iframe') { try { const b=(el as HTMLIFrameElement).contentDocument!.body; const r=el.getBoundingClientRect();
+      return `<div style="width:${r.width}px;height:${r.height}px;overflow:hidden">${Array.from(b.childNodes).map(n=>conv(n,(el as HTMLIFrameElement).contentWindow!)).join('')}</div>`; } catch { return ''; } }
+    let attrs = '';
+    const isSvg = el.namespaceURI?.includes('svg');
+    if (isSvg) for (const a of Array.from(el.attributes)) { if (a.name==='class'||a.name==='style') continue; attrs += ` ${a.name}="${a.value.replace(/"/g,'&quot;')}"`; }
+    if (tag==='img') { const src=(el as HTMLImageElement).currentSrc||(el as HTMLImageElement).src; const k=src.split('/').pop()!.split('?')[0]; assets[k]=src; attrs+=` src="__IMG__/${k}"`; }
+    const k = el.getAttribute('data-k'); if (k) attrs += ` data-k="${k}"`;
+    let st = styleOf(el, win);
+    if (!isSvg && Array.from(el.childNodes).some(n=>n.nodeType===3 && (n.textContent||'').trim())) { const tops=new Set<number>(); Array.from(el.childNodes).filter(n=>n.nodeType===3&&(n.textContent||'').trim()).forEach(n=>{ const rg=el.ownerDocument.createRange(); rg.selectNode(n); Array.from(rg.getClientRects()).forEach(r=>tops.add(Math.round(r.top))); }); if (tops.size<=1) st += 'white-space:nowrap;'; }
+    st = st.replace(/url\("?'?([^)'"]+)'?"?\)/g,(m,u)=>{ if(u.startsWith('data:')||u.startsWith('#')) return m; const kk=u.split('/').pop()!.split('?')[0]; assets[kk]=u; return `url(__IMG__/${kk})`; });
+    const before = win.getComputedStyle(el,'::before').content; const after = win.getComputedStyle(el,'::after').content;
+    let inner = '';
+    if (before && before!=='none' && before!=='normal') inner += `<div style="${styleOf(el,win,'::before')}">${before.replace(/^["']|["']$/g,'')}</div>`;
+    let kids = Array.from(el.childNodes).map(n=>conv(n,win)).join('');
+    if (tag==='input'||tag==='textarea') { const t = tag==='input'?'div':'div'; return `<${t}${attrs} style="${st}"><div data-valor style="display:inline">${(el as HTMLInputElement).value||''}</div></${t}>`; }
+    inner += kids;
+    if (after && after!=='none' && after!=='normal') inner += `<div style="${styleOf(el,win,'::after')}">${after.replace(/^["']|["']$/g,'')}</div>`;
+    if (tag==='br') return '<br>';
+    const nt = (isSvg || tag==='img') ? el.localName : 'div';
+    return `<${nt}${attrs} style="${st}">${inner}</${nt}>`;
+  };
+  w.__flat = (el: Element) => conv(el, window);
+};
+
+const LIMPA = (cfg: any) => {
+  const walk = (root: Node, fn: (t: Text)=>void) => { const tw=document.createTreeWalker(root,NodeFilter.SHOW_TEXT); const l:Text[]=[]; while(tw.nextNode()) l.push(tw.currentNode as Text); l.forEach(fn); };
+  // Públicos fora do menu
+  document.querySelectorAll('a,button').forEach((a)=>{ if(/Públicos/.test(a.textContent||'')) a.closest('li')?.remove(); });
+  document.querySelector('section[aria-label^="Notifications"]')?.remove();
+  document.querySelectorAll('button[aria-label="Ajuda"].fixed, button.fixed').forEach(b=>b.remove());
+  // relógio de dígitos em cilindro → texto simples
+  document.querySelectorAll('[role=img][aria-label]').forEach((e)=>{ const l=e.getAttribute('aria-label')||''; if(/^\d+:\d+$/.test(l)) e.textContent=l; });
+  const sub = (t: Text) => { t.textContent=(t.textContent||'').replace(/t31-store\.myshopify\.com/g,'sualoja.com.br').replace(/T31 Store Moda Praia e Acessórios/g,'Sua Loja').replace(/T31 Store/g,'Sua Loja'); };
+  walk(document.body, sub);
+  document.querySelectorAll('iframe').forEach((f)=>{ try{ walk(f.contentDocument!.body, sub);}catch{} });
+  // Editor Monaco não carrega fora do navegador real: mostra o texto do banner
+  walk(document.body,(t)=>{ if((t.textContent||'').trim()==='Loading...') t.textContent='Baixe o app e fique por dentro das ofertas e promoções semanais!'; });
+  // sem o bloco técnico de rastreamento
+  document.querySelectorAll('button').forEach((b)=>{ if(/^Rastreamento/.test(b.textContent||'')) b.parentElement?.remove(); });
+  // números ilegíveis
+  if (cfg.numeros) { const m=document.querySelector('main')!; walk(m,(t)=>{ if(!/\d/.test(t.textContent||'')) return; const p=t.parentElement!; if(p.closest('[data-k-keep]'))return; if(p.namespaceURI?.includes('svg')) { p.setAttribute('data-k','num'); return; } const s=document.createElement('span'); s.setAttribute('data-k','num'); s.textContent=t.textContent; t.replaceWith(s); }); }
+  // marca: elemento-chave por texto
+  (cfg.marcas||[]).forEach(([re,k,sel]:[string,string,string])=>{ const r=new RegExp(re); const c=Array.from(document.querySelectorAll(sel||'*')).filter(e=>r.test(e.textContent||'')); const e=c[c.length-1]; e?.setAttribute('data-k',k); });
+};
+
+test.use({ viewport: { width: 1440, height: 900 }, deviceScaleFactor: 2 });
+const SHOTS: any[] = [
+  { nome:'campanha', path:'/t31-store/campaigns/create', vh:900, celular:'[data-testid=composer-studio] > div:nth-child(2) > div',
+    prep: async (page:any)=>{ await page.getByLabel(/^Título/).first().fill('Chegou a coleção nova'); await page.getByLabel(/^Mensagem/).first().fill('Veja primeiro no app, antes de todo mundo.'); await page.getByRole('button',{name:'Amanhã, 10:00'}).click(); await page.waitForTimeout(800); },
+    marcas:[['^Agendar$','agendar','button'],['^Testar$','testar','button'],['^Amanhã, 10:00$','amanha','button'],['^Agora$','agora','button'],['^Página inicial$','pagina','button'],['^Outra página$','outrapag','button']] },
+  { nome:'cupom', path:'/t31-store/customization/coupon-banner', vh:900, celular:'[data-platform]',
+    api:(a:any)=>mockCouponBanner(a,{...couponBannerFixture,couponCode:'BEMVINDO',backgroundColorHex:'#155DFC',bannerText:JSON.stringify({type:'doc',content:[{type:'text',text:'Use o cupom '},{type:'text',text:'BEMVINDO',marks:[{type:'bold'}]},{type:'text',text:' na sua primeira compra'}]})}) },
+  { nome:'site', path:'/t31-store/customization/website-banner', vh:900, celular:'[data-platform]', tela:true,
+    api:(a:any)=>mockStoreWithWebsiteBanner(a,{...websiteBannerFixture,content:{textHtml:'<p>Baixe o app e fique por dentro das ofertas e promoções semanais!</p>',buttonText:'Baixar'},theme:{bgColor:'#155DFC',fgColor:'#ffffff'}} as any) },
+  { nome:'boasvindas', path:'/t31-store/customization/welcome-notification', vh:900, celular:'[data-platform]',
+    api:(a:any)=>mockWelcomeNotification(a,{...welcomeNotificationFixture,title:'Bem-vindo à nossa loja!',body:'Obrigado por instalar nosso app.'}) },
+  { nome:'vendas', path:'/t31-store/metrics?tab=sales', vh:1600, numeros:true, api:(a:any)=>mockT31Sales(a) },
+];
+for (const s of SHOTS) test(s.nome, async ({ api, page }) => {
+  test.setTimeout(90000);
+  await page.setViewportSize({ width: 1440, height: s.vh });
+  s.api?.(api);
+  await page.goto(s.path);
+  await page.waitForTimeout(s.nome==='site'?6000:3500);
+  await s.prep?.(page);
+  await page.waitForTimeout(1200);
+  await page.evaluate(LIMPA, { numeros:s.numeros, marcas:s.marcas||[] });
+  await page.waitForTimeout(300);
+  await page.screenshot({ path: `${OUT}/ref-${s.nome}.png` });
+  await page.evaluate(FLATTEN);
+  const out = await page.evaluate(async ({ celular }) => {
+    const w:any = window; const root=document.getElementById('root')!;
+    let phone=''; let rect:any=null;
+    if (celular) { const el=document.querySelector(celular) as HTMLElement; if(el){ const r=el.getBoundingClientRect(); rect={x:r.x,y:r.y,w:r.width,h:r.height,k:r.width/el.offsetWidth,ow:el.offsetWidth,oh:el.offsetHeight}; phone=w.__flat(el); el.style.visibility='hidden'; } }
+    const main=w.__flat(root);
+    const img:Record<string,string>={};
+    for (const [k,src] of Object.entries(w.__assets as Record<string,string>)) { if ((src as string).startsWith('data:')) { img[k]=src as string; continue; } try { const b=await (await fetch(src as string)).blob(); img[k]=await new Promise(r=>{const f=new FileReader();f.onload=()=>r(f.result as string);f.readAsDataURL(b);}); } catch {} }
+    return { main, phone, rect, img };
+  }, { celular: s.celular });
+  writeFileSync(`${OUT}/${s.nome}.html`, out.main);
+  if (out.phone) writeFileSync(`${OUT}/${s.nome}-celular.html`, out.phone);
+  writeFileSync(`${OUT}/${s.nome}.json`, JSON.stringify({ rect: out.rect, h: s.vh }));
+  for (const [k,d] of Object.entries(out.img)) writeFileSync(`${OUT}/img/${k}`, Buffer.from((d as string).split(',')[1], 'base64'));
+});

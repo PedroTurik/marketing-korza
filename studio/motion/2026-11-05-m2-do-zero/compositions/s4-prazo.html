@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Cena 4 — "em até 14 dias úteis" (prazo-14-dias).
+      Resposta visual ao calendário riscado do ato 1: 14 dias úteis (3 semanas de seg–sex) enchendo de azul.
+    -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #10213b;
+        }
+        #p-bg {
+          position: absolute;
+          inset: 0;
+          background: #fff;
+        }
+        .p-head {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: var(--safe-top);
+        }
+        .p-pre {
+          font-size: 64px;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+          color: #7d8da1;
+        }
+        .p-stat {
+          display: flex;
+          align-items: baseline;
+          gap: 26px;
+          margin-top: 6px;
+          white-space: nowrap;
+        }
+        .p-stat .n {
+          font-size: 300px;
+          font-weight: 600;
+          line-height: 0.88;
+          letter-spacing: -0.06em;
+          color: #155dfc;
+          font-variant-numeric: tabular-nums;
+        }
+        .p-stat .u {
+          font-size: 96px;
+          font-weight: 600;
+          line-height: 1;
+          letter-spacing: -0.045em;
+        }
+        /* 14 dias úteis: 3 semanas, seg–sex */
+        #p-cal {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: 745px;
+          padding: 26px 30px;
+          border-radius: 36px;
+          background: #f5f8fc;
+          border: 2px solid #e5ebf2;
+        }
+        .p-wd,
+        .p-grid {
+          display: grid;
+          grid-template-columns: repeat(5, 1fr);
+          gap: 12px;
+        }
+        .p-wd span {
+          text-align: center;
+          font-size: 28px;
+          font-weight: 600;
+          color: #7d8da1;
+          padding-bottom: 14px;
+        }
+        .p-grid span {
+          height: 60px;
+          border-radius: 20px;
+          background: #fff;
+          border: 2px solid #e5ebf2;
+          display: grid;
+          place-items: center;
+          font-size: 34px;
+          font-weight: 600;
+          color: #7d8da1;
+        }
+        .p-stat .n {
+          display: inline-block;
+          transform-origin: 0% 100%;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s4-prazo" data-width="1080" data-height="1920">
+        <div id="p-bg"></div>
+        <div class="p-head">
+          <div class="p-pre" id="p-pre">Seu app no ar em até</div>
+          <div class="p-stat"><span class="n" id="p-n">14</span><span class="u" id="p-u">dias<br />úteis.</span></div>
+        </div>
+        <div id="p-cal">
+          <div class="p-wd"><span>seg</span><span>ter</span><span>qua</span><span>qui</span><span>sex</span></div>
+          <div class="p-grid">
+            <span>1</span><span>2</span><span>3</span><span>4</span><span>5</span>
+            <span>6</span><span>7</span><span>8</span><span>9</span><span>10</span>
+            <span>11</span><span>12</span><span>13</span><span class="last">14</span><span style="opacity: 0"></span>
+          </div>
+        </div>
+      </div>
+
+      <script>
+        // Cena 4 (local 0 = 17,55s). Fala: "em até" 0.12 · "quatorze" 0.57 · "dias úteis" 1.22 · fim 2.3
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#p-pre", { opacity: 0, y: 30 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.02);
+        // "14" fixo entra crescendo (sem contagem: nenhum prazo diferente de 14 aparece na tela)
+        tl.fromTo("#p-n", { scale: 0.55, opacity: 0 }, { scale: 1, opacity: 1, duration: 0.6, ease: "back.out(1.6)" }, 0.42);
+        tl.fromTo("#p-n", { scale: 1 }, { scale: 1.07, duration: 0.12, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 0.9);
+        tl.fromTo("#p-u", { opacity: 0, x: -30 }, { opacity: 1, x: 0, duration: 0.45, ease: "power3.out" }, 1.12);
+        // Grade: 14 dias úteis enchem de azul, no ritmo da contagem
+        tl.fromTo("#p-cal", { opacity: 0, y: 60 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out" }, 0.1);
+        const cells = Array.from(document.querySelectorAll("[data-composition-id='s4-prazo'] .p-grid span")).slice(0, 14);
+        cells.forEach((cell, i) => {
+          const t = 0.2 + i * 0.054;
+          tl.fromTo(cell, { backgroundColor: "#ffffff", borderColor: "#e5ebf2", color: "#7d8da1", scale: 1 },
+            { backgroundColor: "#155dfc", borderColor: "#155dfc", color: "#ffffff", duration: 0.12, ease: "none" }, t);
+          tl.fromTo(cell, { scale: 1 }, { scale: 1.1, duration: 0.08, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, t);
+        });
+        tl.fromTo(".p-grid span.last", { boxShadow: "0 0 0 0px rgba(21,93,252,0.35)" }, { boxShadow: "0 0 0 14px rgba(21,93,252,0)", duration: 0.7, ease: "power2.out" }, 0.95);
+        // Respiro até o corte: a grade aproxima devagar
+        tl.fromTo("#p-cal", { scale: 1 }, { scale: 1.02, duration: 1.0, ease: "sine.inOut", immediateRender: false }, 1.3);
+        window.__timelines["s4-prazo"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

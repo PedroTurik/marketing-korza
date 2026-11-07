@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- M3, plano-sequência. GERADO por assets/telas/montar.py a partir de compositions/src/ e das telas extraídas do admin: edite o src. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; background: #f5f8fc; }
+        /* Fundos do mundo */
+        #bg-ice { position: absolute; inset: 0; background: radial-gradient(1100px 900px at 72% 62%, #dbe7ff 0%, rgba(219,231,255,0) 70%), radial-gradient(900px 800px at 18% 28%, #e6eeff 0%, rgba(230,238,255,0) 70%), #f5f8fc; }
+        #bg-impact { position: absolute; inset: 0; background: linear-gradient(145deg, #236cfb 0%, #155dfc 40%, #0739b0 100%); }
+        /* Câmera */
+        #stage { position: absolute; inset: 0; perspective: 1800px; perspective-origin: 540px 960px; overflow: hidden; }
+        .cam { position: absolute; left: 540px; top: 960px; width: 0; height: 0; transform-style: preserve-3d; }
+        #world { position: absolute; left: 0; top: 0; width: 0; height: 0; transform-style: preserve-3d; }
+        #lines { position: absolute; left: -2600px; top: -2200px; width: 9600px; height: 7000px; opacity: 0.55; }
+        /* Telas */
+        .sheet { position: absolute; width: 1440px; background: #fff; border-radius: 18px; overflow: hidden; box-shadow: 0 0 0 1px rgba(16,33,59,.06), 0 40px 90px rgba(16,33,59,.16), 0 120px 200px rgba(21,93,252,.10); backface-visibility: hidden; }
+        .sheet [data-k="num"] { filter: blur(7px); }
+        .sheet svg text[data-k="num"] { filter: blur(4px); }
+        #card [data-k="num"], #fc-panel [data-k="num"] { visibility: hidden; }
+        .sheet-in { position: absolute; left: 0; top: 0; width: 1440px; transform-origin: 0 0; }
+        /* Celular como camada */
+        .ph { position: absolute; transform-style: flat; }
+        .ph-shadow { position: absolute; inset: 3% 2%; border-radius: 60px; box-shadow: 0 50px 90px rgba(16,33,59,.34), 0 120px 200px rgba(21,93,252,.26); }
+        .ph-in { position: absolute; }
+        /* Peças soltas */
+        .npush { position: absolute; width: 640px; padding: 26px 30px; display: flex; gap: 22px; align-items: center; border-radius: 40px; background: rgba(255,255,255,.96); box-shadow: 0 30px 70px rgba(16,33,59,.28), 0 90px 150px rgba(21,93,252,.25); color: #10213b; }
+        .npush img { width: 92px; height: 92px; border-radius: 22px; flex: none; }
+        .npush b { display: block; font-size: 32px; font-weight: 600; letter-spacing: -.02em; }
+        .npush span { display: block; font-size: 27px; line-height: 1.25; color: #42556c; letter-spacing: -.01em; margin-top: 3px; }
+        .npush i { position: absolute; right: 30px; top: 28px; font-style: normal; font-size: 23px; color: #708096; }
+        .pl { position: absolute; display: flex; align-items: center; gap: 10px; padding: 11px 19px; border-radius: 999px; font-size: 25px; font-weight: 600; letter-spacing: -.01em; color: #fff; box-shadow: 0 14px 30px rgba(16,33,59,.22); }
+        .pl::before { content: ''; width: 11px; height: 11px; border-radius: 50%; background: #fff; }
+        #pl-app { background: #155dfc; }
+        #pl-site { background: #42556c; }
+        #t-cupom { position: absolute; display: flex; align-items: center; gap: 18px; padding: 22px 34px; background: #155dfc; color: #fff; border-radius: 22px; font-size: 42px; font-weight: 600; letter-spacing: .02em; box-shadow: 0 30px 70px rgba(21,93,252,.45); }
+        #t-cupom svg { width: 46px; height: 46px; }
+        #b-site { position: absolute; left: 11px; top: 62px; width: 320px; height: 96px; background: #155dfc; color: #fff; display: flex; align-items: center; gap: 12px; padding: 0 14px; font-size: 14.5px; font-weight: 600; line-height: 1.25; letter-spacing: -.01em; }
+        #b-site u { flex: none; text-decoration: none; background: #fff; color: #155dfc; font-size: 13px; padding: 9px 13px; border-radius: 8px; letter-spacing: .03em; }
+        #selo { position: absolute; display: flex; align-items: center; gap: 12px; padding: 16px 26px; border-radius: 999px; background: #155dfc; color: #fff; font-size: 30px; font-weight: 600; letter-spacing: -.01em; box-shadow: 0 22px 50px rgba(21,93,252,.42); white-space: nowrap; }
+        #selo svg { width: 28px; height: 28px; }
+        #ic-app { position: absolute; width: 104px; height: 104px; border-radius: 24px; box-shadow: 0 24px 50px rgba(16,33,59,.35); }
+        #pl-time { position: absolute; display: flex; align-items: center; gap: 16px; padding: 22px 34px; border-radius: 999px; background: #fff; color: #10213b; font-size: 36px; font-weight: 600; letter-spacing: -.01em; box-shadow: 0 24px 56px rgba(16,33,59,.25); white-space: nowrap; }
+        #pl-time small { font-size: 22px; letter-spacing: .12em; color: #708096; font-weight: 600; }
+        #pl-time svg { width: 84px; height: 18px; }
+        .roll { display: inline-block; height: 1em; line-height: 1; overflow: hidden; vertical-align: top; }
+        .roll > span { display: block; height: 1em; line-height: 1; }
+        .chr { opacity: 0; }
+        .caret { display: inline-block; width: 2px; height: 1.15em; background: #155dfc; vertical-align: -0.2em; margin-left: 1px; }
+        .mk { display: block; overflow: hidden; padding-bottom: 0.14em; margin-bottom: -0.14em; }
+        .mk > .in { display: block; }
+        #cursor { position: absolute; width: 46px; height: 46px; filter: drop-shadow(0 10px 14px rgba(16,33,59,.35)); }
+        #ripple { position: absolute; width: 58px; height: 58px; margin: -29px; border-radius: 50%; background: rgba(21,93,252,.22); border: 2px solid rgba(21,93,252,.7); }
+        #card { position: absolute; background: #fff; border-radius: 24px; box-shadow: 0 0 0 1px rgba(16,33,59,.06), 0 50px 110px rgba(16,33,59,.26), 0 130px 220px rgba(21,93,252,.28); overflow: hidden; }
+        #card .in { position: absolute; }
+        /* Tipografia em tela */
+        #scrim { position: absolute; left: 0; right: 0; top: 0; height: 640px; background: linear-gradient(#f5f8fc 0%, #f5f8fc 80%, rgba(245,248,252,0) 100%); }
+        #scrim2 { position: absolute; left: 0; right: 0; top: 0; height: 880px; background: linear-gradient(#f5f8fc 0%, #f5f8fc 74%, rgba(245,248,252,0) 100%); }
+        .hud { position: absolute; left: 72px; right: 72px; top: 270px; }
+        .eb { display: flex; align-items: center; gap: 16px; font-size: 30px; font-weight: 600; color: #155dfc; margin-bottom: 18px; }
+        .eb s { display: flex; gap: 7px; text-decoration: none; }
+        .eb s b { display: block; width: 40px; height: 6px; border-radius: 3px; background: #d5e0f0; }
+        .eb s b.on { background: #155dfc; }
+        .ti { font-size: 92px; font-weight: 600; line-height: 1.05; letter-spacing: -0.04em; color: #10213b; }
+        .ti em { display: block; font-style: normal; color: #155dfc; }
+        .hk { position: absolute; left: 72px; right: 60px; top: 270px; color: #fff; font-weight: 600; font-size: 82px; line-height: 1.06; letter-spacing: -0.045em; }
+        .hk em { font-style: normal; color: rgba(255,255,255,.72); }
+        #pv { position: absolute; left: 72px; right: 72px; top: 270px; }
+        #pv .n { font-size: 158px; font-weight: 600; line-height: 1; letter-spacing: -0.055em; color: #155dfc; }
+        #pv .r { font-size: 62px; font-weight: 600; line-height: 1.1; letter-spacing: -0.035em; color: #10213b; margin-top: 16px; }
+        #iris { position: absolute; left: 0; top: 0; width: 200px; height: 200px; margin: -100px; border-radius: 50%; background: #155dfc; }
+        #fc { position: absolute; inset: 0; }
+        #fc .bg { position: absolute; inset: 0; background: linear-gradient(145deg, #236cfb 0%, #155dfc 40%, #0739b0 100%); }
+        #fc-t { position: absolute; left: 72px; right: 40px; top: 270px; color: #fff; font-size: 106px; font-weight: 600; line-height: 1.04; letter-spacing: -0.045em; }
+        #fc-t em { display: block; font-style: normal; color: rgba(255,255,255,.62); }
+        #fc-btn { position: absolute; left: 50%; bottom: var(--safe-bottom); font-size: 36px; padding: 26px 38px; white-space: nowrap; }
+        #fc-stage { position: absolute; inset: 0; perspective: 1800px; perspective-origin: 540px 1000px; }
+        #fc-panel { position: absolute; left: 60px; top: 780px; background: #fff; border-radius: 24px; overflow: hidden; transform-origin: 50% 50%; box-shadow: 0 80px 160px rgba(3,20,70,.5); }
+      </style>
+
+      <div id="root" data-composition-id="s1-mundo" data-width="1080" data-height="1920">
+        <div id="bg-ice"></div>
+        <div id="bg-impact"></div>
+
+        <div id="stage">
+          <div class="cam" id="cam-z"><div class="cam" id="cam-r" style="left:0;top:0"><div class="cam" id="cam-p" style="left:0;top:0">
+            <div id="world">
+              <svg id="lines" data-layout-ignore viewBox="0 0 9600 7000" preserveAspectRatio="none" style="transform: translateZ(-500px)">{{linhas}}</svg>
+
+              <div class="sheet" id="sh-vendas"><div class="sheet-in">{{vendas}}</div></div>
+              <div class="sheet" id="sh-boasvindas"><div class="sheet-in">{{boasvindas}}</div></div>
+              <div class="sheet" id="sh-site"><div class="sheet-in">{{site}}</div></div>
+              <div class="sheet" id="sh-cupom"><div class="sheet-in">{{cupom}}</div></div>
+              <div class="sheet" id="sh-campanha"><div class="sheet-in">{{campanha}}</div></div>
+
+              <div class="ph" id="ph-campanha" data-layout-ignore><div class="ph-shadow"></div><div class="ph-in">{{campanha-celular}}</div></div>
+              <div class="ph" id="ph-cupom" data-layout-ignore><div class="ph-shadow"></div><div class="ph-in">{{cupom-celular}}</div></div>
+              <div class="ph" id="ph-site" data-layout-ignore><div class="ph-shadow"></div><div class="ph-in">{{site-celular}}<div id="b-site"><span>Baixe o app e fique por dentro das ofertas e promoções semanais!</span><u>BAIXAR</u></div></div></div>
+              <div class="ph" id="ph-boasvindas" data-layout-ignore><div class="ph-shadow"></div><div class="ph-in">{{boasvindas-celular}}</div></div>
+
+              <div id="card" data-layout-ignore></div>
+              <div id="n-push" class="npush" data-layout-ignore><img src="assets/img/icone-loja.svg" alt="" /><div><b>Chegou a coleção nova</b><span>Veja primeiro no app, antes de todo mundo.</span></div><i>agora</i></div>
+              <div id="t-cupom" data-layout-ignore><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9V6h18v3a3 3 0 0 0 0 6v3H3v-3a3 3 0 0 0 0-6z"/><path d="M14 6v2M14 11v2M14 16v2"/></svg>BEMVINDO</div>
+              <div id="selo" data-layout-ignore><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>Push ilimitado</div>
+              <div id="n-boas" class="npush" data-layout-ignore><img src="assets/img/icone-loja.svg" alt="" /><div><b>Bem-vindo à nossa loja!</b><span>Obrigado por instalar nosso app.</span></div><i>agora</i></div>
+              <img id="ic-app" data-layout-ignore src="assets/img/icone-loja.svg" alt="" />
+              <div id="pl-time" data-layout-ignore><small>INSTALOU</small>9:41<svg viewBox="0 0 72 16" fill="none" stroke="#155dfc" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"><path id="seta" d="M2 8h66M60 2l8 6-8 6"/></svg><small>CHEGA</small>9:46</div>
+              <div class="pl" id="pl-app" data-layout-ignore>App</div><div class="pl" id="pl-site" data-layout-ignore>Site</div>
+              <div id="ripple" data-layout-ignore></div>
+              <svg id="cursor" data-layout-ignore viewBox="0 0 24 24"><path d="M5 2.5 19.5 13l-6.6 1.1 3.9 7.2-2.9 1.6-3.9-7.3-4.9 4.6z" fill="#10213b" stroke="#fff" stroke-width="1.4" stroke-linejoin="round"/></svg>
+            </div>
+          </div></div></div>
+        </div>
+
+        <div id="scrim"></div>
+        <div id="scrim2"></div>
+
+        <div class="hk" id="hk-a">Isso é o que você ganha<br /><em>quando lança o app<br />da sua loja com a&nbsp;Korza.</em></div>
+        <div class="hk" id="hk-b">Quanto o app<br />da sua loja vendeu<br /><em>este mês?</em></div>
+
+        <div class="hud" id="t1"><div class="eb">Campanhas<s><b class="on"></b><b></b><b></b><b></b></s></div><div class="ti"><span class="mk"><span class="in">Sua oferta,</span></span><span class="mk"><span class="in" style="color:#155dfc">na hora certa.</span></span></div></div>
+        <div class="hud" id="t2"><div class="eb">App<s><b class="on"></b><b class="on"></b><b></b><b></b></s></div><div class="ti"><span class="mk"><span class="in">Do site</span></span><span class="mk"><span class="in" style="color:#155dfc">para o app.</span></span></div></div>
+        <div class="hud" id="t3"><div class="eb">Boas-vindas<s><b class="on"></b><b class="on"></b><b class="on"></b><b></b></s></div><div class="ti"><span class="mk"><span class="in">Quem instala</span></span><span class="mk"><span class="in" style="color:#155dfc">é recebido.</span></span></div></div>
+        <div class="hud" id="t4"><div class="eb">Analytics<s><b class="on"></b><b class="on"></b><b class="on"></b><b class="on"></b></s></div><div class="ti"><span class="mk"><span class="in">Você vê o que</span></span><span class="mk"><span class="in" style="color:#155dfc">o app vende.</span></span></div></div>
+        <div id="pv"><div class="n mk"><span class="in">1 em cada 3</span></div><div class="r"><span class="mk"><span class="in">pedidos no app vem de</span></span><span class="mk"><span class="in">quem já tinha comprado</span></span></div></div>
+
+        <div id="fc" class="on-dark">
+          <div class="bg"></div>
+          <div id="iris"></div>
+          <div id="fc-stage"><div id="fc-panel" data-layout-ignore><div class="sheet-in">{{campanha2}}</div></div></div>
+          <div id="fc-t"><span class="mk"><span class="in">Transforme</span></span><span class="mk"><span class="in">a sua recompra</span></span><span class="mk"><span class="in" style="color:rgba(255,255,255,.72)">e fidelize</span></span><span class="mk"><span class="in" style="color:rgba(255,255,255,.72)">seu cliente.</span></span></div>
+          <div class="cta" id="fc-btn">Crie sua conta e veja seu app grátis <span>→</span></div>
+        </div>
+      </div>
+
+      <script>
+{{js}}
+      </script>
+    </template>
+  </body>
+</html>

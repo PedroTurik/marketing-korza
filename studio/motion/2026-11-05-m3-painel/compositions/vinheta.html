@@ -1,0 +1,57 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Vinheta de fechamento da Korza (~2,2s), modo impacto: logo grande + CTA. Padrão do Studio (studio/kit/vinheta.html).
+      Monte no fim do index.html: data-composition-id="vinheta", data-duration="2.2". Troque o texto do CTA se o vídeo pedir outro.
+      Funciona em 9:16 e 4:5 (centraliza na zona segura).
+    -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #vh-box {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: var(--safe-top);
+          bottom: calc(var(--safe-bottom) + 150px);
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          justify-content: center;
+          gap: 64px;
+        }
+        #vh-cta {
+          position: absolute;
+          left: 50%;
+          bottom: var(--safe-bottom);
+          font-size: 36px;
+          padding: 26px 38px;
+          white-space: nowrap;
+        }
+      </style>
+
+      <div id="root" class="on-dark" data-composition-id="vinheta" data-width="1080" data-height="1920">
+        <div class="bg-impact"></div>
+        <div id="vh-box">
+          <img id="vh-logo" class="logo-lg" src="assets/brand/logo/korza-logo-white.png" alt="Korza" />
+        </div>
+        <div class="cta" id="vh-cta">Crie sua conta e veja seu app grátis <span>→</span></div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#vh-logo", { opacity: 0, scale: 0.9 }, { opacity: 1, scale: 1, duration: 0.42, ease: "power4.out" }, 0.0);
+        tl.set("#vh-cta", { xPercent: -50 }, 0); // CTA já está na tela desde a cena anterior, na mesma posição
+        window.__timelines["vinheta"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

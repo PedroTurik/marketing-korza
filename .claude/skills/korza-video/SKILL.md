@@ -48,7 +48,7 @@ Não rode `hyperframes init`. Brutos do `inbox/` vão para `assets/footage/` (v�
 Escreva `BRIEF.md` e `STORYBOARD.md` no projeto: uma linha por cena com tempo, modo (claro/impacto/profundo),
 texto na tela, visual e claim usado. Mostre ao Pedro antes de construir.
 
-**Gravados:** rode `npx hyperframes@0.8.158 transcribe` no bruto, escreva `CORTES.md` (trechos mantidos com
+**Gravados:** rode `npx hyperframes@0.9.16 transcribe` no bruto, escreva `CORTES.md` (trechos mantidos com
 timecode, o que sai e por quê, gancho escolhido) e peça aprovação antes de montar.
 
 ## 4. Construir
@@ -66,7 +66,7 @@ timecode, o que sai e por quê, gancho escolhido) e peça aprovação antes de m
 
 ```bash
 npm run check
-npx hyperframes@0.8.158 snapshot --at <1 tempo por cena> -o /tmp/<projeto>-snaps
+npx hyperframes@0.9.16 snapshot --at <1 tempo por cena> -o /tmp/<projeto>-snaps
 ```
 
 - [ ] Texto/números/logo na zona segura
@@ -79,7 +79,7 @@ npx hyperframes@0.8.158 snapshot --at <1 tempo por cena> -o /tmp/<projeto>-snaps
 ## 6. Renderizar e entregar
 
 ```bash
-npx hyperframes@0.8.158 render --quality delivery --fps 30 -o renders/<slug>-<formato>-v1.mp4
+npx hyperframes@0.9.16 render --quality delivery --fps 30 -o renders/<slug>-<formato>-v1.mp4
 ```
 
 Confira com `ffprobe` e informe o caminho. Nova versão = novo sufixo. Adicione a linha no `CATALOGO.md`.

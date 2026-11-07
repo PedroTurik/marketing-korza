@@ -1,0 +1,30 @@
+{
+  "composition_plan": {
+    "positive_global_styles": ["modern minimal electronic", "premium tech product ad", "instrumental", "clean mix", "112 bpm", "tight punchy drums", "continuous energy until the very end"],
+    "negative_global_styles": ["vocals", "lyrics", "choir", "epic orchestral", "dubstep drop", "lo-fi", "fade out", "silence"],
+    "sections": [
+      {
+        "section_name": "do zero - tensao",
+        "positive_local_styles": ["tense ticking pulse", "low muted synth bass", "clock-like percussion", "building pressure", "dark", "sparse", "minor key", "riser into the next section"],
+        "negative_local_styles": ["melody", "bright", "happy"],
+        "duration_ms": 9150,
+        "lines": []
+      },
+      {
+        "section_name": "korza - leve",
+        "positive_local_styles": ["release", "bright airy plucks", "warm pads", "light confident groove", "major key", "optimistic", "soft clap"],
+        "negative_local_styles": ["dark", "aggressive", "heavy bass", "breakdown"],
+        "duration_ms": 9000,
+        "lines": []
+      },
+      {
+        "section_name": "korza - final",
+        "positive_local_styles": ["same groove sustained", "full and confident", "bright plucks and pads", "steady drums", "ends with a clean resolved final chord at the last second"],
+        "negative_local_styles": ["fade out", "silence", "breakdown", "outro too early"],
+        "duration_ms": 9250,
+        "lines": []
+      }
+    ]
+  },
+  "model_id": "music_v1"
+}

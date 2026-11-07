@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Legenda queimada (padrão Korza). GERADO por assets/audio/legenda.py a partir dos tempos da voz: não edite à mão. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+        }
+        .lg-g {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: 1480px;
+          display: flex;
+          justify-content: center;
+          opacity: 0;
+        }
+      </style>
+
+      <div id="root" data-composition-id="legenda" data-width="1080" data-height="1920">
+          <div class="lg-g" id="lg-g0" data-s="1.040" data-e="2.393"><div class="cap"><span class="w" data-s="1.09">Você</span> <span class="w" data-s="1.347">leu</span> <span class="w" data-s="1.512">essa</span> <span class="w" data-s="1.68">notificação,</span></div></div>
+          <div class="lg-g" id="lg-g1" data-s="2.443" data-e="3.130"><div class="cap"><span class="w" data-s="2.493">né?</span></div></div>
+          <div class="lg-g" id="lg-g2" data-s="3.180" data-e="4.740"><div class="cap"><span class="w" data-s="3.23">Seu</span> <span class="w" data-s="3.545">cliente</span> <span class="w" data-s="3.777">também</span> <span class="w" data-s="4.2">lê.</span></div></div>
+          <div class="lg-g" id="lg-g3" data-s="4.790" data-e="5.740"><div class="cap"><span class="w" data-s="4.84">Com</span> <span class="w" data-s="5.2">a</span> <span class="w" data-s="5.32">Korza,</span></div></div>
+          <div class="lg-g" id="lg-g4" data-s="5.790" data-e="6.447"><div class="cap"><span class="w" data-s="5.84">sua</span> <span class="w" data-s="6.013">loja</span> <span class="w" data-s="6.32">ganha</span></div></div>
+          <div class="lg-g" id="lg-g5" data-s="6.497" data-e="7.220"><div class="cap"><span class="w" data-s="6.547">um</span> <span class="w" data-s="6.66">app</span> <span class="w" data-s="6.904">próprio</span></div></div>
+          <div class="lg-g" id="lg-g6" data-s="7.270" data-e="8.073"><div class="cap"><span class="w" data-s="7.32">e</span> <span class="w" data-s="7.44">fala</span> <span class="w" data-s="7.784">direto</span></div></div>
+          <div class="lg-g" id="lg-g7" data-s="8.123" data-e="9.020"><div class="cap"><span class="w" data-s="8.173">na</span> <span class="w" data-s="8.328">tela</span> <span class="w" data-s="8.584">dele.</span></div></div>
+          <div class="lg-g" id="lg-g8" data-s="9.070" data-e="9.820"><div class="cap"><span class="w" data-s="9.12">Para</span> <span class="w" data-s="9.613">lojas</span></div></div>
+          <div class="lg-g" id="lg-g9" data-s="9.870" data-e="11.610"><div class="cap"><span class="w" data-s="9.92">Nuvemshop</span> <span class="w" data-s="10.68">e</span> <span class="w" data-s="10.84">Shopify.</span></div></div>
+          <div class="lg-g" id="lg-g10" data-s="11.660" data-e="12.580"><div class="cap"><span class="w" data-s="11.71">App</span> <span class="w" data-s="12.253">no</span> <span class="w" data-s="12.44">ar</span></div></div>
+          <div class="lg-g" id="lg-g11" data-s="12.630" data-e="14.370"><div class="cap"><span class="w" data-s="12.68">em</span> <span class="w" data-s="12.9">até</span> <span class="w" data-s="13.107">14</span> <span class="w" data-s="13.624">dias</span> <span class="w" data-s="13.96">úteis.</span></div></div>
+          <div class="lg-g" id="lg-g12" data-s="14.420" data-e="15.807"><div class="cap"><span class="w" data-s="14.47">Notificações</span> <span class="w" data-s="15.48">push</span></div></div>
+          <div class="lg-g" id="lg-g13" data-s="15.857" data-e="17.140"><div class="cap"><span class="w" data-s="15.907">ilimitadas.</span></div></div>
+      </div>
+
+      <script>
+        const tl = gsap.timeline({ paused: true });
+        document.querySelectorAll("[data-composition-id='legenda'] .lg-g").forEach((g) => {
+          const s = +g.dataset.s, e = +g.dataset.e;
+          tl.fromTo(g, { opacity: 0, y: 10 }, { opacity: 1, y: 0, duration: 0.12, ease: "power2.out", immediateRender: false }, s);
+          tl.set(g, { opacity: 0 }, e);
+          g.querySelectorAll(".w").forEach((w, i, all) => {
+            const ws = +w.dataset.s;
+            tl.set(w, { color: "#155DFC" }, ws);
+            const next = all[i + 1];
+            if (next) tl.set(w, { color: "#10213B" }, +next.dataset.s);
+          });
+        });
+        window.__timelines["legenda"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

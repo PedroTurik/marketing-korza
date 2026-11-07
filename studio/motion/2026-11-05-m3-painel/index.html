@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Korza — M3 O painel</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/brand/korza-video.css" />
+    <style>
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        src: url("assets/brand/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+        font-weight: 200 800;
+        font-style: normal;
+      }
+      :root { --safe-top: 270px; --safe-bottom: 670px; }
+      * { margin: 0; padding: 0; box-sizing: border-box; }
+      html, body { width: 1080px; height: 1920px; overflow: hidden; background: #fff; }
+      #root { position: relative; width: 100%; height: 100%; overflow: hidden; font-family: "Plus Jakarta Sans", sans-serif; }
+      #legenda { z-index: 40; }
+      /* Variantes (build.sh troca data-fmt/data-gancho). O CSS das cenas é isolado. */
+      [data-fmt="feed"] .lg-g { top: 1196px !important; }
+      [data-fmt="feed"] .hud, [data-fmt="feed"] .hk, [data-fmt="feed"] #pv { top: 64px !important; }
+      [data-fmt="feed"] .hk { font-size: 76px !important; }
+      [data-fmt="feed"] .ti { font-size: 80px !important; }
+      [data-fmt="feed"] #pv .n { font-size: 132px !important; }
+      [data-fmt="feed"] #pv .r { font-size: 52px !important; }
+      [data-fmt="feed"] #scrim { height: 400px !important; }
+      [data-fmt="feed"] #scrim2 { height: 520px !important; }
+      [data-fmt="feed"] #fc-t { top: 64px !important; font-size: 92px !important; }
+      [data-fmt="feed"] #fc-panel { top: 560px !important; }
+    </style>
+  </head>
+  <body>
+    <div id="root" data-fmt="reels" data-gancho="a" data-composition-id="main" data-start="0" data-duration="27.8" data-width="1080" data-height="1920">
+      <div id="s1-mundo" class="clip" data-composition-id="s1-mundo" data-composition-src="compositions/s1-mundo.html" data-start="0" data-duration="25.6" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="vinheta" class="clip" data-composition-id="vinheta" data-composition-src="compositions/vinheta.html" data-start="25.6" data-duration="2.2" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="27.8" data-track-index="2" data-volume="1"></audio>
+      <div id="legenda" class="clip" data-composition-id="legenda" data-composition-src="compositions/legenda.html" data-start="0" data-duration="24.25" data-track-index="1" data-width="1080" data-height="1920"></div>
+    </div>
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

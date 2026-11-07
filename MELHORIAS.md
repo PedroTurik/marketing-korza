@@ -8,14 +8,14 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 - **`noindex` no `public.korza.app`:** cabeçalho `X-Robots-Tag: noindex` na rota `website-banner/:idOrHostname/rendered`
   (`korza/dev/backend/src/controllers/website-banner.controller.ts`), com quem cuida do backend. A remoção temporária
   no Search Console (pedida em 2026-10-27 para `admin.korza.app` e `public.korza.app`) vale até ~2027-04-27.
-- **Sessões de "Paid Search" sem campanha:** o GA4 mostrou 12 sessões, com engajamento zero, nos 28 dias até 2026-10-29,
-  e a conta do Google Ads não tem campanha. Provável tráfego automático; olhar na próxima análise do `/cmo`.
-- **Guardar a origem na conta:** o admin salva UTMs, `fbclid`/`gclid` e a página de entrada junto da conta criada
-  (`estrategia/plano-de-medicao.md`, "UTMs e atribuição").
+- **Sessões de "Paid Search" sem campanha (robô):** 15 sessões `google / cpc` de 28/10 a 05/11, todas iguais (desktop,
+  país não identificado, 0 s, só a home, sem campanha), sem nenhuma campanha no Google Ads. Não custam nada; ignorar.
+  Quando a primeira campanha no Google subir, excluir esse padrão (país `(not set)`, 0 s) da leitura do canal pago.
 - **Tag do Google Ads e conversão de cadastro:** pôr `AW-18544776538` no site e importar o `sign_up` do GA4 como
   conversão principal no Google Ads. Antes da primeira campanha no Google, depois do PR do admin.
-- **Conversions API pelo backend:** `CompleteRegistration` e `Subscribe` com `event_id` igual ao do Pixel. Depois do
-  PR do admin.
+- **Tráfego local no GA4:** em 2026-11-06 entraram ~34 eventos de `localhost`/`127.0.0.1` (site rodando na máquina:
+  `/guias/`, `/blog/`). Carregar o GA4 do site só quando `location.hostname === 'korza.app'`, ou filtrar esses hosts nas
+  leituras. Não trava enquanto o volume for pequeno.
 
 ## SEO
 
@@ -52,6 +52,6 @@ Ao fazer, apagar a linha daqui e registrar onde ficou.
 
 ## Privacidade
 
-- **Política × Pixel:** a seção 7 da política de privacidade do site diz que não há cookies de marketing, mas o Pixel da
-  Meta roda no `korza.app` desde 2026-10-27, sem banner. Corrigir a política (conferir também os contatos `@korza.app` e a
-  seção 11, que falta) e avaliar um banner de consentimento (`estrategia/plano-de-medicao.md`, LGPD).
+- **Banner de consentimento:** a política foi atualizada em 2026-11-06 (cookies de análise e publicidade, seção 11), mas
+  o site e o admin rodam GA4 e Pixel sem banner, com sinais de anúncio negados no Consent Mode. Avaliar o banner antes de
+  escalar verba ou quando a política em português sair.

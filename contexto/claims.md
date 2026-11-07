@@ -27,6 +27,7 @@ Peças antigas que usam o valor anterior são marcadas como desatualizadas no ca
 | `recompra-1-em-3` | 1 em 3 pedidos é recompra | "1 em cada 3 pedidos no app vem de quem já tinha comprado" | Painel: 36,1% em 90 dias até 2026-10-29 | Com o período quando couber | 2026-10-30 | Aprovado |
 | `meta-recompra-10-15` | Meta de recompra +10–15% | "Objetivo de aumento na recompra" | Site (seção "Nosso objetivo") | Só como meta/objetivo, nunca como resultado. Com a ressalva "metas de referência, não garantias" | 2026-10-26 | Aprovado (como meta) |
 | `meta-ticket-20` | Meta de ticket médio +20% | "Objetivo de aumento no ticket médio" | Site (seção "Nosso objetivo") | Idem acima | 2026-10-26 | Aprovado (como meta) |
+| `app-sob-medida-100k` | App sob medida custa até R$ 100 mil (dado de mercado) | "Um app do zero pode custar até R$ 100 mil" | GetNinjas: R$ 25 mil a R$ 100 mil para fazer um app ([fonte](https://www.getninjas.com.br/design-e-tecnologia/aplicativos-para-celular-e-redes-sociais/preco/fazer-um-app)), consultado em 2026-11-05 | Sempre "até". Só para o lado "do zero" de uma comparação; o foco da peça é a facilidade da Korza. Sem rodapé de fonte na peça, por decisão do Pedro; a fonte fica aqui. Prazo de desenvolvimento sem fonte: dizer "meses", sem número | 2026-11-05 | Aprovado |
 
 ## Afirmações de produto
 
@@ -38,7 +39,8 @@ Peças antigas que usam o valor anterior são marcadas como desatualizadas no ca
 | `preview-gratis` | O lojista vê gratuitamente como ficaria o app da loja | Oferta principal. Self-serve: cria a conta grátis e o onboarding mostra o preview. Ver [produto.md](produto.md) | 2026-10-26 | Aprovado |
 | `sem-conta-dev` | O lojista não precisa de conta de desenvolvedor: a Korza publica o app nas contas dela (Apple e Google) | Livre. Ex.: "Sem conta de desenvolvedor, sem taxa da Apple e do Google" | 2026-10-26 | Aprovado |
 | `push-ilimitado` | Push ilimitado no plano | Livre | 2026-10-26 | Aprovado |
-| `sem-setup-comissao` | Sem taxa de setup e sem comissão sobre vendas; só a mensalidade | **Volátil**: planos e features comissionadas estão para sair. Confira a data de verificação; se tiver mais de 30 dias, pergunte antes de usar | 2026-10-26 | Aprovado |
+| `sem-setup-comissao` | Sem taxa de setup e sem comissão sobre vendas; só a mensalidade | **Volátil**: planos e features comissionadas estão para sair. Confira a data de verificação; se tiver mais de 30 dias, pergunte antes de usar | 2026-11-06 | Aprovado |
+| `assina-sozinho` | O lojista assina o plano direto na plataforma, sem falar com ninguém | Livre. Ex.: "Crie a conta, veja seu app e assine na hora. Sem reunião." Vale para lojista novo | 2026-11-06 | Aprovado |
 
 ## Cases e clientes
 
@@ -68,3 +70,4 @@ Peças antigas que usam o valor anterior são marcadas como desatualizadas no ca
 - 2026-10-30: Pedro aprovou os números do painel ([../estrategia/dados-do-painel.md](../estrategia/dados-do-painel.md)). Loum passa
   de 42% para 88,6% em 90 dias. Pé de Algodão mantém 4,98%, por decisão dele, embora o painel mostre 2,44% a 3,39% em
   campanhas sobre o faturamento da loja. Implantação assíncrona e automática: depois do onboarding, o lojista não faz mais nada.
+- 2026-11-05: Pedro aprovou `app-sob-medida-100k` (dado de mercado, GetNinjas) para o motion "Do zero × Korza".

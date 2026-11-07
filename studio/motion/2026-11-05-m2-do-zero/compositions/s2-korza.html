@@ -1,0 +1,755 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!--
+      Ato 2 — "Na Korza" (onboarding real, recriado em HTML a partir de contexto/telas/onboarding/iphone-*.png).
+      Loja genérica "Sua Loja" (decisão do Pedro): sem nome/domínio/e-mail da conta de teste.
+      Passos: Loja (plataforma) → Logo → Navegação (cor) → Notificação de teste → tudo ✓.
+      O celular é um só, em perspectiva; a tela troca de passo e a câmera acompanha.
+    -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+          color: #10213b;
+        }
+        #k-bg {
+          position: absolute;
+          inset: 0;
+          background: linear-gradient(180deg, #ffffff 0%, #f3f7ff 60%, #e9f1ff 100%);
+        }
+        /* linhas finas azuis do fundo do onboarding real */
+        #k-lines {
+          position: absolute;
+          inset: 0;
+          background-image: repeating-linear-gradient(96deg, rgba(21, 93, 252, 0.07) 0 2px, transparent 2px 38px);
+          -webkit-mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+          mask-image: linear-gradient(180deg, transparent 0%, #000 45%, #000 100%);
+        }
+
+        /* ── Título ── */
+        .k-head {
+          position: absolute;
+          left: var(--edge-x);
+          right: var(--edge-x);
+          top: var(--safe-top);
+        }
+        .k-step {
+          display: flex;
+          align-items: center;
+          gap: 18px;
+          font-size: 30px;
+          font-weight: 600;
+          color: #155dfc;
+          margin-bottom: 18px;
+        }
+        .k-step .bar {
+          display: flex;
+          gap: 8px;
+        }
+        .k-step .bar i {
+          width: 44px;
+          height: 8px;
+          border-radius: 4px;
+          background: #dbe6fb;
+        }
+        .k-step .bar i.on {
+          background: #155dfc;
+        }
+        .k-t {
+          font-size: 96px;
+          font-weight: 600;
+          line-height: 1.02;
+          letter-spacing: -0.045em;
+        }
+        .k-t .tone {
+          color: #155dfc;
+        }
+        #k-logo {
+          position: absolute;
+          left: 50%;
+          top: 760px;
+          width: 640px;
+          margin-left: -320px;
+        }
+
+        /* ── Celular (moldura genérica) ── */
+        #k-stage {
+          position: absolute;
+          inset: 0;
+          perspective: 2600px;
+          perspective-origin: 540px 900px;
+        }
+        #k-cam {
+          position: absolute;
+          inset: 0;
+          transform-style: preserve-3d;
+          transform-origin: 540px 1100px;
+        }
+        #k-phone {
+          position: absolute;
+          left: 540px;
+          top: 620px;
+          width: 414px;
+          height: 868px;
+          margin-left: -207px;
+          transform-origin: 207px 0;
+          transform: scale(1.72);
+          border-radius: 64px;
+          background: #14161b;
+          padding: 12px;
+          box-shadow: 0 60px 120px rgba(16, 33, 59, 0.25), inset 0 0 0 2px #2c3240;
+        }
+        #k-screen {
+          --acc: #155dfc; /* cor de destaque do app da loja (muda no passo Navegação) */
+          position: relative;
+          width: 390px;
+          height: 844px;
+          border-radius: 52px;
+          overflow: hidden;
+          background: #fff;
+          font-size: 16px;
+        }
+        .pg {
+          position: absolute;
+          inset: 0;
+        }
+        .tb {
+          position: absolute;
+          top: 12px;
+          left: 12px;
+          right: 12px;
+          display: flex;
+          justify-content: space-between;
+          z-index: 3;
+        }
+        .tb span {
+          height: 36px;
+          border-radius: 18px;
+          background: rgba(255, 255, 255, 0.9);
+          box-shadow: 0 2px 10px rgba(16, 33, 59, 0.1);
+        }
+        .tb span:first-child {
+          width: 76px;
+        }
+        .tb span:last-child {
+          width: 36px;
+          border: 1.5px solid #e5ebf2;
+        }
+
+        /* chips de passos */
+        .chips {
+          display: flex;
+          gap: 6px;
+          white-space: nowrap;
+          overflow: hidden;
+          padding-left: 20px;
+          -webkit-mask-image: linear-gradient(90deg, #000 85%, transparent);
+          mask-image: linear-gradient(90deg, #000 85%, transparent);
+        }
+        .chip {
+          flex: none;
+          height: 24px;
+          padding: 0 10px;
+          border-radius: 12px;
+          background: #f2f4f7;
+          color: #42556c;
+          font-size: 12px;
+          display: flex;
+          align-items: center;
+          gap: 4px;
+        }
+        .chip.on {
+          background: #155dfc;
+          color: #fff;
+        }
+        .chip.ok {
+          background: #f3f7ff;
+          border: 1px solid #b9cdf8;
+          color: #155dfc;
+        }
+        .chip.ok::before {
+          content: "✓";
+          font-size: 11px;
+        }
+        .h {
+          padding: 0 20px;
+          font-size: 25px;
+          line-height: 1.15;
+          letter-spacing: -0.02em;
+          font-weight: 500;
+          color: #10213b;
+        }
+        .sub {
+          padding: 0 20px;
+          margin-top: 8px;
+          font-size: 15px;
+          line-height: 1.4;
+          color: #7d8da1;
+        }
+        .btns {
+          position: absolute;
+          left: 20px;
+          right: 20px;
+          display: flex;
+          justify-content: space-between;
+        }
+        .btn {
+          height: 40px;
+          padding: 0 18px;
+          display: flex;
+          align-items: center;
+          font-size: 15px;
+          border: 1px solid #dfe5ee;
+          color: #10213b;
+          background: #fff;
+        }
+        .btn.p {
+          background: #155dfc;
+          border-color: #155dfc;
+          color: #fff;
+        }
+        .sheet {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 218px;
+          bottom: 0;
+          background: #fff;
+          border-radius: 22px 22px 0 0;
+          box-shadow: 0 -6px 20px rgba(16, 33, 59, 0.08);
+          padding-top: 30px;
+        }
+        .sheet::before {
+          content: "";
+          position: absolute;
+          top: 10px;
+          left: 50%;
+          width: 36px;
+          height: 5px;
+          margin-left: -18px;
+          border-radius: 3px;
+          background: #cfd6df;
+        }
+        .pv-home {
+          position: absolute;
+          left: 0;
+          right: 0;
+          top: 0;
+          height: 240px;
+          background: linear-gradient(135deg, #c8102e 0%, #d4132e 45%, #f04a24 70%, #f6693a 100%);
+        }
+        .icon {
+          border-radius: 22%;
+          display: grid;
+          place-items: center;
+          background: #10213b;
+        }
+        .icon svg {
+          width: 56%;
+          height: 56%;
+        }
+
+        /* P1 Loja */
+        #pg1 .chips {
+          margin-top: 200px;
+        }
+        #pg1 .h {
+          margin-top: 20px;
+        }
+        .plat {
+          display: flex;
+          gap: 14px;
+          padding: 0 20px;
+          margin-top: 22px;
+        }
+        .plat div {
+          flex: 1;
+          height: 92px;
+          border-radius: 14px;
+          border: 2px solid #e5ebf2;
+          background: #f3f7ff;
+          display: grid;
+          place-items: center;
+          position: relative;
+        }
+        .plat img {
+          width: 74%;
+        }
+        .plat .ring {
+          position: absolute;
+          inset: -2px;
+          border: 2px solid #155dfc;
+          border-radius: 14px;
+          background: transparent;
+        }
+        .plat .ckb {
+          position: absolute;
+          top: -10px;
+          right: -8px;
+          width: 26px;
+          height: 26px;
+          border-radius: 50%;
+          background: #155dfc;
+          color: #fff;
+          font-size: 14px;
+          display: grid;
+          place-items: center;
+        }
+        #pg1 .btns {
+          top: 590px;
+          justify-content: flex-end;
+        }
+
+        /* P2 Logo */
+        #pg2 .pv-icon {
+          position: absolute;
+          left: 96px;
+          top: 42px;
+          width: 98px;
+          height: 98px;
+        }
+        #pg2 .pv-name {
+          position: absolute;
+          left: 60px;
+          width: 170px;
+          text-align: center;
+          top: 148px;
+          color: #fff;
+          font-size: 18px;
+        }
+        .big-icon {
+          width: 180px;
+          height: 180px;
+          margin: 26px auto 0;
+          box-shadow: 0 16px 40px rgba(16, 33, 59, 0.2);
+        }
+        .big-ph {
+          width: 180px;
+          height: 180px;
+          margin: 26px auto 0;
+          border-radius: 22%;
+          border: 2px dashed #b9c4d3;
+        }
+        .big-ph .big-icon {
+          margin: -2px 0 0 -2px;
+        }
+        .slider {
+          margin: 26px 40px 0;
+          height: 8px;
+          border-radius: 4px;
+          background: #eef2f7;
+          position: relative;
+        }
+        .slider::before {
+          content: "";
+          position: absolute;
+          left: 30%;
+          top: -8px;
+          width: 22px;
+          height: 22px;
+          border-radius: 50%;
+          border: 3px solid #155dfc;
+          background: #fff;
+        }
+        #pg2 .btns,
+        #pg3 .btns,
+        #pg4 .btns {
+          top: 772px;
+        }
+
+        /* P3 Navegação */
+        .pv-tab {
+          position: absolute;
+          left: 6px;
+          right: 6px;
+          top: -60px;
+          height: 230px;
+          border: 8px solid #1c1c1e;
+          border-top: 0;
+          border-radius: 0 0 60px 60px;
+          background: #fff;
+          display: flex;
+          justify-content: space-around;
+          align-items: center;
+          padding-top: 60px;
+        }
+        .pv-tab div {
+          text-align: center;
+          font-size: 13px;
+          color: #8b97a7;
+        }
+        .pv-tab svg {
+          width: 30px;
+          height: 30px;
+          display: block;
+          margin: 0 auto 4px;
+        }
+        .pv-tab div.on {
+          color: var(--acc);
+        }
+        .swatch-card {
+          margin: 18px 20px 0;
+          padding: 16px 18px;
+          border: 1px solid #e5ebf2;
+          border-radius: 18px;
+        }
+        .lbl {
+          font-size: 12px;
+          letter-spacing: 0.04em;
+          color: #42556c;
+          display: flex;
+          justify-content: space-between;
+        }
+        .tabs {
+          display: flex;
+          gap: 6px;
+          margin: 10px 0 16px;
+        }
+        .tabs span {
+          height: 30px;
+          padding: 0 12px;
+          border-radius: 15px;
+          border: 1px solid #b9cdf8;
+          background: #f3f7ff;
+          color: #155dfc;
+          font-size: 13px;
+          display: flex;
+          align-items: center;
+        }
+        .sw {
+          display: flex;
+          gap: 10px;
+          margin-top: 12px;
+        }
+        .sw i {
+          width: 30px;
+          height: 30px;
+          border-radius: 50%;
+          position: relative;
+        }
+        .sw {
+          position: relative;
+        }
+        #k-swring {
+          position: absolute;
+          left: -5px;
+          top: -5px;
+          width: 40px;
+          height: 40px;
+          border-radius: 50%;
+          border: 2px solid #10213b;
+          box-shadow: inset 0 0 0 3px #fff;
+          z-index: 2;
+        }
+
+        .hex {
+          position: relative;
+          width: 70px;
+          text-align: right;
+        }
+        .hex span {
+          position: absolute;
+          right: 0;
+          top: 0;
+        }
+        /* P4 Notificação */
+        .pv-phone {
+          position: absolute;
+          left: 10px;
+          right: 10px;
+          top: 40px;
+          height: 420px;
+          border: 8px solid #1c1c1e;
+          border-bottom: 0;
+          border-radius: 50px 50px 0 0;
+          background: #fff;
+        }
+        .pv-phone .sb {
+          display: flex;
+          justify-content: space-between;
+          padding: 16px 28px 0;
+          font-size: 15px;
+          font-weight: 600;
+        }
+        .pv-phone .island {
+          position: absolute;
+          top: 12px;
+          left: 50%;
+          width: 110px;
+          height: 30px;
+          margin-left: -55px;
+          border-radius: 15px;
+          background: #111;
+        }
+        .ntf {
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          top: 66px;
+          display: flex;
+          gap: 12px;
+          padding: 12px 14px;
+          border-radius: 20px;
+          background: #fff;
+          box-shadow: 0 10px 30px rgba(16, 33, 59, 0.16);
+          z-index: 2;
+        }
+        .ntf .icon {
+          width: 40px;
+          height: 40px;
+          flex: none;
+        }
+        .ntf b {
+          display: flex;
+          justify-content: space-between;
+          font-size: 14px;
+          font-weight: 600;
+        }
+        .ntf b small {
+          font-weight: 400;
+          color: #8b97a7;
+        }
+        .ntf p {
+          font-size: 13px;
+          line-height: 1.35;
+          color: #42556c;
+          margin-top: 2px;
+        }
+        .skel {
+          position: absolute;
+          left: 14px;
+          right: 14px;
+          border-radius: 10px;
+          background: #f1f3f6;
+        }
+        #pg4 .sheet {
+          top: 390px;
+        }
+        .fld {
+          margin: 14px 20px 0;
+        }
+        .fld label {
+          font-size: 14px;
+          color: #10213b;
+        }
+        .fld div {
+          margin-top: 6px;
+          height: 40px;
+          border: 1px solid #dfe5ee;
+          display: flex;
+          align-items: center;
+          padding: 0 12px;
+          font-size: 15px;
+          color: #42556c;
+        }
+
+        /* toque (dedo) */
+        #k-chip-ok {
+          position: absolute;
+          left: 0;
+          top: 0;
+        }
+        .chips {
+          position: relative;
+        }
+        #k-h1,
+        #k-h2,
+        #k-h3,
+        #k-h4,
+        #k-tap,
+        #k-ring,
+        #k-ckb,
+        #k-bigicon,
+        #k-pvicon,
+        #k-hex2 {
+          opacity: 0;
+        }
+        .tap {
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 46px;
+          height: 46px;
+          margin: -23px 0 0 -23px;
+          border-radius: 50%;
+          background: rgba(16, 33, 59, 0.22);
+          box-shadow: 0 0 0 10px rgba(16, 33, 59, 0.08);
+          z-index: 5;
+        }
+      </style>
+
+      <div id="root" data-composition-id="s2-korza" data-width="1080" data-height="1920">
+        <div id="k-bg"></div>
+        <div id="k-lines"></div>
+
+        <!-- "Na Korza" -->
+        <img id="k-logo" src="assets/brand/logo/korza-logo-color.png" alt="Korza" />
+
+        <!-- Títulos por passo -->
+        <div class="k-head" id="k-h1"><div class="k-step">Na Korza <span class="bar"><i class="on"></i><i></i><i></i></span></div><div class="k-t">Conecte<br /><span class="tone">sua loja.</span></div></div>
+        <div class="k-head" id="k-h2"><div class="k-step">Na Korza <span class="bar"><i class="on"></i><i class="on"></i><i></i></span></div><div class="k-t">Escolha<br /><span class="tone">a logo.</span></div></div>
+        <div class="k-head" id="k-h3"><div class="k-step">Na Korza <span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></div><div class="k-t">E as<br /><span class="tone">cores.</span></div></div>
+        <div class="k-head" id="k-h4"><div class="k-step">Na Korza <span class="bar"><i class="on"></i><i class="on"></i><i class="on"></i></span></div><div class="k-t">E pronto.</div></div>
+
+        <div id="k-stage" data-layout-allow-overflow="true">
+          <div id="k-cam" data-layout-allow-overflow="true"><div id="k-phone" data-layout-allow-overflow="true">
+            <div id="k-screen" data-layout-ignore>
+              <div class="tb"><span></span><span></span></div>
+
+              <!-- P1: plataforma -->
+              <div class="pg" id="pg1">
+                <div class="chips"><span class="chip on">Loja</span><span class="chip">Nome do app</span><span class="chip">Logo</span><span class="chip">Navegação</span><span class="chip">Notificação</span></div>
+                <div class="h">Qual é a plataforma da sua loja?</div>
+                <div class="sub">Isso nos ajuda a preparar<br />seu app do jeito certo.</div>
+                <div class="plat">
+                  <div><img src="assets/img/logo-shopify.png" alt="Shopify" /></div>
+                  <div id="k-nuvem"><img src="assets/img/logo-nuvemshop.png" alt="Nuvemshop" /><span class="ring" id="k-ring"></span><span class="ckb" id="k-ckb">✓</span></div>
+                </div>
+                <div class="btns"><span class="btn p">Continuar</span></div>
+              </div>
+
+              <!-- P2: logo -->
+              <div class="pg" id="pg2">
+                <div class="pv-home"></div>
+                <div class="icon pv-icon" id="k-pvicon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></svg></div>
+                <div class="pv-name">Sua Loja</div>
+                <div class="sheet">
+                  <div class="chips"><span class="chip ok">Nuvemshop</span><span class="chip ok">Sua Loja</span><span class="chip on">Logo</span><span class="chip">Navegação</span><span class="chip">Notificação</span></div>
+                  <div class="h" style="margin-top: 18px">Agora, a logo do seu app</div>
+                  <div class="sub">Ajuste o enquadramento até a logo encaixar perfeitamente no ícone do app.</div>
+                  <div class="big-ph" id="k-bigph"><div class="icon big-icon" id="k-bigicon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></svg></div></div>
+                  <div class="slider"></div>
+                </div>
+                <div class="btns"><span class="btn">Voltar</span><span class="btn p">Continuar</span></div>
+              </div>
+
+              <!-- P3: navegação e cor -->
+              <div class="pg" id="pg3">
+                <div class="pv-tab">
+                  <div class="on"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 10.5 12 4l8 6.5V20h-5.5v-6h-5v6H4z" /></svg>Início</div>
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 4h2l2.2 11h10.6L20 7H6.3" /><circle cx="9" cy="19.5" r="1.3" /><circle cx="17" cy="19.5" r="1.3" /></svg>Carrinho</div>
+                  <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><circle cx="11" cy="11" r="6.5" /><path d="m16 16 4.5 4.5" /></svg>Buscar</div>
+                </div>
+                <div class="sheet">
+                  <div class="chips"><span class="chip ok">Sua Loja</span><span class="chip ok">Logo</span><span class="chip on">Navegação</span><span class="chip">Notificação</span></div>
+                  <div class="h" style="margin-top: 18px">Monte a barra de navegação</div>
+                  <div class="sub">Até 5 atalhos.</div>
+                  <div class="swatch-card">
+                    <div class="lbl">ABAS DO MENU</div>
+                    <div class="tabs"><span>Início ✓</span><span>Carrinho ✓</span><span>Buscar ✓</span></div>
+                    <div class="lbl">COR DE DESTAQUE <span class="hex"><span id="k-hex1">#155DFC</span><span id="k-hex2">#FF6A00</span></span></div>
+                    <div class="sw"><span id="k-swring"></span>
+                      <i id="sw-blue" style="background: #155dfc"></i><i id="sw-orange" style="background: #ff6a00"></i><i style="background: #ef4444"></i><i style="background: #f59e0b"></i><i style="background: #22c55e"></i><i style="background: #8b5cf6"></i><i style="background: #ec4899"></i>
+                    </div>
+                  </div>
+                </div>
+                <div class="btns"><span class="btn">Voltar</span><span class="btn p">Continuar</span></div>
+              </div>
+
+              <!-- P4: notificação de teste -->
+              <div class="pg" id="pg4">
+                <div class="pv-phone">
+                  <div class="island"></div>
+                  <div class="sb"><span>9:41</span><span>●●● ▮</span></div>
+                  <div class="ntf" id="k-ntf">
+                    <div class="icon"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M5 8h14l-1 12H6L5 8z" /><path d="M9 8V6.5a3 3 0 0 1 6 0V8" /></svg></div>
+                    <div><b>Sua oferta especial chegou! <small>agora</small></b><p>Aproveite descontos exclusivos por tempo limitado.</p></div>
+                  </div>
+                  <div class="skel" style="top: 150px; height: 70px"></div>
+                  <div class="skel" style="top: 240px; height: 14px; right: 220px"></div>
+                  <div class="skel" style="top: 270px; height: 110px; right: 190px"></div>
+                  <div class="skel" style="top: 270px; height: 110px; left: 190px"></div>
+                </div>
+                <div class="sheet">
+                  <div class="chips"><span class="chip ok">Logo</span><span class="chip ok">3 abas</span><span class="chip on" id="k-chip-n">Notificação</span></div>
+                  <div class="h" style="margin-top: 18px">Teste uma notificação</div>
+                  <div class="sub">Veja como uma notificação vai aparecer com a marca do seu app (opcional).</div>
+                  <div class="fld"><label>Título</label><div>Sua oferta especial chegou!</div></div>
+                </div>
+                <div class="btns"><span class="btn">Voltar</span><span class="btn p">Continuar</span></div>
+              </div>
+
+              <div class="tap" id="k-tap"></div>
+            </div>
+          </div></div>
+        </div>
+      </div>
+
+      <script>
+        // Ato 2 (local 0 = 9,15s global). Fala: "Na" 0.16 · "você conecta" 0.82 · "loja" 1.75 · "escolhe" 2.33 · "logo" 2.74
+        // · "cores" 3.17 · "pronto" 4.03 · fim 4.7
+        const tl = gsap.timeline({ paused: true });
+                const SW = 390; // largura da tela (px do celular, antes da escala)
+
+        const headIn = (id, t) => {
+          tl.set(id, { opacity: 1 }, t);
+          tl.fromTo(`${id} .k-step`, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.35, ease: "power3.out" }, t);
+          tl.fromTo(`${id} .k-t`, { yPercent: 40, opacity: 0, clipPath: "inset(0 0 100% 0)" }, { yPercent: 0, opacity: 1, clipPath: "inset(0 0 0% 0)", duration: 0.45, ease: "power4.out" }, t + 0.04);
+        };
+        const headOut = (id, t) => tl.to(id, { opacity: 0, y: -40, duration: 0.18, ease: "power2.in" }, t - 0.16);
+        const tapAt = (x, y, t, press) => {
+          tl.to("#k-tap", { x, y, opacity: 1, duration: 0.28, ease: "power3.inOut" }, t);
+          tl.fromTo("#k-tap", { scale: 1 }, { scale: 0.72, duration: 0.08, ease: "power2.in", yoyo: true, repeat: 1, immediateRender: false }, press);
+        };
+        const pageSwap = (from, to, t) => {
+          tl.to(from, { x: -SW * 0.35, opacity: 0, duration: 0.32, ease: "power3.inOut" }, t);
+          tl.fromTo(to, { x: SW, opacity: 1 }, { x: 0, duration: 0.36, ease: "power3.inOut", immediateRender: false }, t);
+        };
+                tl.set("#pg2, #pg3, #pg4", { x: SW }, 0);
+        tl.set("#k-tap", { x: 300, y: 640 }, 0);
+
+        // ── "Na Korza" ──
+        tl.fromTo("#k-logo", { opacity: 0, scale: 0.86, y: 30 }, { opacity: 1, scale: 1, y: 0, duration: 0.5, ease: "power3.out" }, 0.08);
+        tl.to("#k-logo", { opacity: 0, scale: 0.55, y: -420, duration: 0.4, ease: "power3.in" }, 0.62);
+
+        // ── Celular sobe em perspectiva ──
+        tl.fromTo("#k-cam", { y: 1250, rotateX: 34, rotateY: -14, scale: 0.92 }, { y: 0, rotateX: 6, rotateY: -9, scale: 1, duration: 0.85, ease: "power4.out" }, 0.42);
+
+        // ── Passo 1: conecte sua loja ──
+        headIn("#k-h1", 0.86);
+                tapAt(286, 420, 1.3, 1.66);
+        tl.fromTo("#k-ring", { opacity: 0, scale: 1.08 }, { opacity: 1, scale: 1, duration: 0.2, ease: "power2.out" }, 1.72);
+        tl.fromTo("#k-ckb", { opacity: 0, scale: 0 }, { opacity: 1, scale: 1, duration: 0.3, ease: "back.out(3)" }, 1.74);
+        tl.to("#k-nuvem", { backgroundColor: "#ffffff", duration: 0.2 }, 1.72);
+        tapAt(322, 612, 1.92, 2.06);
+
+        // ── Passo 2: escolha a logo ──
+        headOut("#k-h1", 2.28); headIn("#k-h2", 2.28);
+        pageSwap("#pg1", "#pg2", 2.12);
+        tl.to("#k-tap", { opacity: 0, duration: 0.12 }, 2.22);
+        tl.to("#k-cam", { rotateX: 4, rotateY: 7, y: -30, duration: 0.9, ease: "power2.inOut" }, 2.12);
+                tl.fromTo("#k-bigicon", { opacity: 0, scale: 1.45, rotation: -8 }, { opacity: 1, scale: 1, rotation: 0, duration: 0.45, ease: "back.out(1.8)" }, 2.62);
+        tl.fromTo("#k-pvicon", { opacity: 0, scale: 0.6 }, { opacity: 1, scale: 1, duration: 0.35, ease: "back.out(2)" }, 2.8);
+
+        // ── Passo 3: e as cores ──
+        headOut("#k-h2", 3.08); headIn("#k-h3", 3.08);
+        pageSwap("#pg2", "#pg3", 2.98);
+        tl.to("#k-cam", { rotateX: 5, rotateY: -6, y: -50, duration: 0.8, ease: "power2.inOut" }, 3.04);
+        tl.set("#k-tap", { x: 300, y: 760 }, 3.0);
+        tapAt(93, 523, 3.18, 3.42);
+        tl.to("#k-swring", { x: 40, duration: 0.24, ease: "power3.out" }, 3.47);
+        tl.fromTo("#k-screen", { "--acc": "#155dfc" }, { "--acc": "#ff6a00", duration: 0.3, ease: "power1.out" }, 3.47);
+                tl.set("#k-hex1", { opacity: 0 }, 3.47);
+        tl.set("#k-hex2", { opacity: 1 }, 3.47);
+        tl.fromTo("#pg3 .pv-tab div.on svg", { scale: 1 }, { scale: 1.25, duration: 0.14, yoyo: true, repeat: 1, ease: "power2.out", immediateRender: false }, 3.5);
+
+        // ── Passo 4: e pronto (push de teste chega) ──
+        headOut("#k-h3", 3.98); headIn("#k-h4", 3.98);
+        pageSwap("#pg3", "#pg4", 3.82);
+        tl.to("#k-tap", { opacity: 0, duration: 0.15 }, 3.7);
+        tl.to("#k-cam", { rotateX: 0, rotateY: 0, y: 0, scale: 1.05, duration: 0.8, ease: "power2.out" }, 3.86);
+        tl.fromTo("#k-ntf", { y: -130, opacity: 0, scale: 0.94 }, { y: 0, opacity: 1, scale: 1, duration: 0.42, ease: "power3.out" }, 4.12);
+        tl.fromTo("#k-chip-n", { backgroundColor: "#155dfc", color: "#ffffff" }, { backgroundColor: "#e8f0ff", color: "#155dfc", duration: 0.25 }, 4.36);
+        tl.fromTo("#k-chip-n", { scale: 1 }, { scale: 1.12, duration: 0.12, yoyo: true, repeat: 1, immediateRender: false }, 4.36);
+
+        window.__timelines["s2-korza"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

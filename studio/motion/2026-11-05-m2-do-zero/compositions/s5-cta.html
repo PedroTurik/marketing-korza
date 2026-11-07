@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cena 5 — CTA, modo impacto. A voz diz "Crie sua conta grátis na Korza"; a legenda sai e o botão faz esse papel.
+         O botão fica na mesma posição da vinheta (base da zona segura). -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root {
+          position: absolute;
+          inset: 0;
+          overflow: hidden;
+        }
+        #c-content {
+          justify-content: center;
+          gap: 40px;
+          bottom: calc(var(--safe-bottom) + 150px);
+        }
+        #c-old {
+          font-size: 60px;
+          font-weight: 600;
+          letter-spacing: -0.03em;
+          color: rgba(255, 255, 255, 0.55);
+          position: relative;
+          align-self: flex-start;
+        }
+        #c-strike {
+          position: absolute;
+          left: -6px;
+          right: -6px;
+          top: 52%;
+          height: 7px;
+          border-radius: 4px;
+          background: #fff;
+          transform-origin: left center;
+        }
+        .mk {
+          display: block;
+          overflow: hidden;
+          padding-bottom: 0.1em;
+          margin-bottom: -0.1em;
+        }
+        #c-btn {
+          position: absolute;
+          left: 50%;
+          bottom: var(--safe-bottom);
+          font-size: 36px;
+          padding: 26px 38px;
+          white-space: nowrap;
+        }
+      </style>
+
+      <div id="root" class="on-dark" data-composition-id="s5-cta" data-width="1080" data-height="1920">
+        <div class="bg-impact"></div>
+        <div class="content" id="c-content">
+          <img id="c-logo" class="logo-sm" src="assets/brand/logo/korza-logo-white.png" alt="Korza" />
+          <div id="c-old">Do zero, até R$&nbsp;100&nbsp;mil.<span id="c-strike"></span></div>
+          <h1 class="display" style="font-size: 100px">
+            <span class="mk"><span class="in line">Seu app pronto,</span></span>
+            <span class="mk"><span class="in line tone">sem complicação.</span></span>
+          </h1>
+        </div>
+        <div class="cta" id="c-btn">Crie sua conta e veja seu app grátis <span>→</span></div>
+      </div>
+
+      <script>
+        // Cena 5 — CTA (local 0 = 22,0s; "Crie" em 0.19). Entra pelo wipe azul.
+        const tl = gsap.timeline({ paused: true });
+        tl.fromTo("#c-logo", { opacity: 0, y: -16 }, { opacity: 1, y: 0, duration: 0.45, ease: "power2.out" }, 0.15);
+        tl.fromTo("#c-old", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.4, ease: "power3.out" }, 0.1);
+        tl.fromTo("#c-strike", { scaleX: 0 }, { scaleX: 1, duration: 0.35, ease: "power3.inOut" }, 0.55);
+        tl.fromTo("#c-content .mk .in", { yPercent: 110 }, { yPercent: 0, duration: 0.55, ease: "power4.out", stagger: 0.1 }, 0.75);
+        tl.fromTo("#c-btn", { opacity: 0, xPercent: -50, y: 30, scale: 0.94 }, { opacity: 1, xPercent: -50, y: 0, scale: 1, duration: 0.55, ease: "back.out(1.6)" }, 0.3);
+        tl.fromTo("#c-btn span", { x: 0 }, { x: 10, duration: 0.3, yoyo: true, repeat: 3, ease: "sine.inOut", immediateRender: false }, 1.3);
+        // Sai para a vinheta (mesmo fundo azul; o botão fica)
+        tl.to("#c-content", { opacity: 0, y: -30, duration: 0.3, ease: "power2.in" }, 2.88);
+        window.__timelines["s5-cta"] = tl;
+      </script>
+    </template>
+  </body>
+</html>

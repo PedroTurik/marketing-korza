@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="pt-BR" data-resolution="portrait">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=1080, height=1920" />
+    <title>Korza — M2 Do zero × Korza</title>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.14.2/dist/gsap.min.js"></script>
+    <link rel="stylesheet" href="assets/brand/korza-video.css" />
+    <style>
+      @font-face {
+        font-family: "Plus Jakarta Sans";
+        src: url("assets/brand/fonts/PlusJakartaSans-VariableFont_wght.ttf") format("truetype");
+        font-weight: 200 800;
+        font-style: normal;
+      }
+      /* Zona segura deste formato (ajustada por studio/novo.sh) */
+      :root {
+        --safe-top: 270px;
+        --safe-bottom: 670px;
+      }
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      html,
+      body {
+        width: 1080px;
+        height: 1920px;
+        overflow: hidden;
+        background: #ffffff;
+      }
+      #root {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        overflow: hidden;
+        font-family: "Plus Jakarta Sans", sans-serif;
+      }
+      /* Variante 4:5 (build.sh troca data-fmt). Fica aqui porque o CSS das cenas é isolado. */
+      [data-fmt="feed"] #dz-inv { top: 470px !important; }
+      [data-fmt="feed"] #dz-cal { top: 640px !important; }
+      [data-fmt="feed"] #dz-acc1 { top: 700px !important; }
+      [data-fmt="feed"] #dz-acc2 { top: 860px !important; }
+      [data-fmt="feed"] #dz-p1 { top: 720px !important; }
+      [data-fmt="feed"] #dz-p2 { top: 820px !important; }
+      [data-fmt="feed"] #dz-p3 { top: 960px !important; }
+      [data-fmt="feed"] #dz-p4 { top: 1060px !important; }
+      [data-fmt="feed"] #dz-p5 { top: 1180px !important; }
+      [data-fmt="feed"] .dz-big { font-size: 96px !important; }
+      [data-fmt="feed"] #k-logo { top: 480px !important; }
+      [data-fmt="feed"] #k-phone { top: 440px !important; transform: scale(1.45) !important; }
+      [data-fmt="feed"] .k-t { font-size: 84px !important; }
+      [data-fmt="feed"] .a-t { font-size: 84px !important; }
+      [data-fmt="feed"] .ph { width: 500px !important; margin-left: -250px !important; top: 420px !important; }
+      [data-fmt="feed"] #a-hiven { width: 550px !important; margin-left: -275px !important; top: 400px !important; }
+      [data-fmt="feed"] .p-stat .n { font-size: 240px !important; }
+      [data-fmt="feed"] .p-stat .u { font-size: 84px !important; }
+      [data-fmt="feed"] #p-cal { top: 480px !important; }
+      [data-fmt="feed"] .lg-g { top: 1196px !important; }
+      [data-fmt="feed"] #c-content .display { font-size: 88px !important; }
+      #legenda {
+        z-index: 40;
+      }
+      #wipe {
+        position: absolute;
+        inset: 0;
+        background: #155dfc;
+        z-index: 50;
+        transform: scaleX(0);
+      }
+    </style>
+  </head>
+  <body>
+    <!--
+      Cada cena é uma sub-composição em compositions/. Para adicionar uma cena: crie compositions/sN-<nome>.html,
+      monte aqui com data-start/data-duration e acrescente o tempo do corte em CUTS.
+    -->
+    <div id="root" data-fmt="reels" data-composition-id="main" data-start="0" data-duration="25.25" data-width="1080" data-height="1920">
+      <div id="s1-do-zero" class="clip" data-composition-id="s1-do-zero" data-composition-src="compositions/s1-do-zero.html" data-start="0" data-duration="9.15" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s2-korza" class="clip" data-composition-id="s2-korza" data-composition-src="compositions/s2-korza.html" data-start="9.15" data-duration="4.7" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s3-apps" class="clip" data-composition-id="s3-apps" data-composition-src="compositions/s3-apps.html" data-start="13.85" data-duration="3.7" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s4-prazo" class="clip" data-composition-id="s4-prazo" data-composition-src="compositions/s4-prazo.html" data-start="17.55" data-duration="2.3" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="s5-cta" class="clip" data-composition-id="s5-cta" data-composition-src="compositions/s5-cta.html" data-start="19.85" data-duration="3.2" data-track-index="0" data-width="1080" data-height="1920"></div>
+      <div id="vinheta" class="clip" data-composition-id="vinheta" data-composition-src="compositions/vinheta.html" data-start="23.05" data-duration="2.2" data-track-index="0" data-width="1080" data-height="1920"></div>
+      
+      <div id="legenda" class="clip" data-composition-id="legenda" data-composition-src="compositions/legenda.html" data-start="0" data-duration="19.85" data-track-index="1" data-width="1080" data-height="1920"></div>
+
+      <audio id="mix" src="assets/audio/mix.wav" data-start="0" data-duration="25.25" data-track-index="2" data-volume="1"></audio>
+
+      <!-- Wipe azul de transição entre cenas (animado pelo timeline principal) -->
+      <div id="wipe"></div>
+    </div>
+
+    <script>
+      const tl = gsap.timeline({ paused: true });
+      const CUTS = [19.85]; // wipe azul só na entrada do CTA; os outros cortes são da própria cena
+
+      CUTS.forEach((cut, i) => {
+        tl.fromTo("#wipe", { scaleX: 0, transformOrigin: "left center" }, { scaleX: 1, duration: 0.22, ease: "power2.in", immediateRender: i === 0 }, cut - 0.22);
+        tl.fromTo("#wipe", { scaleX: 1, transformOrigin: "right center" }, { scaleX: 0, duration: 0.28, ease: "power2.out", immediateRender: false }, cut);
+      });
+
+      window.__timelines["main"] = tl;
+    </script>
+  </body>
+</html>

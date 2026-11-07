@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <!-- Cena 2 (4,7–9,0s): "Com a Korza, sua loja ganha um app próprio e fala direto na tela dele." Entra em chicote; o celular
+         herói desbloqueia, o ícone da loja cai na grade, volta ao bloqueio e o push da loja salta para fora. Quadros 06–08. -->
+  </head>
+  <body>
+    <template>
+      <style>
+        #root { position: absolute; inset: 0; overflow: hidden; }
+        #s2-bg { position: absolute; inset: 0; background: radial-gradient(1100px 900px at 70% 60%, #dbe7ff 0%, rgba(219,231,255,0) 70%), radial-gradient(900px 800px at 18% 28%, #e6eeff 0%, rgba(230,238,255,0) 70%), #f5f8fc; }
+        #s2-whip { position: absolute; inset: 0; }
+        #s2-glow { position: absolute; left: -10px; top: 500px; width: 1100px; height: 1100px; border-radius: 50%; background: radial-gradient(closest-side, rgba(21,93,252,.2), rgba(21,93,252,0)); }
+        #s2-logo { position: absolute; left: 72px; top: var(--safe-top); width: 300px; opacity: 0; }
+        #s2-ta { top: calc(var(--safe-top) + 90px); }
+        #s2-grid { position: absolute; left: 62px; right: 62px; top: 420px; display: grid; grid-template-columns: repeat(4, 1fr); gap: 46px 38px; }
+        #s2-grid i { display: block; width: 112px; height: 112px; border-radius: 28px; background: rgba(255,255,255,.22); opacity: 0; }
+        #s2-ic { position: absolute; left: 224px; top: 700px; width: 232px; height: 232px; border-radius: 54px; box-shadow: 0 30px 60px rgba(4,12,30,.45); opacity: 0; }
+        #s2-ring { position: absolute; left: 214px; top: 690px; width: 252px; height: 252px; border-radius: 62px; border: 8px solid rgba(255,255,255,.75); opacity: 0; }
+        #s2-icl { position: absolute; left: 0; right: 0; top: 950px; text-align: center; color: #fff; font-size: 38px; font-weight: 600; opacity: 0; }
+        #s2-nts { position: absolute; left: 24px; right: 24px; top: 440px; display: flex; gap: 24px; align-items: center; padding: 30px; border-radius: 46px; background: rgba(255,255,255,.96); color: #10213b; opacity: 0; }
+        #s2-nts img { width: 100px; height: 100px; border-radius: 26px; }
+        #s2-pz { left: 160px; top: 860px; opacity: 0; }
+      </style>
+
+      <div id="root" class="on-light" data-composition-id="s2-app" data-width="1080" data-height="1920">
+        <div id="s2-bg"></div>
+        <div id="s2-whip">
+          <div id="s2-stg" class="stg">
+            <div id="s2-glow"></div>
+            <div class="st3"><div class="cam3">
+              <div class="ph3" id="s2-ph" data-layout-ignore>
+                <div class="ph3-body"><div class="ph3-screen">
+                  <div class="wp wp-loja"></div>
+                  <div id="s2-lock"><div class="lk-time">21:48</div><div class="lk-date">quinta-feira, 5 de novembro</div></div>
+                  <div id="s2-grid"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+                  <div id="s2-ring"></div>
+                  <img id="s2-ic" src="assets/v2/icone-loja.svg" alt="" />
+                  <div id="s2-icl">Sua Loja</div>
+                  <div id="s2-nts" data-layout-ignore><img src="assets/v2/icone-loja.svg" alt="" /><div class="nt-body"><div class="nt-head"><div class="nt-title">Sua Loja</div><span class="nt-when">agora</span></div><div class="nt-text">Novidade pra você. Vem ver.</div></div></div>
+                  <div class="ph3-cam"></div>
+                  <div class="ph3-glare" id="s2-glare"></div>
+                </div></div>
+              </div>
+            </div></div>
+            <div class="pz" id="s2-pz" data-layout-ignore><img src="assets/v2/icone-loja.svg" alt="" /><div><b>Sua Loja</b><span>Novidade pra você. Vem ver.</span></div><i>agora</i></div>
+          </div>
+        </div>
+        <img id="s2-logo" src="assets/brand/logo/korza-logo-color.png" alt="Korza" />
+        <div class="ttl" id="s2-ta"><span class="mk"><span class="in">Com a Korza,</span></span></div>
+        <div class="ttl" id="s2-tb"><span class="mk"><span class="in">Sua loja ganha</span></span><span class="mk"><span class="in"><em>um app próprio.</em></span></span></div>
+        <div class="ttl" id="s2-tc"><span class="mk"><span class="in">E fala direto</span></span><span class="mk"><span class="in"><em>na tela dele.</em></span></span></div>
+      </div>
+
+      <script>
+        (function () {
+          const S = "[data-composition-id='s2-app']";
+          const q = (s) => document.querySelector(S + " " + s);
+          const qa = (s) => document.querySelectorAll(S + " " + s);
+          m1Edges(S);
+          const tl = gsap.timeline({ paused: true });
+          const ph = q("#s2-ph");
+
+          const P6 = { x: 80, y: 420, z: -100, rotationX: 18, rotationY: -26, rotationZ: 8, scale: 0.86 };
+          const P7 = { x: 0, y: 240, z: 0, rotationX: 8, rotationY: -12, rotationZ: 0, scale: 0.82 };
+          const P8 = { x: -60, y: 420, z: -260, rotationX: 10, rotationY: 14, rotationZ: 0, scale: 0.82 };
+          gsap.set(ph, { ...P6, y: 1500, rotationZ: 24 });
+
+          // Entra em chicote (continua o da cena 1)
+          tl.fromTo("#s2-whip", { x: 1250, filter: "blur(26px)" }, { x: 0, filter: "blur(0px)", duration: 0.3, ease: "power3.out" }, 0);
+          tl.to(ph, { ...P6, duration: 0.75, ease: "power3.out" }, 0.02);
+          m1In(tl, qa("#s2-ta .in")[0], 0.1);
+          tl.fromTo("#s2-logo", { opacity: 0, y: 24 }, { opacity: 1, y: 0, duration: 0.45, ease: "power3.out", immediateRender: false }, 0.42);
+          tl.to(ph, { rotationY: -20, rotationZ: 6, duration: 0.5, ease: "sine.inOut" }, 0.75);
+
+          // "sua loja ganha um app próprio" (1,14): troca de título, celular de frente, desbloqueia, ícone cai
+          m1Out(tl, qa("#s2-ta .in"), 1.0);
+          tl.to("#s2-logo", { opacity: 0, y: -20, duration: 0.25, ease: "power2.in" }, 1.0);
+          m1In(tl, qa("#s2-tb .in")[0], 1.14);
+          m1In(tl, qa("#s2-tb .in")[1], 1.85);
+          tl.to(ph, { ...P7, duration: 0.7, ease: "power3.inOut" }, 1.0);
+          tl.to("#s2-lock", { y: -260, opacity: 0, duration: 0.35, ease: "power2.in" }, 1.3);
+          tl.to(qa("#s2-grid i"), { opacity: 1, duration: 0.25, stagger: 0.025, ease: "power2.out" }, 1.45);
+          tl.fromTo("#s2-ic", { opacity: 0, scale: 2.4, y: -420, rotation: -12 }, { opacity: 1, scale: 1, y: 0, rotation: 0, duration: 0.42, ease: "back.out(1.6)", immediateRender: false }, 1.9);
+          tl.to("#s2-icl", { opacity: 1, duration: 0.2 }, 2.15);
+          tl.fromTo("#s2-ring", { opacity: 0.9, scale: 0.9 }, { opacity: 0, scale: 1.5, duration: 0.6, ease: "power2.out", immediateRender: false }, 2.2);
+          tl.fromTo("#s2-glare", { backgroundPosition: "100% 0" }, { backgroundPosition: "-60% 0", duration: 0.9, ease: "sine.inOut", immediateRender: false }, 2.0);
+
+          // "e fala direto na tela dele" (2,62): volta ao bloqueio, push chega e salta para fora
+          m1Out(tl, qa("#s2-tb .in"), 2.5);
+          m1In(tl, qa("#s2-tc .in")[0], 2.62);
+          m1In(tl, qa("#s2-tc .in")[1], 3.45);
+          tl.to(ph, { ...P8, duration: 0.8, ease: "power3.inOut" }, 2.55);
+          tl.to(qa("#s2-grid i, #s2-ic, #s2-icl"), { opacity: 0, duration: 0.25 }, 2.6);
+          tl.to("#s2-lock", { y: 0, opacity: 1, duration: 0.35, ease: "power2.out" }, 2.72);
+          tl.fromTo("#s2-nts", { opacity: 0, y: -120 }, { opacity: 1, y: 0, duration: 0.35, ease: "expo.out", immediateRender: false }, 3.0);
+          tl.fromTo("#s2-pz", { opacity: 0, scale: 0.5, x: -40, y: -360, rotation: 6 }, { opacity: 1, scale: 1, x: 0, y: 0, rotation: -3, duration: 0.5, ease: "back.out(1.4)", immediateRender: false }, 3.3);
+          tl.to("#s2-nts", { opacity: 0, duration: 0.2 }, 3.35);
+          tl.to("#s2-pz", { y: -14, rotation: -2, duration: 0.5, ease: "sine.inOut" }, 3.8);
+
+          // Saída (4,05–4,3): mergulho na direção do push
+          tl.to("#s2-whip", { scale: 1.7, opacity: 0, filter: "blur(18px)", transformOrigin: "540px 960px", duration: 0.25, ease: "power2.in" }, 4.05);
+          tl.to(qa("#s2-tc .in"), { opacity: 0, duration: 0.2 }, 4.08);
+
+          window.__timelines["s2-app"] = tl;
+        })();
+      </script>
+    </template>
+  </body>
+</html>

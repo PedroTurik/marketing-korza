@@ -31,15 +31,16 @@ próprio de recompra.
 
 Prints em [telas/](telas/README.md). Dados da base em [../estrategia/dados-do-painel.md](../estrategia/dados-do-painel.md).
 
-## Funil real — verificado em 2026-10-30
+## Funil real — verificado em 2026-11-06
 
 Cadastro por magic link → plataforma → nome, loja e e-mail → logo → barra de navegação e cor → notificação de teste →
-"seu app está sendo construído", com o time entrando em contato. Por enquanto não há pagamento no fluxo; o lojista
-passará a pagar a mensalidade pela plataforma, e a comissão que ainda existe no código sai (o PR do admin espera isso).
+**assinatura do plano na própria plataforma** (página do plano em Cobrança) → assinatura confirmada → convite da equipe.
+No ar para todo lojista novo desde 2026-11-06, sem falar com ninguém; a comissão saiu do código. Os pagantes antigos
+(legados) seguem no modelo anterior e não veem a página do plano: não afeta o marketing, que fala com lojista novo.
 O preview usa a marca do lojista sobre um esqueleto, sem produtos, e segue como oferta forte; um emulador mais robusto vem depois.
 Públicos estão em teste com 6 lojas e entram num plano futuro: ignorar nas peças.
 
-## Preço e condições — verificado em 2026-10-26
+## Preço e condições — verificado em 2026-11-06
 
 | Item | Valor |
 | --- | --- |
@@ -62,7 +63,8 @@ enquanto durar.
 
 1. **Oferta de entrada: "veja seu app gratuitamente".** O lojista cria a conta grátis em
    `https://admin.korza.app/create-account`, conecta a loja e o onboarding mostra um preview do app.
-2. **Assinatura self-serve** do plano de R$ 399/mês. É a direção da empresa: vender sem contato humano.
+2. **Assinatura self-serve** do plano de R$ 399/mês, no fim do onboarding (no ar desde 2026-11-06). É a direção da
+   empresa: vender sem contato humano.
 3. **Caminho alternativo: reunião com especialista.** Hoje quase toda venda fecha numa call. Continua
    existindo para quem prefere conversar, mas não é o CTA principal.
 
@@ -101,3 +103,4 @@ nem estrutura a marca.
 - 2026-10-26: criado a partir do site ao vivo ([fontes/site-2026-10-26.md](fontes/site-2026-10-26.md))
   e das respostas do Pedro.
 - 2026-10-30: funcionalidades e funil real a partir do painel; prints em `telas/`.
+- 2026-11-06: assinatura self-serve no ar para lojistas novos, sem comissão; preço R$ 399/mês fixo confirmado pelo Pedro.

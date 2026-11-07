@@ -25,7 +25,7 @@ impulsiona? qual criativo?** Só anunciar o que já está em produção; commit 
 
 | Item | Nível | Quando | Decisão |
 | --- | --- | --- | --- |
-| Pagamento na plataforma (self-serve) | A | Com o PR do admin | Vira "assine sem falar com ninguém". Abre a mídia paga |
+| Pagamento na plataforma (self-serve) | A | **No ar desde 2026-11-06** | Vira "assine sem falar com ninguém" (`assina-sozinho`). Medição de conta criada e assinatura no ar desde 2026-11-07 (`plano-de-medicao.md`): a mídia paga está destravada |
 | Novos planos | A | Sem data | Revisar preço, claims, `/precos/` e `sem-setup-comissao` antes de qualquer peça |
 | Listagem na Loja de Aplicativos Nuvem e Shopify App Store | A | Sem data | Lançamento + frente de SEO (`seo/estrategia.md`) |
 | Carrinho abandonado | A | "Em breve" | Não vender antes de sair. Ao sair: pauta prioritária, tema de maior dor |
@@ -49,6 +49,6 @@ Base: painel em 2026-10-30. Ao bater, conferir, aprovar em `claims.md` e decidir
 
 | Item | Vence | Ação |
 | --- | --- | --- |
-| Preço e `sem-setup-comissao` | 2026-11-25 | Confirmar com o Pedro |
+| Preço e `sem-setup-comissao` | 2026-12-06 | Confirmar com o Pedro |
 | Preços de `concorrentes.md` | Antes de qualquer comparação | Conferir na fonte |
 | Remoção temporária no Search Console | ~2027-04-27 | Resolver o `noindex` antes |
